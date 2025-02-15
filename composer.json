@@ -1,0 +1,18 @@
+{
+    "name": "daniel/schl-hub",
+    "autoload": {
+        "psr-4": {
+            "Daniel\\SchlHub\\": "src/",
+            "Router\\": "routes/",
+            "App\\": "app/",
+            "Database\\": "database/"
+        }
+    },
+    "authors": [
+        {
+            "name": "JudicaelDaniel",
+            "email": "danielzklug@gmail.com"
+        }
+    ],
+    "require": {}
+}
