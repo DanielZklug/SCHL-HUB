@@ -1,68 +1,26 @@
-<h1>Home Page</h1>
-<p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur distinctio ad impedit veritatis. Natus blanditiis laborum suscipit dolor at vel ad ea consequatur recusandae consectetur, saepe provident enim quam ex?
-</p>
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis soluta itaque illum. Soluta hic eligendi atque est impedit veniam delectus numquam nostrum amet labore obcaecati, sit tenetur molestiae, temporibus sapiente.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto sapiente magni sint officia id pariatur et porro eos sed fugiat sunt impedit ratione quas eligendi numquam, qui doloremque nesciunt. Tenetur.
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore, error architecto nam cupiditate laboriosam adipisci molestiae accusamus hic dignissimos eveniet quidem id veritatis corporis laudantium vitae fuga nulla nesciunt repellendus?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt ab nesciunt voluptatibus saepe facilis maxime repudiandae nostrum obcaecati ex possimus. Quo enim totam quod unde cum iusto maiores illo necessitatibus!
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio saepe commodi nam possimus placeat quaerat tempora, dolorem accusantium repellat odit aperiam asperiores libero eum enim? Atque voluptate mollitia animi rerum?Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quisquam provident consequatur, quae inventore fuga possimus iure, consequuntur, placeat mollitia molestias eius error fugit animi cum unde repudiandae iusto.Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus beatae veniam deleniti eaque hic consectetur. Eius fugit ratione recusandae atque debitis mollitia ex nulla modi, molestias blanditiis, nisi deserunt perspiciatis!lo
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, sit. Eius fuga ducimus repellendus deleniti temporibus nostrum recusandae natus ut libero dolorem, magnam, labore fugit iusto quas repudiandae enim eum?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum doloremque vitae perferendis sunt debitis! Eos fuga esse asperiores ad quis rem, beatae, ducimus dolores, recusandae molestias atque consequuntur. Consequatur, fugit!lolo
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, exercitationem, voluptatem dolore reiciendis sit maiores vel sapiente quos repudiandae aperiam placeat ad delectus aliquid repellat beatae itaque esse impedit fuga!lo
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem autem recusandae rem dolores molestias voluptatum iste quasi. Inventore cum temporibus, velit, sint magnam odio quisquam harum aperiam, illum laboriosam omnis.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, impedit incidunt? Fugit amet modi esse assumenda cumque commodi odit, necessitatibus alias natus nulla deleniti similique sint quas saepe distinctio quae!
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure fugiat placeat quam facilis in. Sint odit perferendis et magni harum in quos nobis earum, nulla facere nostrum quasi aperiam nemo?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et reprehenderit quas possimus doloremque doloribus ducimus necessitatibus quos quam quis illo animi similique dolore, sed amet perspiciatis beatae cumque officiis veritatis?Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quo repellat voluptates autem hic quia quas dicta sed debitis eaque fuga nulla assumenda voluptas ullam libero similique magni, rem recusandae.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat dolorem suscipit ducimus non facere consequuntur, explicabo rerum tempora fuga praesentium ad, optio corporis ex, necessitatibus quisquam vel consectetur iusto?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique ab quisquam minus fugiat at tempore dolores? Nemo sunt aliquam fuga harum, reprehenderit ipsam eum debitis doloribus suscipit quod beatae officiis?
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi commodi qui sapiente quo soluta vel porro, mollitia cum est officia velit eaque omnis temporibus cumque molestias iste consequuntur, tempora placeat.
-</p>
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis soluta itaque illum. Soluta hic eligendi atque est impedit veniam delectus numquam nostrum amet labore obcaecati, sit tenetur molestiae, temporibus sapiente.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto sapiente magni sint officia id pariatur et porro eos sed fugiat sunt impedit ratione quas eligendi numquam, qui doloremque nesciunt. Tenetur.
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore, error architecto nam cupiditate laboriosam adipisci molestiae accusamus hic dignissimos eveniet quidem id veritatis corporis laudantium vitae fuga nulla nesciunt repellendus?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt ab nesciunt voluptatibus saepe facilis maxime repudiandae nostrum obcaecati ex possimus. Quo enim totam quod unde cum iusto maiores illo necessitatibus!
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio saepe commodi nam possimus placeat quaerat tempora, dolorem accusantium repellat odit aperiam asperiores libero eum enim? Atque voluptate mollitia animi rerum?Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quisquam provident consequatur, quae inventore fuga possimus iure, consequuntur, placeat mollitia molestias eius error fugit animi cum unde repudiandae iusto.Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus beatae veniam deleniti eaque hic consectetur. Eius fugit ratione recusandae atque debitis mollitia ex nulla modi, molestias blanditiis, nisi deserunt perspiciatis!lo
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, sit. Eius fuga ducimus repellendus deleniti temporibus nostrum recusandae natus ut libero dolorem, magnam, labore fugit iusto quas repudiandae enim eum?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum doloremque vitae perferendis sunt debitis! Eos fuga esse asperiores ad quis rem, beatae, ducimus dolores, recusandae molestias atque consequuntur. Consequatur, fugit!lolo
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, exercitationem, voluptatem dolore reiciendis sit maiores vel sapiente quos repudiandae aperiam placeat ad delectus aliquid repellat beatae itaque esse impedit fuga!lo
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem autem recusandae rem dolores molestias voluptatum iste quasi. Inventore cum temporibus, velit, sint magnam odio quisquam harum aperiam, illum laboriosam omnis.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, impedit incidunt? Fugit amet modi esse assumenda cumque commodi odit, necessitatibus alias natus nulla deleniti similique sint quas saepe distinctio quae!
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure fugiat placeat quam facilis in. Sint odit perferendis et magni harum in quos nobis earum, nulla facere nostrum quasi aperiam nemo?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et reprehenderit quas possimus doloremque doloribus ducimus necessitatibus quos quam quis illo animi similique dolore, sed amet perspiciatis beatae cumque officiis veritatis?Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quo repellat voluptates autem hic quia quas dicta sed debitis eaque fuga nulla assumenda voluptas ullam libero similique magni, rem recusandae.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat dolorem suscipit ducimus non facere consequuntur, explicabo rerum tempora fuga praesentium ad, optio corporis ex, necessitatibus quisquam vel consectetur iusto?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique ab quisquam minus fugiat at tempore dolores? Nemo sunt aliquam fuga harum, reprehenderit ipsam eum debitis doloribus suscipit quod beatae officiis?
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi commodi qui sapiente quo soluta vel porro, mollitia cum est officia velit eaque omnis temporibus cumque molestias iste consequuntur, tempora placeat.
-</p>
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis soluta itaque illum. Soluta hic eligendi atque est impedit veniam delectus numquam nostrum amet labore obcaecati, sit tenetur molestiae, temporibus sapiente.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto sapiente magni sint officia id pariatur et porro eos sed fugiat sunt impedit ratione quas eligendi numquam, qui doloremque nesciunt. Tenetur.
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore, error architecto nam cupiditate laboriosam adipisci molestiae accusamus hic dignissimos eveniet quidem id veritatis corporis laudantium vitae fuga nulla nesciunt repellendus?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt ab nesciunt voluptatibus saepe facilis maxime repudiandae nostrum obcaecati ex possimus. Quo enim totam quod unde cum iusto maiores illo necessitatibus!
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio saepe commodi nam possimus placeat quaerat tempora, dolorem accusantium repellat odit aperiam asperiores libero eum enim? Atque voluptate mollitia animi rerum?Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quisquam provident consequatur, quae inventore fuga possimus iure, consequuntur, placeat mollitia molestias eius error fugit animi cum unde repudiandae iusto.Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus beatae veniam deleniti eaque hic consectetur. Eius fugit ratione recusandae atque debitis mollitia ex nulla modi, molestias blanditiis, nisi deserunt perspiciatis!lo
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, sit. Eius fuga ducimus repellendus deleniti temporibus nostrum recusandae natus ut libero dolorem, magnam, labore fugit iusto quas repudiandae enim eum?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum doloremque vitae perferendis sunt debitis! Eos fuga esse asperiores ad quis rem, beatae, ducimus dolores, recusandae molestias atque consequuntur. Consequatur, fugit!lolo
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, exercitationem, voluptatem dolore reiciendis sit maiores vel sapiente quos repudiandae aperiam placeat ad delectus aliquid repellat beatae itaque esse impedit fuga!lo
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem autem recusandae rem dolores molestias voluptatum iste quasi. Inventore cum temporibus, velit, sint magnam odio quisquam harum aperiam, illum laboriosam omnis.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, impedit incidunt? Fugit amet modi esse assumenda cumque commodi odit, necessitatibus alias natus nulla deleniti similique sint quas saepe distinctio quae!
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure fugiat placeat quam facilis in. Sint odit perferendis et magni harum in quos nobis earum, nulla facere nostrum quasi aperiam nemo?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et reprehenderit quas possimus doloremque doloribus ducimus necessitatibus quos quam quis illo animi similique dolore, sed amet perspiciatis beatae cumque officiis veritatis?Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quo repellat voluptates autem hic quia quas dicta sed debitis eaque fuga nulla assumenda voluptas ullam libero similique magni, rem recusandae.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat dolorem suscipit ducimus non facere consequuntur, explicabo rerum tempora fuga praesentium ad, optio corporis ex, necessitatibus quisquam vel consectetur iusto?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique ab quisquam minus fugiat at tempore dolores? Nemo sunt aliquam fuga harum, reprehenderit ipsam eum debitis doloribus suscipit quod beatae officiis?
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi commodi qui sapiente quo soluta vel porro, mollitia cum est officia velit eaque omnis temporibus cumque molestias iste consequuntur, tempora placeat.
-</p>
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis soluta itaque illum. Soluta hic eligendi atque est impedit veniam delectus numquam nostrum amet labore obcaecati, sit tenetur molestiae, temporibus sapiente.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto sapiente magni sint officia id pariatur et porro eos sed fugiat sunt impedit ratione quas eligendi numquam, qui doloremque nesciunt. Tenetur.
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore, error architecto nam cupiditate laboriosam adipisci molestiae accusamus hic dignissimos eveniet quidem id veritatis corporis laudantium vitae fuga nulla nesciunt repellendus?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt ab nesciunt voluptatibus saepe facilis maxime repudiandae nostrum obcaecati ex possimus. Quo enim totam quod unde cum iusto maiores illo necessitatibus!
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio saepe commodi nam possimus placeat quaerat tempora, dolorem accusantium repellat odit aperiam asperiores libero eum enim? Atque voluptate mollitia animi rerum?Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quisquam provident consequatur, quae inventore fuga possimus iure, consequuntur, placeat mollitia molestias eius error fugit animi cum unde repudiandae iusto.Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus beatae veniam deleniti eaque hic consectetur. Eius fugit ratione recusandae atque debitis mollitia ex nulla modi, molestias blanditiis, nisi deserunt perspiciatis!lo
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, sit. Eius fuga ducimus repellendus deleniti temporibus nostrum recusandae natus ut libero dolorem, magnam, labore fugit iusto quas repudiandae enim eum?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum doloremque vitae perferendis sunt debitis! Eos fuga esse asperiores ad quis rem, beatae, ducimus dolores, recusandae molestias atque consequuntur. Consequatur, fugit!lolo
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, exercitationem, voluptatem dolore reiciendis sit maiores vel sapiente quos repudiandae aperiam placeat ad delectus aliquid repellat beatae itaque esse impedit fuga!lo
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem autem recusandae rem dolores molestias voluptatum iste quasi. Inventore cum temporibus, velit, sint magnam odio quisquam harum aperiam, illum laboriosam omnis.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, impedit incidunt? Fugit amet modi esse assumenda cumque commodi odit, necessitatibus alias natus nulla deleniti similique sint quas saepe distinctio quae!
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure fugiat placeat quam facilis in. Sint odit perferendis et magni harum in quos nobis earum, nulla facere nostrum quasi aperiam nemo?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et reprehenderit quas possimus doloremque doloribus ducimus necessitatibus quos quam quis illo animi similique dolore, sed amet perspiciatis beatae cumque officiis veritatis?Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quo repellat voluptates autem hic quia quas dicta sed debitis eaque fuga nulla assumenda voluptas ullam libero similique magni, rem recusandae.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat dolorem suscipit ducimus non facere consequuntur, explicabo rerum tempora fuga praesentium ad, optio corporis ex, necessitatibus quisquam vel consectetur iusto?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique ab quisquam minus fugiat at tempore dolores? Nemo sunt aliquam fuga harum, reprehenderit ipsam eum debitis doloribus suscipit quod beatae officiis?
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi commodi qui sapiente quo soluta vel porro, mollitia cum est officia velit eaque omnis temporibus cumque molestias iste consequuntur, tempora placeat.
-</p>
+<div id="features" class="features">
+    <div class="container">
+        <div class="h2-container">
+            <h2 class="h2">
+                <span class="text-span">Intégrez des classes pour profiter de l'expertise de nos encadrants : </span>
+                Leurs conseils enrichissent vos connaissances et vous aident à progresser. Ne manquez pas cette chance !<br/>
+            </h2>
+        </div>
+        <div class="collection-list-wrapper w-dyn-list">
+            <div role="list" class="collection-list w-dyn-items">
+                <?php foreach ($params['posts'] as $post): ?>
+                    <div role="listitem" class="collection-item w-dyn-item">
+                        <div class="feature-item-container">
+                            <div class="feature-icon">
+                                <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR.$post->photo?>"/>
+                            </div>
+                            <h3 style="text-transform: capitalize;" class="h3"><?=$post->profession?></h3>
+                            <p class="paragraph cc-gray"><?=$post->description?></p>
+                            <a href="encadrants/<?=$post->id?>" style="background: rgb(20, 107, 207); color: white;height:30px;font-weight:600;border-radius:5px; position: relative; left: 200px;top:-10px;padding:8px;text-decoration:none">Voir plus</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,7 +8,8 @@ define('SCRIPTS', strtolower(dirname($_SERVER['SCRIPT_NAME'])).DIRECTORY_SEPARAT
 
 $router = new Router($_GET['url']);
 
-$router->get('home', 'App\Controllers\BlogController@index');
-$router->get('/posts/:id', 'App\Controllers\BlogController@show');
+$router->get('accueil', 'App\Controllers\BlogController@welcome');
+$router->get('/encadrants', 'App\Controllers\BlogController@index');
+$router->get('/encadrants/:id', 'App\Controllers\BlogController@show');
 
 $router->run();

@@ -4,16 +4,18 @@ namespace App\Controllers;
 
 
 class BlogController extends Controller{
+
+    public function welcome(){
+        return $this->view('blog.welcome');
+    }
     
     public function index(){
-        return $this->view('blog.index');
+        $stmt = $this->db->getPDO()->query("SELECT * FROM profil_utilisateurs ORDER BY id DESC");
+        $posts = $stmt->fetchAll();
+        return $this->view('blog.index',compact('posts'));
     }
     public function show(int $id){
-        $query= $this->db->getPDO()->query("SELECT * FROM user");
-        $user = $query->fetchAll();
-        foreach($user as $utilisateur){
-          echo  $utilisateur->nom;
-        }
+        $stmt = $this->db->getPDO()->prepare("SELECT * FROM profil_utilisateurs WHERE id = ?");
         return $this->view('blog.show', compact('id'));
     }
 }
