@@ -4,28 +4,36 @@ namespace Database;
 
 use PDO;
 
-class DBConnexion{
+class DBConnexion {
+    // Propriétés privées pour stocker les informations de connexion à la base de données
     private $dbname;
     private $host;
     private $username;
     private $password;
     private $pdo;
 
-    public function __construct(string $dbname, string $host, string $username, string $password){
+    // Constructeur de la classe
+    public function __construct(string $dbname, string $host, string $username, string $password) {
+        // Initialisation des propriétés avec les valeurs fournies
         $this->dbname = $dbname;
         $this->host = $host;
         $this->username = $username;
         $this->password = $password;
     }
 
+    // Méthode pour obtenir une instance PDO
     public function getPDO(): PDO {
-        return $this->pdo ?? $this->pdo = new PDO( "mysql:dbname={$this->dbname};host={$this->host}", $this->username, $this->password,
-        [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET UTF8"
+        // Utilisation de l'opérateur de coalescence nulle (??) pour créer une nouvelle instance PDO si elle n'existe pas déjà
+        return $this->pdo ?? $this->pdo = new PDO(
+            "mysql:dbname={$this->dbname};host={$this->host}",
+            $this->username,
+            $this->password,
+            [
+                // Configuration des options PDO
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Active le mode d'erreur par exception
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, // Définit le mode de récupération par défaut comme objet
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET UTF8" // Définit l'encodage de caractères en UTF-8
             ]
         );
     }
-    
 }

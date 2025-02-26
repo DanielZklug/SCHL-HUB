@@ -1,7 +1,7 @@
 <div class="navigation"></div>
         <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease-out" data-easing2="ease-out" role="banner" class="navigation w-nav">
             <div class="navigation-container">
-                <a style="color: white; text-decoration: none; " href="/" aria-current="page" class="logo w-inline-block w--current">
+                <a style="color: white; text-decoration: none; " href="" aria-current="page" class="logo w-inline-block w--current">
                     <h1 class="logo" style="font-weight: 800;font-size: 3em;">SCHL<span style="font-size: .8em;background: rgb(20, 107, 207); border-radius: 5px;padding: 5px;">hub</span></h1>
                 </a>
                 <nav role="navigation" class="nav-menu w-nav-menu">
@@ -26,73 +26,33 @@
             </div>
         </div>
         <div id="encadrants" class="features">
-            <div class="container">
-                <div class="h2-container">
-                    <h2 class="h2">
-                        <span class="text-span">Intégrez des classes pour profiter de l'expertise de nos encadrants : </span>
-                        Leurs conseils enrichissent vos connaissances et vous aident à progresser. Ne manquez pas cette chance !<br/>
-                    </h2>
-                </div>
-                <div class="collection-list-wrapper w-dyn-list">
-                    <div role="list" class="collection-list w-dyn-items">
-                        <div role="listitem" class="collection-item w-dyn-item">
-                            <div class="feature-item-container">
-                                <div class="feature-icon">
-                                    <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR."femme-africaine-joyeuse-dans-verres-air-heureux-exterieur-carefr_574295-6147.jpg"?>"/>
-                                </div>
-                                <h3 class="h3">Pro ad constituto</h3>
-                                <p class="paragraph cc-gray">Ne usu illud albucius abhor reant, partiendo scriptorem mel ne.</p>
+    <div class="container">
+        <div class="h2-container">
+            <h2 class="h2">
+                <span class="text-span">Intégrez des classes pour profiter de l'expertise de nos encadrants : </span>
+                Leurs conseils enrichissent vos connaissances et vous aident à progresser. Ne manquez pas cette chance !<br/>
+            </h2>
+        </div>
+        <div class="collection-list-wrapper w-dyn-list">
+            <div role="list" class="collection-list w-dyn-items">
+                <?php foreach ($params['posts'] as $post): ?>
+                    <div role="listitem" class="collection-item w-dyn-item">
+                        <div class="feature-item-container">
+                            <div class="feature-icon">
+                                <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR.$post->photo?>"/>
                             </div>
-                        </div>
-                        <div role="listitem" class="collection-item w-dyn-item">
-                            <div class="feature-item-container">
-                                <div class="feature-icon">
-                                    <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR."homme-ville_1157-5068.jpg"?>"/>
-                                </div>
-                                <h3 class="h3">Eam commodo</h3>
-                                <p class="paragraph cc-gray">Fuisset intellegat delicatissimi ex mea. Cu probo integre nec.</p>
-                            </div>
-                        </div>
-                        <div role="listitem" class="collection-item w-dyn-item">
-                            <div class="feature-item-container">
-                                <div class="feature-icon">
-                                    <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR."portrait-belle-jeune-femme-debout-mur-gris_231208-10760.avif"?>"/>
-                                </div>
-                                <h3 class="h3">Reformidans eis</h3>
-                                <p class="paragraph cc-gray">Facer nostro causae ei sed. Vix ex quidam detraxit, vis ad nostro laoreet.</p>
-                            </div>
-                        </div>
-                        <div role="listitem" class="collection-item w-dyn-item">
-                            <div class="feature-item-container">
-                                <div class="feature-icon">
-                                    <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR."portrait-homme-afro-americain_23-2148012827.jpg"?>"/>
-                                </div>
-                                <h3 class="h3">Pro ad constituto</h3>
-                                <p class="paragraph cc-gray">Ne usu illud albucius abhor reant, partiendo scriptorem mel ne.</p>
-                            </div>
-                        </div>
-                        <div role="listitem" class="collection-item w-dyn-item">
-                            <div class="feature-item-container">
-                                <div class="feature-icon">
-                                    <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR."mode-vie-emotions-gens-concept-decontracte-confiant-belle-femme-asiatique-souriante-bras-croises-poitrine-confiante-prete-aider-ecoute-ses-collegues-prenant-part-conversation_1258-59335.jpg"?>"/>
-                                </div>
-                                <h3 class="h3">Eam commodo</h3>
-                                <p class="paragraph cc-gray">Fuisset intellegat delicatissimi ex mea. Cu probo integre nec.</p>
-                            </div>
-                        </div>
-                        <div role="listitem" class="collection-item w-dyn-item">
-                            <div class="feature-item-container">
-                                <div class="feature-icon">
-                                    <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR."young-woman-teaching-kids-english-lesson-online.jpg"?>"/>
-                                </div>
-                                <h3 class="h3">Reformidans eis</h3>
-                                <p class="paragraph cc-gray">Facer nostro causae ei sed. Vix ex quidam detraxit, vis ad nostro laoreet.</p>
-                            </div>
+                            <h3 style="text-transform: capitalize;" class="h3"><?=$post->nom." ".$post->prenom?></h3>
+                            <p class="paragraph cc-gray"><?=$post->profession?></p>
+                            <a href="encadrants/<?=$post->utilisateur_id?>" style="background: rgb(20, 107, 207); color: white;height:30px;font-weight:600;border-radius:5px; position: relative; left: 200px;top:10px;padding:8px;text-decoration:none">Voir plus</a>
                         </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
+        <br>
+        <a href="encadrants" class="link">Tous les Encadrants</a>
+    </div>
+</div>
         <div class="slider-section">
             <div id="propos" data-delay="6000" data-animation="fade" class="slider w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="true" data-autoplay-limit="0" data-nav-spacing="5" data-duration="500" data-infinite="true">
                 <div class="w-slider-mask">
@@ -113,7 +73,6 @@
                         <span class="text-span">Illud decore voluptaria has at.</span>
                         Hinc invenire atomorum no vel. Ut vis nullam blandit neglegentur, omittam perpetua voluptatum qui eu. Iusto laoreet suscipit vis ad, ad ferri tempor duo.
                     </h2>
-                    <a href="/about" class="link">More About Us</a>
                 </div>
             </div>
         </div>
@@ -234,35 +193,4 @@
                     </div>
                  </form>
        </div>
-        </div>
-        <div id="contact" class="footer">
-            <div class="container cc-footer">
-                <div class="footer-column cc-footer">
-                    <a style="color: white; text-decoration: none; " href="/" aria-current="page" class="logo w-inline-block w--current">
-                        <h1 class="logo" style="font-weight: 800;font-size: 3em;">SCHL<span style="font-size: .8em;background: rgb(20, 107, 207); border-radius: 5px;padding: 5px;">hub</span></h1>
-                    </a>
-                    <div class="text-footer-credits">© 2018 SCHLhub Inc, All rights reserved.</div>
-                </div>
-                <div class="footer-column">
-                    <div class="footer-links-list">
-                        <a href="#encadrants" class="link-footer">Encadrants</a>
-                        <a href="#objectifs" class="link-footer">Objectifs</a>
-                        <a href="#contact" class="link-footer">Contact</a>
-                    </div>
-                    <div class="footer-links-list">
-                        <a href="#propos" class="link-footer">A propos</a>
-                    </div>
-                    <div class="footer-social">
-                        <a href="#" class="link-social w-inline-block">
-                            <!-- <img src="https://cdn.prod.website-files.com/5b680680f109cf5a2fd941ab/5b68459df109cf0cf0d97867_icon-facebook.svg" alt=""/> -->
-                        </a>
-                        <a href="#" class="link-social w-inline-block">
-                            <!-- <img src="https://cdn.prod.website-files.com/5b680680f109cf5a2fd941ab/5b684641659acabed7c8b74d_icon-twitter.svg" alt=""/> -->
-                        </a>
-                        <a href="#" class="link-social w-inline-block">
-                            <!-- <img src="https://cdn.prod.website-files.com/5b680680f109cf5a2fd941ab/5b6846535b239d7ba536b158_icon-instagram.svg" alt=""/> -->
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>

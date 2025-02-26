@@ -29,6 +29,37 @@
     </head>
    <body class="body">
     <?= $content; ?>
+    <div id="contact" class="footer">
+            <div class="container cc-footer">
+                <div class="footer-column cc-footer">
+                    <a style="color: white; text-decoration: none; " href="/" aria-current="page" class="logo w-inline-block w--current">
+                        <h1 class="logo" style="font-weight: 800;font-size: 3em;">SCHL<span style="font-size: .8em;background: rgb(20, 107, 207); border-radius: 5px;padding: 5px;">hub</span></h1>
+                    </a>
+                    <div class="text-footer-credits">© 2018 SCHLhub Inc, All rights reserved.</div>
+                </div>
+                <div class="footer-column">
+                    <div class="footer-links-list">
+                        <a href="#encadrants" class="link-footer">Encadrants</a>
+                        <a href="#objectifs" class="link-footer">Objectifs</a>
+                        <a href="#contact" class="link-footer">Contact</a>
+                    </div>
+                    <div class="footer-links-list">
+                        <a href="#propos" class="link-footer">A propos</a>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" class="link-social w-inline-block">
+                            <!-- <img src="https://cdn.prod.website-files.com/5b680680f109cf5a2fd941ab/5b68459df109cf0cf0d97867_icon-facebook.svg" alt=""/> -->
+                        </a>
+                        <a href="#" class="link-social w-inline-block">
+                            <!-- <img src="https://cdn.prod.website-files.com/5b680680f109cf5a2fd941ab/5b684641659acabed7c8b74d_icon-twitter.svg" alt=""/> -->
+                        </a>
+                        <a href="#" class="link-social w-inline-block">
+                            <!-- <img src="https://cdn.prod.website-files.com/5b680680f109cf5a2fd941ab/5b6846535b239d7ba536b158_icon-instagram.svg" alt=""/> -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
    </body>
    <script defer>
     /*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */
