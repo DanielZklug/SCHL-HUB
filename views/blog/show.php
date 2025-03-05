@@ -1,3 +1,4 @@
+<?php $title = $params['post']->nom." ".$params['post']->prenom; ?>
 <div id="features" class="features">
     <div class="container">
         <div class="collection-list-wrapper w-dyn-list">

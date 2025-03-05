@@ -246,7 +246,6 @@
      font-weight: 800;
      letter-spacing: -1px;
    }
-   
    .h1.cc-black {
      margin-top: 15px;
      margin-bottom: 60px;
@@ -1827,7 +1826,6 @@
      -ms-flex-align: center;
      align-items: center;
    }
-   
    .contact-intro {
      display: -webkit-box;
      display: -webkit-flex;
@@ -2256,7 +2254,7 @@
      .menu-button.w--open {
        background-color: rgb(20, 107, 207);
      }
-   }
+    }
    
    @media (max-width: 767px) {
      .header {

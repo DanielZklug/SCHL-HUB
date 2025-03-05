@@ -1,3 +1,4 @@
+<?php $title = "Encadrants"?>
 <div id="features" class="features">
     <div class="container">
         <div class="h2-container">

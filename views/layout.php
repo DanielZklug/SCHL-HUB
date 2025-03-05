@@ -4,7 +4,7 @@
 <html data-wf-domain="propel-template.webflow.io" data-wf-page="5b680680f109cf797dd941ac" data-wf-site="5b680680f109cf5a2fd941ab" data-wf-status="1">
     <head>
         <meta charset="utf-8"/>
-        <title>SCHLhub - E-learning website </title>
+        <title>SCHLhub - <?=$title?></title>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="Webflow" name="generator"/>
         <link rel="stylesheet" href="<?= SCRIPTS.'css'.DIRECTORY_SEPARATOR.'style.css'?>" type="text/css"/>
@@ -4297,7 +4297,7 @@
 });
 
    </script>
-        <script defer>
+    <script defer>
             /*!
  * Webflow: Front-end site library
  * @license MIT
@@ -13689,5 +13689,5 @@ select.addEventListener('change',() => {
         div.style.display = "none";
     }
 });
-        </script>
+    </script>
 </html>
