@@ -21,6 +21,11 @@ class Router {
         $this->routes['GET'][] = new Route($path, $action);
     }
     
+    public function post(string $path, string $action) {
+        // Ajoute une nouvelle instance de Route au tableau des routes GET
+        $this->routes['POST'][] = new Route($path, $action);
+    }
+    
     // Méthode pour exécuter la route correspondante
     public function run() {
         // Parcourt les routes définies pour la méthode de requête actuelle

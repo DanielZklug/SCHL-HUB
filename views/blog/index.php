@@ -1,4 +1,13 @@
 <?php $title = "Encadrants"?>
+<a href="accueil" class="link"><h3>Retour à l'accueil</h3></a>
+<style>
+    .link,h3{
+        color: rgb(20, 107, 207);
+    }
+    .link:hover,h3:hover{
+        color: #111728;
+    }
+</style>
 <div id="features" class="features">
     <div class="container">
         <div class="h2-container">
@@ -17,7 +26,7 @@
                             </div>
                             <h3 style="text-transform: capitalize;" class="h3"><?=$post->nom." ".$post->prenom?></h3>
                             <p class="paragraph cc-gray"><?=$post->profession?></p>
-                            <a href="encadrants/<?=$post->utilisateur_id?>" style="background: rgb(20, 107, 207); color: white;height:30px;font-weight:600;border-radius:5px; position: relative; left: 200px;top:10px;padding:8px;text-decoration:none">Voir plus</a>
+                            <a href="encadrants/<?=$post->id?>" style="background: rgb(20, 107, 207); color: white;height:30px;font-weight:600;border-radius:5px; position: relative; left: 200px;top:10px;padding:8px;text-decoration:none">Voir plus</a>
                         </div>
                     </div>
                 <?php endforeach; ?>

@@ -13,17 +13,11 @@ class BlogController extends Controller {
         // Exécute une requête SQL pour récupérer les utilisateurs et leurs profils, triés par ID d'utilisateur décroissant
         $stmt = $this->db->getPDO()->query("
             SELECT 
-                utilisateurs.id AS utilisateur_id,
-                utilisateurs.nom,
-                utilisateurs.prenom,
-                profil_utilisateurs.photo,
-                profil_utilisateurs.profession
+                *
             FROM 
-                utilisateurs
-            JOIN 
-                profil_utilisateurs ON utilisateurs.id = profil_utilisateurs.id_utilisateur
+                encadrants
             ORDER BY 
-                utilisateurs.id DESC
+                id DESC
             LIMIT 6
         ");
         
@@ -44,9 +38,6 @@ class BlogController extends Controller {
         return $this->view('blog.index', compact('posts'));
     }
 
-    public function test(){
-        return $this->view('tests.index');
-    }
 
     public function show($id) {
         if (!is_numeric($id) || floor($id) != $id) {

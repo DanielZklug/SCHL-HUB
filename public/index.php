@@ -1,4 +1,4 @@
-<?php
+ <?php
 require "../vendor/autoload.php";
 
 use Router\Router;
@@ -16,6 +16,10 @@ $router = new Router($_GET['url']);
 $router->get('accueil', 'App\Controllers\BlogController@welcome');
 $router->get('encadrants', 'App\Controllers\BlogController@index');
 $router->get('encadrants/:id', 'App\Controllers\BlogController@show');
+
+$router->get('admin/student','App\Controllers\Admin\StudentController@index');
+$router->get('admin/student/:id','App\Controllers\Admin\StudentController@show');
+$router->post('admin/student/delete/:id','App\Controllers\Admin\StudentController@delete');
 
 try{
     $router->run();
