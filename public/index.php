@@ -21,6 +21,11 @@ $router->get('admin/student','App\Controllers\Admin\StudentController@index');
 $router->get('admin/student/:id','App\Controllers\Admin\StudentController@show');
 $router->post('admin/student/delete/:id','App\Controllers\Admin\StudentController@delete');
 
+$router->get('admin/dashboard','App\Controllers\Admin\DashboardController@index');
+
+$router->get('admin/calendar','App\Controllers\Admin\CalendarController@index');
+
+$router->get('admin/support','App\Controllers\Admin\SupportController@index');
 try{
     $router->run();
 }catch(NotFoundException $e){

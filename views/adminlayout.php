@@ -24,7 +24,7 @@
                 <nav role="navigation" class="dashboard-sidebar w-nav-menu">
                     <div class="sidebar-logo-section">
                         <a href="#" aria-current="page" class="dashboard-logo w-nav-brand w--current">
-                            <img style="width:125px" src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'hub.svg'?>" width="98" alt="" class="sidebar-logo"/>
+                            <img style="width:110px" src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'hub.svg'?>" width="98" alt="" class="sidebar-logo"/>
                         </a>
                         <div data-w-id="09e608d3-5d29-ea1c-8250-9e1401f1ec35" class="sidebar-collapse">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602337522c3ea56827425334_Collapse%20Icon.svg'?>" loading="lazy" alt=""/>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="sidebar-menu">
                         <div class="sidebar-menu-section bottom-divider">
-                            <a href="/" aria-current="page" class="sidebar-link w-inline-block w--current">
+                            <a href="/schl-hub/admin/dashboard" aria-current="page" class="sidebar-link w-inline-block w--current">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0e958300219cd1f1d_House.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Tableau de bord</div>
                             </a>
@@ -47,7 +47,7 @@
                                 <div class="sidebar-link-text">Emails</div>
                             </a>
                             <link rel="prefetch" href="/emails"/>
-                            <a href="/calender" class="sidebar-link w-inline-block">
+                            <a href="/schl-hub/admin/calendar" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0a91183f9fceef7b0_CalendarBlank.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Calendrier</div>
                             </a>
@@ -57,18 +57,22 @@
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a13109a7d51194a232_Users.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Etudiants</div>
                             </a>
-                            <a href="/support" class="sidebar-link w-inline-block">
+                            <a href="/schl-hub/admin/support" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1c54adbe65e63f7a9_Chats.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
-                                <div class="sidebar-link-text">Support</div>
+                                <div class="sidebar-link-text">Cours</div>
+                            </a>
+                            <a href="/template-resources/style-guide" class="sidebar-link w-inline-block">
+                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'60262456b5cd8b76429bfafd_Cube.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
+                                <div class="sidebar-link-text">Classes</div>
                             </a>
                         </div>
                     </div>
-                    <div class="sidebar-footer">
+                    <!-- <div class="sidebar-footer">
                         <a href="/pages/help" class="sidebar-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'60233d7fa911837f53ef04fc_Question.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                             <div class="sidebar-link-text">Help &amp;Feedback</div>
                         </a>
-                    </div>
+                    </div> -->
                 </nav>
                 <div class="sidebar-button w-nav-button">
                     <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'6024395e5a23d38bab1bbf77_Menu.svg'?>" loading="lazy" width="22" alt=""/>
@@ -87,13 +91,13 @@
                             <div class="nav-dropdown-toggle w-dropdown-toggle">
                                 <div class="nav-icon-item">
                                     <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602447734ab6e4df1472dc60_Bell.svg'?>" loading="lazy" width="27" alt="" class="nav-icon"/>
-                                    <div class="bell-dot"></div>
+                                    <!-- <div class="bell-dot"></div> -->
                                 </div>
                             </div>
                             <nav class="nav-dropdown-list w-dropdown-list">
                                 <div class="module heavy-shadow">
                                     <div class="module-main">
-                                        <div class="notificaiton-element">
+                                        <!-- <div class="notificaiton-element">
                                             <div class="notification-top">
                                                 <div class="notification-dot"></div>
                                                 <div class="notificaiton-title">3 new emails</div>
@@ -113,8 +117,8 @@
                                                 <div class="notificaiton-title">5 new tickets</div>
                                             </div>
                                             <p class="notification-description">There are new tickets to be checked.</p>
-                                        </div>
-                                        <a href="#" class="module-button w-button">See all notifications</a>
+                                        </div> -->
+                                        <!-- <a href="#" class="module-button w-button">See all notifications</a> -->
                                     </div>
                                 </div>
                             </nav>
@@ -122,7 +126,7 @@
                         <div data-hover="" data-delay="0" class="profile-menu-dropdown w-dropdown">
                             <div data-w-id="b24ef7f8-86e5-1c85-e1c5-b65466441b29" class="profile-menu w-dropdown-toggle">
                                 <div class="profile-image">
-                                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'6023433071ede4a4bb22c059_profile250.jpg'?>" loading="lazy" alt="" class="cover-image"/>
+                                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'user.png'?>" loading="lazy" alt="" class="cover-image"/>
                                 </div>
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'6023423b0a5988466e83ffb8_CaretDown.svg'?>" loading="lazy" width="15" alt="" class="menu-down"/>
                             </div>
@@ -155,15 +159,15 @@
                     <nav class="add-menu w-dropdown-list">
                         <a href="/tasks" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1038967373831278c_Note.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
-                            <div class="sidebar-link-text">New Task</div>
+                            <div class="sidebar-link-text">Nouvelle Tâche</div>
                         </a>
                         <a href="/tasks" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a108f00aa2bc888ea5_EnvelopeOpen.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
-                            <div class="sidebar-link-text">New Email</div>
+                            <div class="sidebar-link-text">Nouveau Message</div>
                         </a>
                         <a href="/tasks" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0a91183f9fceef7b0_CalendarBlank.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
-                            <div class="sidebar-link-text">New Event</div>
+                            <div class="sidebar-link-text">Nouvel Evenement</div>
                         </a>
                     </nav>
                 </div>

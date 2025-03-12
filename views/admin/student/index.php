@@ -19,8 +19,8 @@
                             </form>
                         </div>
                         <h4 class="grid-header">Noms</h4>
-                        <h4 class="grid-header">Emails</h4>
-                        <h4 class="grid-header mob-hidden">Numeros</h4>
+                        <h4 class="grid-header">Email</h4>
+                        <h4 class="grid-header mob-hidden">Classe</h4>
                         <h4 class="grid-header mob-hidden">Actions</h4>
                     </div>
                     <div class="w-dyn-list">
@@ -41,13 +41,13 @@
                                                 </div>
                                                 <a href="/schl-hub/admin/student/<?=$user->id?>" class="customer-element w-inline-block">
                                                     <div class="grid-number-block">
-                                                        <div><?=$user->prenom?></div>
+                                                        <div><?=$user->nom?></div>
                                                     </div>
                                                     <div><?=$user->email?></div>
                                                     <div class="mob-hidden"><?=$user->numero?></div>
                                                     <div>
                                                     <form hidden action="admin/student/delete/<?=$user->id?>" style="display:inline" method="post">
-                                                        <button type="submit">
+                                                        <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
                                                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'?>" alt="">
                                                             Supprimer
                                                         </button>

@@ -29,7 +29,8 @@ abstract class Model{
         return $stmt->fetchAll();
     }
 
-    public function allStudent(){
+    public function 
+    allStudent(): array{
         // Exécute une requête SQL pour récupérer tous les utilisateurs et leurs profils, triés par ID d'utilisateur décroissant
         $stmt = $this->db->getPDO()->query("
             SELECT 
@@ -41,7 +42,7 @@ abstract class Model{
         // Récupère tous les résultats de la requête
         return $stmt->fetchAll();
     }
-
+    
     public function delete(int $id){
         return $this->query("DELETE FROM {$this->table} WHERE id = ?", $id);
     }
@@ -89,5 +90,21 @@ abstract class Model{
         }
 
         return $result;
+    }
+
+    public function countByGender(?string $gender = null): int{
+        $sql = "SELECT COUNT(*) as count FROM {$this->table}";
+        $params = [];
+
+        if ($gender !== null) {
+            $sql .= " WHERE genre = ?";
+            $params[] = $gender;
+        }
+
+        $stmt = $this->db->getPDO()->prepare($sql);
+        $stmt->execute($params);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return (int) $result['count'];
     }
 }

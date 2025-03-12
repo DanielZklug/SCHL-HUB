@@ -4,7 +4,7 @@
         <div class="collection-list-wrapper w-dyn-list">
             <div role="list" class="collection-list w-dyn-items">
                 <div role="listitem" class="collection-item w-dyn-item">
-                    <div class="feature-item-container">
+                    <div style=" border: 1px solid #ccc; border-radius: 5px" class="feature-item-container">
                         <div class="feature-icon">
                             <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR.$params['post']->photo?>"/>
                         </div>
