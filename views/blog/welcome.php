@@ -34,17 +34,22 @@
                     Leurs conseils enrichissent vos connaissances et vous aident à progresser. Ne manquez pas cette chance !<br/>
                 </h2>
             </div>
-            <div class="collection-list-wrapper w-dyn-list">
+            <div  class="collection-list-wrapper w-dyn-list">
                 <div role="list" class="collection-list w-dyn-items">
                     <?php foreach ($params['posts'] as $post): ?>
                         <div role="listitem" class="collection-item w-dyn-item">
-                            <div style=" border: 1px solid #ccc; border-radius: 5px" class="feature-item-container">
+                            <div style="border: 1px solid #ccc; border-radius: 5px;" class="feature-item-container">
                                 <div class="feature-icon">
+                                    <?php 
+                                        if (empty($post->photo)){
+                                            $post->photo = "user.png";
+                                        }                                     
+                                    ?>
                                     <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR.$post->photo?>"/>
                                 </div>
                                 <h3 style="text-transform: capitalize;" class="h3"><?=$post->nom." ".$post->prenom?></h3>
                                 <p class="paragraph cc-gray"><?=$post->profession?></p>
-                                <a href="encadrants/<?=$post->id?>" style="background: rgb(20, 107, 207); color: white;height:30px;font-weight:600;border-radius:5px; position: relative; left: 200px;top:10px;padding:8px;text-decoration:none">Voir plus</a>
+                                <a href="encadrants/<?=$post->id?>" id="btn-view-more">Voir plus</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -328,58 +333,61 @@
         </div>
     </div>
     <div style="height: 380px; display: none;" id="cta" class="cta">
-        <div style="display: none;"  class="formulaire" id="formulaire-enc">
+        <div style="display: none;" class="formulaire" id="formulaire-enc">
             <h2>S'inscrire</h2>
-            <form action="" method="post">
+            <form action="accueil" method="POST">
                 <div class="champ-formulaire">
-                    <input type="text" placeholder="Nom" required>
+                    <input type="text" name="nom" placeholder="Nom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
                 </div>
                 <div class="champ-formulaire">
-                    <input type="text" placeholder="Prénom" required>
+                    <input type="text" name="prenom" placeholder="Prénom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
                 </div>
                 <div class="champ-formulaire">
-                    <input type="tel" placeholder="Numéro" required>
+                    <input type="tel" name="numero" placeholder="Numéro" required pattern="\+?[0-9]{10,15}" title="10 à 15 chiffres (peut inclure un code pays).">
                 </div>
                 <div class="champ-formulaire">
-                    <input type="email" placeholder="Email" required>
+                    <input type="password" name="mot_passe" placeholder="Mot de passe" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Minimum 8 caractères, au moins une lettre majuscule, une lettre minuscule et un chiffre.">
                 </div>
                 <div class="champ-formulaire">
-                    <input type="email" placeholder="Email de l'entreprise" required>
+                    <input type="email" name="email1" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Format : email@example.com">
                 </div>
                 <div class="champ-formulaire">
-                    <input type="password" placeholder="mot de passe" required>
+                    <input type="email" name="email2" placeholder="Email de l'entreprise" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Format : email@example.com">
                 </div>
                 <div class="bouton-formulaire">
                     <button type="submit">S'inscrire</button>
                     <p>Vous avez déjà un compte ?<a href="#">Se connecter</a></p>
                 </div>
+                <input type="text" name="role" value="encadrant" hidden>
             </form>
         </div>
         <div style="display: block;" class="formulaire" id="formulaire-stu">
             <h2>S'inscrire</h2>
-            <form action="" method="post">
+            <form action="accueil" method="post">
                 <div class="champ-formulaire">
-                    <input type="text" placeholder="Nom" required>
+                    <input type="text" placeholder="Nom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
                 </div>
                 <div class="champ-formulaire">
-                    <input type="text" placeholder="Prénom" required>
+                    <input type="text" placeholder="Prénom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
                 </div>
                 <div class="champ-formulaire">
-                    <input type="tel" placeholder="Numéro" required>
+                    <input type="tel" placeholder="Numéro" required pattern="\+?[0-9]{10,15}" title="10 à 15 chiffres (peut inclure un code pays).">
                 </div>
                 <div class="champ-formulaire">
-                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Mot de passe" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Minimum 8 caractères, au moins une lettre majuscule, une lettre minuscule et un chiffre.">
                 </div>
                 <div class="champ-formulaire">
-                    <input type="email" placeholder="Email de l'institut" required>
+                    <input type="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Format : email@example.com">
                 </div>
                 <div class="champ-formulaire">
-                    <input type="password" placeholder="mot de passe" required>
+                    <input type="email" placeholder="Email de l'institut" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Format : email@example.com">
                 </div>
                 <div class="bouton-formulaire">
                     <button type="submit">S'inscrire</button>
                     <p>Vous avez déjà un compte ?<a href="#">Se connecter</a></p>
                 </div>
+                <input type="text" name="role" value="etudiant" hidden>
             </form>
         </div>
+    </div>
 </div>

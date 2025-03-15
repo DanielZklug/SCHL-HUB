@@ -126,20 +126,20 @@
                         <div data-hover="" data-delay="0" class="profile-menu-dropdown w-dropdown">
                             <div data-w-id="b24ef7f8-86e5-1c85-e1c5-b65466441b29" class="profile-menu w-dropdown-toggle">
                                 <div class="profile-image">
-                                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'user.png'?>" loading="lazy" alt="" class="cover-image"/>
+                                    <img src="<?= SCRIPTS.'img'.DIRECTORY_SEPARATOR.'user.png'?>" loading="lazy" alt="" class="cover-image"/>
                                 </div>
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'6023423b0a5988466e83ffb8_CaretDown.svg'?>" loading="lazy" width="15" alt="" class="menu-down"/>
                             </div>
                             <nav class="profile-menu-list w-dropdown-list">
-                                <a href="/profile" class="profile-menu-link w-nav-link">My Profile</a>
+                                <a href="/schl-hub/admin/profile" class="profile-menu-link w-nav-link">My Profile</a>
                                 <a href="/settings" class="profile-menu-link w-nav-link">Settings</a>
                                 <div class="menu-divider"></div>
-                                <a href="/pages/help" class="profile-menu-link w-nav-link">Help Center</a>
+                                <!-- <a href="/pages/help" class="profile-menu-link w-nav-link">Help Center</a>
                                 <a href="/pages/contact-sales" class="profile-menu-link w-nav-link">Report an Issue</a>
                                 <a href="/pages/terms-conditions" class="profile-menu-link w-nav-link">Terms &amp;Conditions</a>
                                 <a href="/pages/privacy-policy" class="profile-menu-link w-nav-link">Privacy Policy</a>
                                 <a href="/template-resources/licenses" class="profile-menu-link w-nav-link">Licenses</a>
-                                <div class="menu-divider"></div>
+                                <div class="menu-divider"></div> -->
                                 <a href="/pages/sign-in" class="profile-menu-link w-nav-link">Log Out</a>
                             </nav>
                         </div>

@@ -546,15 +546,23 @@
    }
    
    .feature-item-container {
-     height: 330px;
-     width: 330px;
-     padding: 40px 30px;
-     margin-bottom: 20px;
-     border: 1px solid #f7f7f7;
-     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .05);
-     -webkit-transition: box-shadow 200ms ease;
-     transition: box-shadow 200ms ease;
-   }
+    height: 330px;
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #f7f7f7;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .05);
+    -webkit-transition: box-shadow 200ms ease;
+    transition: box-shadow 200ms ease;
+    
+    /* Ajout des propriétés pour centrer le contenu */
+    display: flex;
+    flex-direction: column; /* Pour centrer verticalement */
+    justify-content: center; /* Centre verticalement */
+    align-items: center; /* Centre horizontalement */
+    text-align: center; /* Centre le texte */
+}
+
 
    
    .collection-list {
@@ -562,8 +570,6 @@
      display: -webkit-flex;
      display: -ms-flexbox;
      display: flex;
-     margin-right: -10px;
-     margin-left: -10px;
      -webkit-box-pack: center;
      -webkit-justify-content: center;
      -ms-flex-pack: center;
@@ -1024,7 +1030,7 @@
    }
    
    .collection-item {
-     width: 33.33333333%;
+     /* width: 30%; */
      padding-right: 10px;
      padding-left: 10px;
    }

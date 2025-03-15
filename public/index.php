@@ -14,6 +14,7 @@ define('DB_PASSWORD',"");
 $router = new Router($_GET['url']);
 
 $router->get('accueil', 'App\Controllers\BlogController@welcome');
+$router->post('accueil', 'App\Controllers\BlogController@create');
 $router->get('encadrants', 'App\Controllers\BlogController@index');
 $router->get('encadrants/:id', 'App\Controllers\BlogController@show');
 
@@ -26,6 +27,9 @@ $router->get('admin/dashboard','App\Controllers\Admin\DashboardController@index'
 $router->get('admin/calendar','App\Controllers\Admin\CalendarController@index');
 
 $router->get('admin/support','App\Controllers\Admin\SupportController@index');
+
+$router->get('admin/profile','App\Controllers\Admin\ProfileController@index');
+
 try{
     $router->run();
 }catch(NotFoundException $e){

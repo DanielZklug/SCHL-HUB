@@ -67,8 +67,7 @@ abstract class Model{
             $stmt->execute([$param]);
             return $stmt->$fetch();
         }
-    }
-
+    }    
 
     public function findById(int $id): ?Model
     {

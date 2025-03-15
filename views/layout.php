@@ -61,6 +61,26 @@
             </div>
         </div>
    </body>
+    <style>
+        #btn-view-more {
+            background: rgb(20, 107, 207);
+            color: white;
+            height: 40px; /* Augmenter la hauteur pour un meilleur clic */
+            font-weight: 600;
+            border-radius: 5px;
+            padding: 10px 15px; /* Ajustement du padding pour un meilleur espacement */
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block; /* Assure que le bouton est un bloc en ligne */
+            transition: background 0.3s, transform 0.2s; /* Ajout d'une transition pour les effets */
+        }
+
+        #btn-view-more:hover {
+            background: rgb(30, 127, 255); /* Changement de couleur au survol */
+            transform: translateY(-2px); /* Légère élévation au survol */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
+        }
+    </style>
    <script defer>
     /*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */
 !function(e, t) {
