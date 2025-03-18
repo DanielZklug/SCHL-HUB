@@ -13,13 +13,28 @@ class BlogController extends Controller {
     public function welcome() {
         // Exécute une requête SQL pour récupérer les utilisateurs et leurs profils, triés par ID d'utilisateur décroissant
         $stmt = $this->db->getPDO()->query("
-            SELECT 
-                *
-            FROM 
-                encadrants
-            ORDER BY 
-                id DESC
-            LIMIT 6
+            SELECT
+                e.idEncadrant, 
+                u.nom AS nom_utilisateur, 
+                u.prenom AS prenom_utilisateur, 
+                u.numero AS numero_utilisateur, 
+                u.email AS email_utilisateur, 
+                u.photo AS photo_utilisateur, 
+                ps.gitlab, 
+                ps.github, 
+                ps.facebook, 
+                ps.instagram, 
+                ps.google, 
+                e.emailOrg AS email_organisationnel,
+                e.bio AS bio_encadrant
+            FROM
+                Encadrant e
+            JOIN Utilisateur u ON e.Uti_idUtilisateur = u.idUtilisateur
+            JOIN ProfilSocial ps ON e.idPsocial = ps.idPsocial
+            ORDER BY e.idEncadrant DESC
+            LIMIT 6;
+            -- Limite les résultats à 6
+
         ");
         
         // Récupère tous les résultats de la requête
@@ -61,10 +76,9 @@ class BlogController extends Controller {
             $data = [
                 'nom' => $_POST['nom'],
                 'prenom' => $_POST['prenom'],
-                'numero' => $_POST['numero'],
-                'email' => $_POST['email1'],
-                'email2' => $_POST['email2'],
                 'mot_passe' => password_hash($_POST['mot_passe'], PASSWORD_DEFAULT),
+                'numero' => $_POST['numero'],
+                'email' => $_POST['email'],
                 'role' => $_POST['role'] // 'encadrant' ou 'etudiant'
             ];
             
@@ -73,18 +87,18 @@ class BlogController extends Controller {
 
             if ($result && $data['role'] === 'encadrant') {
                 // Inscription réussie
-                // Rediriger vers une page de succès ou afficher un message
-                return header ("Location: /schl-hub/admin/profile");
-            } elseif($result && $data['role'] === 'etudiant') {
+                $_SESSION['success_message'] = "Inscription réussie. Veuillez vous connecter.";
+                return $this->viewLogin('authentification.login');
+            } elseif ($result && $data['role'] === 'etudiant') {
+                // Inscription réussie
+                $_SESSION['success_message'] = "Inscription réussie. Veuillez vous connecter.";
+                return $this->viewLogin('authentification.login');
+            } else {
                 // Erreur lors de l'inscription
-                // Rediriger vers le formulaire avec un message d'erreur
-                return $this->viewAdmin('admin.dashboard.index');
-            }else{
-                return "Error";
+                $_SESSION['error_message'] = "Erreur lors de l'inscription. Veuillez réessayer.";
+                // Retourne la vue 'blog.welcome' en passant les posts récupérés
+                return $this->view('blog.welcome');
             }
         }
-
-        // Si ce n'est pas une requête POST, affichez le formulaire d'inscription
-        return $this->view('blog.create');
     }
 }

@@ -52,6 +52,23 @@ abstract class Controller {
         require VIEWS . 'adminlayout.php';
     }
 
+    protected function viewLogin(string $path, array $params = null) {
+        // Démarre la mise en mémoire tampon de sortie
+        ob_start();
+        
+        // Remplace les points par des séparateurs de répertoire dans le chemin de la vue
+        $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
+        
+        // Inclut le fichier de vue spécifié
+        require VIEWS . $path . '.php';
+        
+        // Récupère le contenu de la mémoire tampon et la vide
+        $content = ob_get_clean();
+        
+        // Inclut le fichier de mise en page principal
+        require VIEWS . 'loginlayout.php';
+    }
+
     protected function getDB(){
         return $this->db;
     }

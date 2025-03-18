@@ -1,3 +1,32 @@
+<?php
+session_start();
+
+// Fonction pour afficher un message
+function afficherMessage($type, $message) {
+    echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alertContainer = document.createElement('div');
+            alertContainer.className = 'message-$type';
+            alertContainer.textContent = '$message';
+            document.body.appendChild(alertContainer);
+            setTimeout(() => {
+                alertContainer.remove();
+            }, 3000); // Masquer après 3 secondes
+        });
+    </script>";
+}
+
+// Exemple d'utilisation
+if (isset($_SESSION['success_message'])) {
+    afficherMessage('succes', $_SESSION['success_message']);
+    unset($_SESSION['success_message']);
+}
+
+if (isset($_SESSION['error_message'])) {
+    afficherMessage('erreur', $_SESSION['error_message']);
+    unset($_SESSION['error_message']);
+}
+?>
 <!DOCTYPE html>
 <!-- This site was created in Webflow. https://webflow.com -->
 <!-- Last Published: Fri Oct 12 2018 16:54:07 GMT+0000 (UTC) -->
@@ -17,6 +46,35 @@
             }(window, document);
         </script>
         <link href="<?= SCRIPTS.'img'.DIRECTORY_SEPARATOR.'apple-touch-icon.png'?>" rel="shortcut icon" type="image/x-icon"/>
+        <style>
+            /* Style pour un message d'erreur */
+            .message-erreur {
+                background-color: #f8d7da; /* Rouge clair */
+                color: #721c24; /* Rouge foncé */
+                border: 1px solid #f5c6cb; /* Bordure rouge */
+                padding: 10px;
+                margin: 15px 0;
+                border-radius: 5px;
+                position: fixed;
+                top: 20px; /* Positionner en haut */
+                right: 20px; /* Positionner à droite */
+                z-index: 1000; /* S'assurer qu'il est au-dessus des autres éléments */
+            }
+
+            /* Style pour un message de succès */
+            .message-succes {
+                background-color: #d4edda; /* Vert clair */
+                color: #155724; /* Vert foncé */
+                border: 1px solid #c3e6cb; /* Bordure verte */
+                padding: 10px;
+                margin: 15px 0;
+                border-radius: 5px;
+                position: fixed;
+                top: 20px; /* Positionner en haut */
+                right: 20px; /* Positionner à droite */
+                z-index: 1000; /* S'assurer qu'il est au-dessus des autres éléments */
+            }
+        </style>
     </head>
    <body class="body">
         <div class="dashboard-wrapper">
@@ -148,7 +206,7 @@
                     <div class="dashboard-footer">
                         <p class="paragraph-small light">
                             © SCHLhub All Rights Reserved・ Built by
-                            ・ Powered by <a href="" target="_blank" class="simple-link light">SCHLhub</a>
+                            ・ Powered by <a href="#" class="simple-link light">SCHLhub</a>
                         </p>
                     </div>
                 </div>

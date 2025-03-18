@@ -1,5 +1,5 @@
 <?php $title = $params['post']->nom." ".$params['post']->prenom;?>
-<a href="accueil" class="link"><h3>Retour à l'accueil</h3></a>
+<a href="/schl-hub/accueil" class="link"><h3>Retour à l'accueil</h3></a>
 <style>
     .link,h3{
         color: rgb(20, 107, 207);

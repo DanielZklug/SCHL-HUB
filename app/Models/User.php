@@ -1,17 +1,18 @@
 <?php
 namespace App\Models;
 
-class User extends Model{
+session_start();
+
+class User extends Model {
     public function create(array $data) {
-        $role = $data['role'];
-        unset($data['role']); // Retire le rôle des données à insérer
+        $role = $data['role']; // Le rôle est soit 'encadrant' ou 'stagiaire'
     
         // Commence une transaction
         $this->db->getPDO()->beginTransaction();
     
         try {
             // Vérification de l'existence de l'utilisateur par email
-            $checkSql = "SELECT COUNT(*) FROM " . ($role === 'etudiant' ? 'etudiants' : 'encadrants') . " WHERE email = ?";
+            $checkSql = "SELECT COUNT(*) FROM utilisateurs WHERE email = ?";
             $checkStmt = $this->db->getPDO()->prepare($checkSql);
             $checkStmt->execute([$data['email']]);
             $exists = $checkStmt->fetchColumn();
@@ -20,19 +21,28 @@ class User extends Model{
                 throw new \Exception("L'utilisateur existe déjà avec cet email");
             }
         
-            // Insertion dans la table spécifique en fonction du rôle
+            // Insertion dans la table Utilisateur (commune à tous les utilisateurs)
+            $sql = "INSERT INTO utilisateur (`nom`, `prenom`, `motPasse`, `numero`, `email`, `role`) 
+                    VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $this->db->getPDO()->prepare($sql);
+            $stmt->execute(array_values($data));
+
+            // Récupère l'ID de l'utilisateur inséré
+            $userId = $this->db->getPDO()->lastInsertId();
+
+            // En fonction du rôle, insérer dans la table spécifique (Encadrant ou Stagiaire)
             if ($role === 'encadrant') {
-                $sql = "INSERT INTO encadrants (`nom`, `prenom`, `numero`, `email`, `email_org`, `mot_passe`, `role`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                $data['role'] = $role; // Ajoutez le rôle à la fin des valeurs
-                $stmt = $this->db->getPDO()->prepare($sql);
-                $stmt->execute(array_values($data));
+                // Insertion dans la table Encadrant
+                $sqlEncadrant = "INSERT INTO encadrant (`Uti_idUtilisateur`) 
+                                 VALUES (?)";
+                $stmtEncadrant = $this->db->getPDO()->prepare($sqlEncadrant);
+                $stmtEncadrant->execute([$userId]);
             } elseif ($role === 'etudiant') {
-                $sql = "INSERT INTO etudiants (`nom`, `prenom`, `numero`, `email`, `email_ins`, `mot_passe`, `role`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                $data['email'] = $data['email_ins']; // Remplacez email par email_ins
-                unset($data['email_ins']); // Retirez email_ins du tableau
-                $data['role'] = $role; // Ajoutez le rôle à la fin des valeurs
-                $stmt = $this->db->getPDO()->prepare($sql);
-                $stmt->execute(array_values($data));
+                // Insertion dans la table Stagiaire
+                $sqlStagiaire = "INSERT INTO stagiaire (`Uti_idUtilisateur`) 
+                                 VALUES (?)";
+                $stmtStagiaire = $this->db->getPDO()->prepare($sqlStagiaire);
+                $stmtStagiaire->execute([$userId]);
             } else {
                 throw new \Exception("Rôle non reconnu");
             }
@@ -42,12 +52,11 @@ class User extends Model{
             return true;
 
         } catch (\Exception $e) {
-            // En cas d'erreur, annule la transaction
-            header("location: /schl-hub/accueil");
+            // En cas d'erreur, annule la transaction et redirige l'utilisateur
             $this->db->getPDO()->rollBack();
+            // Optionnel : Ajouter un message d'erreur plus précis si nécessaire
+            $_SESSION['error_message'] = $e->getMessage();
             return false;
         }
-        
     }
-    
 }

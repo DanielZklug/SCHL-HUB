@@ -14,7 +14,7 @@ abstract class Model{
         $this->db = $db;
     }
 
-    public function all(){
+    public function all(): array{
         // Exécute une requête SQL pour récupérer tous les utilisateurs et leurs profils, triés par ID d'utilisateur décroissant
         $stmt = $this->db->getPDO()->query("
             SELECT 
@@ -22,19 +22,18 @@ abstract class Model{
             FROM 
                 {$this->table}
             ORDER BY 
-               id DESC
+               idEncadrant DESC
         ");
         $stmt->setFetchMode(PDO::FETCH_CLASS,get_class($this),[$this->db]);
         // Récupère tous les résultats de la requête
         return $stmt->fetchAll();
     }
 
-    public function 
-    allStudent(): array{
+    public function allStudent(): array{
         // Exécute une requête SQL pour récupérer tous les utilisateurs et leurs profils, triés par ID d'utilisateur décroissant
         $stmt = $this->db->getPDO()->query("
             SELECT 
-               *
+            *
             FROM 
                 {$this->table}
         ");

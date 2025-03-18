@@ -2,5 +2,5 @@
 namespace App\Models;
 
 class Post extends Model{
-    protected $table = 'encadrants';
+    protected $table = 'encadrant';
 }

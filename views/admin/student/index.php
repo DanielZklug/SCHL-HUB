@@ -2,7 +2,7 @@
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Etudiants</h2>
-        <a href="#" class="button page w-button">Ajouter un nouvel étudiant</a>
+        <a href="#" onclick="showPopup()" class="button page w-button">Ajouter un nouvel étudiant</a>
     </div>
     <div class="container">
         <div class="module">
@@ -516,3 +516,53 @@
         </div>
     </div>
 </div>
+<!-- Popup Form -->
+<div id="popupForm" class="popup-form" style="display: none;">
+    <div class="popup-content">
+        <form action="/schl-hub/admin/student/add" method="post">
+            <label for="Subscriber-Email-3" class="field-label">Email</label>
+            <input type="email" class="simple-input no-margin w-input" maxlength="256" name="Subscriber-Email" data-name="Subscriber Email" placeholder="name@company.com" id="Subscriber-Email" required=""/>
+            <div class="spacer _16"></div>
+            <input type="submit" value="Inviter" data-wait="Please wait..." class="button no-margin w-button"/>
+        </form>
+    </div>
+</div>
+
+<style>
+    .popup-form {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000; /* Ensure the popup is on top */
+    }
+
+    .popup-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        width: 300px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script>
+    function showPopup() {
+        document.getElementById('popupForm').style.display = 'flex';
+    }
+
+    function hidePopup() {
+        document.getElementById('popupForm').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target === document.getElementById('popupForm')) {
+            hidePopup();
+        }
+    }
+</script>

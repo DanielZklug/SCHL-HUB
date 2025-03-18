@@ -11,7 +11,7 @@
                 <a href="#contact" class="nav-link w-nav-link">Contact</a>
                 <a href="#propos" class="nav-link w-nav-link">A propos</a>
                 <div class="bullet"></div>
-                <a href="#" class="nav-link w-nav-link">Connexion</a>
+                <a href="authentification" class="nav-link w-nav-link">Connexion</a>
                 <a href="#inscription" class="navigation-button w-button">Inscription</a>
             </nav>
             <div class="menu-button w-nav-button">
@@ -26,7 +26,7 @@
             <a href="#inscription" class="button w-button">Explorez nos cours</a>
         </div>
     </div>
-    <div id="encadrants" class="features">
+    <div style="background: #fff;" id="encadrants" class="features">
         <div class="container">
             <div class="h2-container">
                 <h2 class="h2">
@@ -39,17 +39,17 @@
                     <?php foreach ($params['posts'] as $post): ?>
                         <div role="listitem" class="collection-item w-dyn-item">
                             <div style="border: 1px solid #ccc; border-radius: 5px;" class="feature-item-container">
-                                <div class="feature-icon">
+                                <!-- <div class="feature-icon">
                                     <?php 
-                                        if (empty($post->photo)){
-                                            $post->photo = "user.png";
-                                        }                                     
+                                        // if (empty($post->photo)){
+                                        //     $post->photo = "user.png";
+                                        // }                                     
                                     ?>
                                     <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR.$post->photo?>"/>
-                                </div>
-                                <h3 style="text-transform: capitalize;" class="h3"><?=$post->nom." ".$post->prenom?></h3>
-                                <p class="paragraph cc-gray"><?=$post->profession?></p>
-                                <a href="encadrants/<?=$post->id?>" id="btn-view-more">Voir plus</a>
+                                </div> -->
+                                <h3 style="text-transform: capitalize;" class="h3"><?=$post->nom_utilisateur." ".$post->prenom_utilisateur?></h3>
+                                <!-- <p class="paragraph cc-gray"><?=$post->profession?></p>
+                                <a href="encadrants/<?=$post->id?>" id="btn-view-more">Voir plus</a> -->
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -110,37 +110,131 @@
         </div>
     </div>
 </section>
-
-<script>
-    const items = document.querySelectorAll(".accordion button");
-
-    function toggleAccordion() {
-        const itemToggle = this.getAttribute('aria-expanded');
-
-        items.forEach(item => {
-            item.setAttribute('aria-expanded', 'false');
-            item.nextElementSibling.style.display = 'none'; // Hide content
-        });
-
-        if (itemToggle === 'false') {
-            this.setAttribute('aria-expanded', 'true');
-            this.nextElementSibling.style.display = 'block'; // Show content
-        }
-    }
-
-    items.forEach(item => item.addEventListener('click', toggleAccordion));
-</script>
+    <div class="about">
+        <div class="container cc-center">
+            <div class="h2-container cc-center">
+                <h2 class="h2 cc-center">
+                    <span class="text-span">Illud decore voluptaria has at.</span>
+                    Hinc invenire atomorum no vel. Ut vis nullam blandit neglegentur, omittam perpetua voluptatum qui eu. Iusto laoreet suscipit vis ad, ad ferri tempor duo.
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="separator cc-background-grey">
+        <div class="container">
+            <div class="line-color"></div>
+        </div>
+    </div>
+    <div id="objectifs" class="premium">
+        <div class="container">
+            <div class="row">
+                <div class="_2-row-image cc-row-spacing">
+                    <img style="border-radius: 10px;" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR."close-up-woman-class.jpg"?>" alt=""/>
+                </div>
+                <div class="_2-row-text">
+                    <h2 class="h2 cc-2-rows">
+                        <span class="text-span">La leçon à la maison</span>
+                        Quand la distance entre vous et vos cours ne tient qu'à un CLIC.
+                    </h2>
+                    <p class="paragraph cc-gray">Avec SCHLhub vous avez la possibilité d'etre encadrer par votre enseignant, depuis chez vous</p>
+                </div>
+            </div>
+            <div class="row cc-bottom">
+                <div class="_2-row-image cc-bottom">
+                    <img style="border-radius: 10px;" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR."coup-moyen-fille-tenant-presse-papiers_23-2148888878.jpg"?>" alt=""/>
+                </div>
+                <div class="_2-row-text cc-bottom">
+                    <h2 class="h2 cc-2-rows">
+                        <span class="text-span">Apprendre meme après le stage</span>
+                        La fin d'un stage ne signifie pas la fin de l'apprentissage professionnel.
+                    </h2>
+                    <p class="paragraph cc-gray">Vous pouvez à tout moment retourner dans votre classe en ligne afin de lire ou télécharger votre leçon et celà meme des mois plutard.</p>
+                </div>
+            </div>
+            <!-- <div class="_2-row-action-text">
+                <h3 class="h3">SCHLhub? Comment çà marche ??</h3>
+                <a href="/premium" class="link">See the full range of Premium</a>
+            </div> -->
+        </div>
+    </div>
+    <div class="separator cc-background-grey">
+        <div class="container">
+            <div class="line-color"></div>
+        </div>
+    </div>
+    <div id="inscription" class="cta">
+        <div class="container cc-cta">
+            <div class="cta-column">
+                <div class="cta-left-top">
+                    <h3 style="color: rgb(20, 107, 207);" class="h3 cc-cta">N'hésitez pas</h3>
+                    <div class="cta-line"></div>
+                </div>
+                <h2 class="h2">
+                    <span style="font-size: 1.5em;" class="text-span">Inscrivez-vous maintenant sur SCHLhub. <br></span>
+                </h2>
+            </div>
+            <div class="cta-column">
+                <select name="" id="">
+                    <option value="">Choisir un profil</option>
+                    <option value="Etudiant">Etudiant</option>
+                    <option value="Encadrant">Encadrant</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div style="height: 380px; display: none;" id="cta" class="cta">
+        <div style="display: none;" class="formulaire" id="formulaire-enc">
+            <h2>S'inscrire</h2>
+            <form action="accueil" method="POST">
+                <div class="champ-formulaire">
+                    <input type="text" name="nom" placeholder="Nom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
+                </div>
+                <div class="champ-formulaire">
+                    <input type="text" name="prenom" placeholder="Prénom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
+                </div>
+                <div class="champ-formulaire">
+                    <input type="tel" name="numero" placeholder="Numéro" required pattern="\+?[0-9]{10,15}" title="10 à 15 chiffres (peut inclure un code pays).">
+                </div>
+                <div class="champ-formulaire">
+                    <input type="password" name="mot_passe" placeholder="Mot de passe" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Minimum 8 caractères, au moins une lettre majuscule, une lettre minuscule et un chiffre.">
+                </div>
+                <div class="champ-formulaire">
+                    <input type="email" name="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Format : email@example.com">
+                </div>
+                <div class="bouton-formulaire">
+                    <button type="submit">S'inscrire</button>
+                </div>
+                <input type="text" name="role" value="encadrant" hidden>
+            </form>
+        </div>
+        <div style="display: block;" class="formulaire" id="formulaire-stu">
+            <h2>S'inscrire</h2>
+            <form action="accueil" method="post">
+            <div class="champ-formulaire">
+                    <input type="text" name="nom" placeholder="Nom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
+                </div>
+                <div class="champ-formulaire">
+                    <input type="text" name="prenom" placeholder="Prénom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
+                </div>
+                <div class="champ-formulaire">
+                    <input type="tel" name="numero" placeholder="Numéro" required pattern="\+?[0-9]{10,15}" title="10 à 15 chiffres (peut inclure un code pays).">
+                </div>
+                <div class="champ-formulaire">
+                    <input type="password" name="mot_passe" placeholder="Mot de passe" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Minimum 8 caractères, au moins une lettre majuscule, une lettre minuscule et un chiffre.">
+                </div>
+                <div class="champ-formulaire">
+                    <input type="email" name="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Format : email@example.com">
+                </div>
+                <div class="bouton-formulaire">
+                    <button type="submit">S'inscrire</button>
+                </div>
+                <input type="text" name="role" value="etudiant" hidden>
+            </form>
+        </div>
+    </div>
+</div>
 
 <style>
-    /* Global Styles */
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f9f9f9;
-        color: #333;
-        margin: 0;
-        padding: 0;
-    }
-
     .container {
         width: 100%;
         max-width: 1200px;
@@ -258,136 +352,23 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 </style>
+<script>
+    const items = document.querySelectorAll(".accordion button");
 
+    function toggleAccordion() {
+        const itemToggle = this.getAttribute('aria-expanded');
 
-    <div class="about">
-        <div class="container cc-center">
-            <div class="h2-container cc-center">
-                <h2 class="h2 cc-center">
-                    <span class="text-span">Illud decore voluptaria has at.</span>
-                    Hinc invenire atomorum no vel. Ut vis nullam blandit neglegentur, omittam perpetua voluptatum qui eu. Iusto laoreet suscipit vis ad, ad ferri tempor duo.
-                </h2>
-            </div>
-        </div>
-    </div>
-    <div class="separator cc-background-grey">
-        <div class="container">
-            <div class="line-color"></div>
-        </div>
-    </div>
-    <div id="objectifs" class="premium">
-        <div class="container">
-            <div class="row">
-                <div class="_2-row-image cc-row-spacing">
-                    <img src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR."close-up-woman-class.jpg"?>" alt=""/>
-                </div>
-                <div class="_2-row-text">
-                    <h2 class="h2 cc-2-rows">
-                        <span class="text-span">La leçon à la maison</span>
-                        Quand la distance entre vous et vos cours ne tient qu'à un CLIC.
-                    </h2>
-                    <p class="paragraph cc-gray">Avec SCHLhub vous avez la possibilité d'etre encadrer par votre enseignant, depuis chez vous</p>
-                </div>
-            </div>
-            <div class="row cc-bottom">
-                <div class="_2-row-image cc-bottom">
-                    <img src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR."coup-moyen-fille-tenant-presse-papiers_23-2148888878.jpg"?>" alt=""/>
-                </div>
-                <div class="_2-row-text cc-bottom">
-                    <h2 class="h2 cc-2-rows">
-                        <span class="text-span">Apprendre meme après le stage</span>
-                        La fin d'un stage ne signifie pas la fin de l'apprentissage professionnel.
-                    </h2>
-                    <p class="paragraph cc-gray">Vous pouvez à tout moment retourner dans votre classe en ligne afin de lire ou télécharger votre leçon et celà meme des mois plutard.</p>
-                </div>
-            </div>
-            <!-- <div class="_2-row-action-text">
-                <h3 class="h3">SCHLhub? Comment çà marche ??</h3>
-                <a href="/premium" class="link">See the full range of Premium</a>
-            </div> -->
-        </div>
-    </div>
-    <div class="separator cc-background-grey">
-        <div class="container">
-            <div class="line-color"></div>
-        </div>
-    </div>
-    <div id="inscription" class="cta">
-        <div class="container cc-cta">
-            <div class="cta-column">
-                <div class="cta-left-top">
-                    <h3 style="color: rgb(20, 107, 207);" class="h3 cc-cta">N'hésitez pas</h3>
-                    <div class="cta-line"></div>
-                </div>
-                <h2 class="h2">
-                    <span style="font-size: 1.5em;" class="text-span">Inscrivez-vous maintenant sur SCHLhub. <br></span>
-                </h2>
-            </div>
-            <div class="cta-column">
-                <select name="" id="">
-                    <option value="">Choisir un profil</option>
-                    <option value="Etudiant">Etudiant</option>
-                    <option value="Encadrant">Encadrant</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div style="height: 380px; display: none;" id="cta" class="cta">
-        <div style="display: none;" class="formulaire" id="formulaire-enc">
-            <h2>S'inscrire</h2>
-            <form action="accueil" method="POST">
-                <div class="champ-formulaire">
-                    <input type="text" name="nom" placeholder="Nom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
-                </div>
-                <div class="champ-formulaire">
-                    <input type="text" name="prenom" placeholder="Prénom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
-                </div>
-                <div class="champ-formulaire">
-                    <input type="tel" name="numero" placeholder="Numéro" required pattern="\+?[0-9]{10,15}" title="10 à 15 chiffres (peut inclure un code pays).">
-                </div>
-                <div class="champ-formulaire">
-                    <input type="password" name="mot_passe" placeholder="Mot de passe" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Minimum 8 caractères, au moins une lettre majuscule, une lettre minuscule et un chiffre.">
-                </div>
-                <div class="champ-formulaire">
-                    <input type="email" name="email1" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Format : email@example.com">
-                </div>
-                <div class="champ-formulaire">
-                    <input type="email" name="email2" placeholder="Email de l'entreprise" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Format : email@example.com">
-                </div>
-                <div class="bouton-formulaire">
-                    <button type="submit">S'inscrire</button>
-                    <p>Vous avez déjà un compte ?<a href="#">Se connecter</a></p>
-                </div>
-                <input type="text" name="role" value="encadrant" hidden>
-            </form>
-        </div>
-        <div style="display: block;" class="formulaire" id="formulaire-stu">
-            <h2>S'inscrire</h2>
-            <form action="accueil" method="post">
-                <div class="champ-formulaire">
-                    <input type="text" placeholder="Nom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
-                </div>
-                <div class="champ-formulaire">
-                    <input type="text" placeholder="Prénom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
-                </div>
-                <div class="champ-formulaire">
-                    <input type="tel" placeholder="Numéro" required pattern="\+?[0-9]{10,15}" title="10 à 15 chiffres (peut inclure un code pays).">
-                </div>
-                <div class="champ-formulaire">
-                    <input type="password" placeholder="Mot de passe" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Minimum 8 caractères, au moins une lettre majuscule, une lettre minuscule et un chiffre.">
-                </div>
-                <div class="champ-formulaire">
-                    <input type="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Format : email@example.com">
-                </div>
-                <div class="champ-formulaire">
-                    <input type="email" placeholder="Email de l'institut" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Format : email@example.com">
-                </div>
-                <div class="bouton-formulaire">
-                    <button type="submit">S'inscrire</button>
-                    <p>Vous avez déjà un compte ?<a href="#">Se connecter</a></p>
-                </div>
-                <input type="text" name="role" value="etudiant" hidden>
-            </form>
-        </div>
-    </div>
-</div>
+        items.forEach(item => {
+            item.setAttribute('aria-expanded', 'false');
+            item.nextElementSibling.style.display = 'none'; // Hide content
+        });
+
+        if (itemToggle === 'false') {
+            this.setAttribute('aria-expanded', 'true');
+            this.nextElementSibling.style.display = 'block'; // Show content
+        }
+    }
+
+    items.forEach(item => item.addEventListener('click', toggleAccordion));
+</script>
+
