@@ -192,7 +192,7 @@
     <div style="height: 380px; display: none;" id="cta" class="cta">
         <div style="display: none;" class="formulaire" id="formulaire-enc">
             <h2>S'inscrire</h2>
-            <form action="accueil" method="POST">
+            <form action="accueil" method="post">
                 <div class="champ-formulaire">
                     <input type="text" name="nom" placeholder="Nom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
                 </div>
@@ -217,7 +217,7 @@
         <div style="display: block;" class="formulaire" id="formulaire-stu">
             <h2>S'inscrire</h2>
             <form action="accueil" method="post">
-            <div class="champ-formulaire">
+                <div class="champ-formulaire">
                     <input type="text" name="nom" placeholder="Nom" required pattern="[A-Za-zÀ-ÿ '-]{2,30}" title="2 à 30 caractères alphabétiques.">
                 </div>
                 <div class="champ-formulaire">

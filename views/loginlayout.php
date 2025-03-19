@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 // Fonction pour afficher un message
 function afficherMessage($type, $message) {
     echo "<script>
@@ -11,7 +9,7 @@ function afficherMessage($type, $message) {
             document.body.appendChild(alertContainer);
             setTimeout(() => {
                 alertContainer.remove();
-            }, 3000); // Masquer après 3 secondes
+            }, 5000); // Masquer après 5 secondes
         });
     </script>";
 }

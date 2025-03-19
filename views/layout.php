@@ -1,3 +1,34 @@
+<?php
+// Fonction pour afficher un message
+function afficherMessage($type, $message) {
+    $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8'); // Échapper les guillemets
+    $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); // Échapper les guillemets
+
+    echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alertContainer = document.createElement('div');
+            alertContainer.className = 'message-$type';
+            alertContainer.textContent = '$message';
+            document.body.appendChild(alertContainer);
+            setTimeout(() => {
+                alertContainer.remove();
+            }, 5000); // Masquer après 5 secondes
+        });
+    </script>";
+
+}
+
+// Exemple d'utilisation
+if (isset($_SESSION['success_message'])) {
+    afficherMessage('succes', $_SESSION['success_message']);
+    unset($_SESSION['success_message']);
+}
+
+if (isset($_SESSION['error_message'])) {
+    afficherMessage('erreur', $_SESSION['error_message']);
+    unset($_SESSION['error_message']);
+}
+?>
 <!DOCTYPE html>
 <!-- This site was created in Webflow. https://webflow.com -->
 <!-- Last Published: Fri Oct 12 2018 16:54:07 GMT+0000 (UTC) -->
@@ -24,6 +55,53 @@
                 -webkit-font-smoothing: antialiased;
                 font-feature-settings: "liga" on;
                 text-rendering: optimizeLegibility;
+            }
+
+             /* Style pour un message d'erreur */
+             .message-erreur {
+                background-color: #f8d7da; /* Rouge clair */
+                color: #721c24; /* Rouge foncé */
+                border: 1px solid #f5c6cb; /* Bordure rouge */
+                padding: 10px;
+                margin: 15px 0;
+                border-radius: 5px;
+                position: fixed;
+                top: 20px; /* Positionner en haut */
+                right: 20px; /* Positionner à droite */
+                z-index: 1000; /* S'assurer qu'il est au-dessus des autres éléments */
+            }
+
+            /* Style pour un message de succès */
+            .message-succes {
+                background-color: #d4edda; /* Vert clair */
+                color: #155724; /* Vert foncé */
+                border: 1px solid #c3e6cb; /* Bordure verte */
+                padding: 10px;
+                margin: 15px 0;
+                border-radius: 5px;
+                position: fixed;
+                top: 20px; /* Positionner en haut */
+                right: 20px; /* Positionner à droite */
+                z-index: 1000; /* S'assurer qu'il est au-dessus des autres éléments */
+            }
+
+            #btn-view-more {
+            background: rgb(20, 107, 207);
+            color: white;
+            height: 40px; /* Augmenter la hauteur pour un meilleur clic */
+            font-weight: 600;
+            border-radius: 5px;
+            padding: 10px 15px; /* Ajustement du padding pour un meilleur espacement */
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block; /* Assure que le bouton est un bloc en ligne */
+            transition: background 0.3s, transform 0.2s; /* Ajout d'une transition pour les effets */
+            }
+
+            #btn-view-more:hover {
+                background: rgb(30, 127, 255); /* Changement de couleur au survol */
+                transform: translateY(-2px); /* Légère élévation au survol */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
             }
         </style>
     </head>
@@ -61,26 +139,6 @@
             </div>
         </div>
    </body>
-    <style>
-        #btn-view-more {
-            background: rgb(20, 107, 207);
-            color: white;
-            height: 40px; /* Augmenter la hauteur pour un meilleur clic */
-            font-weight: 600;
-            border-radius: 5px;
-            padding: 10px 15px; /* Ajustement du padding pour un meilleur espacement */
-            text-decoration: none;
-            margin-top: 10px;
-            display: inline-block; /* Assure que le bouton est un bloc en ligne */
-            transition: background 0.3s, transform 0.2s; /* Ajout d'une transition pour les effets */
-        }
-
-        #btn-view-more:hover {
-            background: rgb(30, 127, 255); /* Changement de couleur au survol */
-            transform: translateY(-2px); /* Légère élévation au survol */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
-        }
-    </style>
    <script defer>
     /*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */
 !function(e, t) {

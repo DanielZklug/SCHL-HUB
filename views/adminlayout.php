@@ -1,8 +1,9 @@
 <?php
-session_start();
-
 // Fonction pour afficher un message
 function afficherMessage($type, $message) {
+    $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8'); // Échapper les guillemets
+    $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); // Échapper les guillemets
+
     echo "<script>
         document.addEventListener('DOMContentLoaded', function() {
             const alertContainer = document.createElement('div');
@@ -11,9 +12,10 @@ function afficherMessage($type, $message) {
             document.body.appendChild(alertContainer);
             setTimeout(() => {
                 alertContainer.remove();
-            }, 3000); // Masquer après 3 secondes
+            }, 5000); // Masquer après 5 secondes
         });
     </script>";
+
 }
 
 // Exemple d'utilisation
@@ -74,6 +76,7 @@ if (isset($_SESSION['error_message'])) {
                 right: 20px; /* Positionner à droite */
                 z-index: 1000; /* S'assurer qu'il est au-dessus des autres éléments */
             }
+
         </style>
     </head>
    <body class="body">

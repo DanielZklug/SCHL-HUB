@@ -1,17 +1,15 @@
 <?php
-
 namespace App\Controllers;
 
-use App\Models\Post; // Assurez-vous que cette classe existe dans App\Models
+session_start();
+
+use App\Models\Post;
 use App\Exceptions\NotFoundException;
 use App\Models\User;
 
-// Définition de la classe BlogController qui étend la classe Controller
 class BlogController extends Controller {
 
-    // Méthode pour afficher la page d'accueil du blog
     public function welcome() {
-        // Exécute une requête SQL pour récupérer les utilisateurs et leurs profils, triés par ID d'utilisateur décroissant
         $stmt = $this->db->getPDO()->query("
             SELECT
                 e.idEncadrant, 
@@ -24,33 +22,24 @@ class BlogController extends Controller {
             JOIN utilisateur u ON e.Uti_idUtilisateur = u.idUtilisateur
             ORDER BY e.idEncadrant DESC
             LIMIT 6;
-
         ");
         
-        // Récupère tous les résultats de la requête
         $posts = $stmt->fetchAll();
-        
-        // Retourne la vue 'blog.welcome' en passant les posts récupérés
         return $this->view('blog.welcome', compact('posts'));
     }
     
-    // Méthode pour afficher la liste des posts du blog
     public function index() {
-        
-        $post = new Post($this->getDB()); // Assurez-vous que le constructeur de Post prend un paramètre valide
-        $posts = $post->all(); // Récupère tous les posts
-        
-        // Retourne la vue 'blog.index' en passant les posts récupérés
+        $post = new Post($this->getDB());
+        $posts = $post->all();
         return $this->view('blog.index', compact('posts'));
     }
-
 
     public function show($id) {
         if (!is_numeric($id) || floor($id) != $id) {
             throw new NotFoundException("L'identifiant du post doit être un entier.");
         }
 
-        $id = (int)$id; // Conversion explicite en entier
+        $id = (int)$id;
         $post = new Post($this->getDB());
         $post = $post->findById($id);
 
@@ -61,32 +50,36 @@ class BlogController extends Controller {
         return $this->view('blog.show', compact('post'));
     }
 
-    public function create(){
+    public function create() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Validation des entrées
             $data = [
-                'nom' => $_POST['nom'],
-                'prenom' => $_POST['prenom'],
+                'nom' => filter_var(trim($_POST['nom']), FILTER_SANITIZE_STRING),
+                'prenom' => filter_var(trim($_POST['prenom']), FILTER_SANITIZE_STRING),
                 'mot_passe' => password_hash($_POST['mot_passe'], PASSWORD_DEFAULT),
-                'numero' => $_POST['numero'],
-                'email' => $_POST['email'],
-                'role' => $_POST['role'] // 'encadrant' ou 'etudiant'
+                'numero' => filter_var(trim($_POST['numero']), FILTER_SANITIZE_STRING),
+                'email' => filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL),
+                'role' => filter_var(trim($_POST['role']), FILTER_SANITIZE_STRING)
             ];
-            
-            $post = new User($this->getDB());
-            $result = $post->create($data);
 
-            if ($result && $data['role'] === 'encadrant') {
-                // Inscription réussie
-                $_SESSION['success_message'] = "Inscription réussie. Veuillez vous connecter.";
-                return $this->viewLogin('authentification.login');
-            } elseif ($result && $data['role'] === 'etudiant') {
-                // Inscription réussie
-                $_SESSION['success_message'] = "Inscription réussie. Veuillez vous connecter.";
-                return $this->viewLogin('authentification.login');
-            } else {
-                // Erreur lors de l'inscription
-                $_SESSION['error_message'] = "Erreur lors de l'inscription. Veuillez réessayer.";
-                // Retourne la vue 'blog.welcome' en passant les posts récupérés
+            // Vérification de l'email
+            if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                $_SESSION['error_message'] = "Adresse email invalide.";
+                return $this->view('blog.welcome');
+            }
+
+            try {
+                $user = new User($this->getDB());
+                $result = $user->create($data);
+
+                if ($result) {
+                    $_SESSION['success_message'] = "Inscription réussie. Veuillez vous connecter.";
+                    return header("Location: /schl-hub/authentification");
+                } else {
+                    return $this->view('blog.welcome');
+                }
+            } catch (\Exception $e) {
+                $_SESSION['error_message'] = "Une erreur est survenue: " . $e->getMessage();
                 return $this->view('blog.welcome');
             }
         }

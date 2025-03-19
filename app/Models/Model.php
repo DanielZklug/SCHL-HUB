@@ -11,6 +11,10 @@ abstract class Model{
     protected $table;
 
     public function __construct(DBConnexion $db){
+        if(session_status() === PHP_SESSION_NONE){
+            session_start();
+        }
+        
         $this->db = $db;
     }
 
@@ -50,7 +54,7 @@ abstract class Model{
         return $this->query("DELETE FROM {$this->table} WHERE id = ?", $id);
     }
 
-    public function query(string $sql, int $param = null, bool $single = null){
+    public function query(string $sql, string|int $param = null, bool $single = null){
         $method = is_null($param) ? 'query' : 'prepare';
 
         if(strpos($sql, "DELETE") === 0 || strpos($sql, "UPDATE") === 0 || strpos($sql, "CREATE") === 0){

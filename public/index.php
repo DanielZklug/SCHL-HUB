@@ -31,6 +31,7 @@ $router->get('admin/support','App\Controllers\Admin\SupportController@index');
 $router->get('admin/profile','App\Controllers\Admin\ProfileController@index');
 
 $router->get('authentification','App\Controllers\UserController@login');
+$router->post('authentification','App\Controllers\UserController@loginPost');
 
 
 try{

@@ -5,15 +5,14 @@
     </a> -->
     <div class="spacer _16"></div>
     <h2>Se connecter</h2>
-    <p>Welcome back, it &#x27;s good to see you.</p>
     <div class="spacer _16"></div>
     <div class="w-form">
-        <form id="email-form" name="email-form" data-name="Email Form" redirect="/profile" data-redirect="/profile" class="sign-up-form">
+        <form id="email-form" action="authentification" method="post" class="sign-up-form">
             <label for="Subscriber-Email-3" class="field-label">Email</label>
-            <input type="email" class="simple-input no-margin w-input" maxlength="256" name="Subscriber-Email" placeholder="name@company.com" required/>
+            <input type="email" class="simple-input no-margin w-input" maxlength="256" name="email" placeholder="name@company.com" required/>
             <div class="spacer _16"></div>
             <label for="Subscriber-Password" class="field-label">Mot de passe</label>
-            <input type="password" class="simple-input no-margin w-input" maxlength="256" name="Subscriber-Password" placeholder="***********" required/>
+            <input type="password" class="simple-input no-margin w-input" maxlength="256" name="password" placeholder="***********" required/>
             <div class="spacer _24"></div>
             <input type="submit" value="Se connecter" class="button no-margin w-button"/>
         </form>
