@@ -1,4 +1,4 @@
-<?php $title = "Encadrants"?>
+<?php $title = "Encadrants";?>
 <a href="/schl-hub/accueil" class="link"><h3>Retour à l'accueil</h3></a>
 <style>
     .link,h3{
@@ -18,23 +18,23 @@
         </div>
         <div class="collection-list-wrapper w-dyn-list">
             <div role="list" class="collection-list w-dyn-items">
-                <?php foreach ($params['posts'] as $post): ?>
-                    <div role="listitem" class="collection-item w-dyn-item">
-                        <div style="border: 1px solid #ccc; border-radius: 5px;" class="feature-item-container">
+            <?php foreach ($params['posts'] as $post): ?>
+                <div role="listitem" class="collection-item w-dyn-item">
+                    <div style="border: 1px solid #ccc; border-radius: 5px;" class="feature-item-container">
+                        <div class="feature-icon">
                             <?php 
-                                if (empty($post->photo)){
-                                    $post->photo = "user.png";
+                                if (empty($post->photo_utilisateur)){
+                                    $post->photo_utilisateur = "user.png";
                                 }                                     
                             ?>
-                            <div class="feature-icon">
-                                <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR.$post->photo?>"/>
-                            </div>
-                            <h3 style="text-transform: capitalize;" class="h3"><?=$post->nom." ".$post->prenom?></h3>
-                            <p class="paragraph cc-gray"><?=$post->profession?></p>
-                            <a href="encadrants/<?=$post->id?>" id="btn-view-more">Voir plus</a>
+                            <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR.$post->photo_utilisateur?>"/>
                         </div>
+                        <h3 style="text-transform: capitalize;" class="h3"><?=$post->nom_utilisateur." ".$post->prenom_utilisateur?></h3>
+                        <p class="paragraph cc-gray"><?=$post->profession_encadrant?></p>
+                        <a href="encadrants/<?=$post->idEncadrant?>" id="btn-view-more">Voir plus</a>
                     </div>
-                <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
             </div>
         </div>
     </div>

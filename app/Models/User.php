@@ -4,7 +4,7 @@ namespace App\Models;
 session_start();
 
 class User extends Model {
-    public function create(array $data) {
+    public function create(array $data): bool {
         $role = $data['role']; // Le rôle est soit 'encadrant' ou 'stagiaire'
     
         // Commence une transaction
@@ -33,14 +33,22 @@ class User extends Model {
             // En fonction du rôle, insérer dans la table spécifique (Encadrant ou Stagiaire)
             if ($role === 'encadrant') {
                 // Insertion dans la table Encadrant
-                $sqlEncadrant = "INSERT INTO encadrant (`Uti_idUtilisateur`) 
-                                 VALUES (?)";
+                $sqlEncadrant = "INSERT INTO encadrant (`Uti_idUtilisateur`) VALUES (?)";
                 $stmtEncadrant = $this->db->getPDO()->prepare($sqlEncadrant);
                 $stmtEncadrant->execute([$userId]);
+
+                // Récupère l'ID de l'utilisateur inséré
+                $userIdEncadrant = $this->db->getPDO()->lastInsertId();
+
+                // Insertion dans la table Encadrant
+                $sqlEncadrantP = "INSERT INTO profisocial (`Enc_idEncadrant`) VALUES (?)";
+                $stmtEncadrant = $this->db->getPDO()->prepare($sqlEncadrantP);
+                $stmtEncadrant->execute([$userIdEncadrant]);
+
+
             } elseif ($role === 'etudiant') {
                 // Insertion dans la table Stagiaire
-                $sqlStagiaire = "INSERT INTO stagiaire (`Uti_idUtilisateur`) 
-                                 VALUES (?)";
+                $sqlStagiaire = "INSERT INTO stagiaire (`Uti_idUtilisateur`) VALUES (?)";
                 $stmtStagiaire = $this->db->getPDO()->prepare($sqlStagiaire);
                 $stmtStagiaire->execute([$userId]);
             } else {

@@ -17,12 +17,16 @@ abstract class Model{
     public function all(): array{
         // Exécute une requête SQL pour récupérer tous les utilisateurs et leurs profils, triés par ID d'utilisateur décroissant
         $stmt = $this->db->getPDO()->query("
-            SELECT 
-               *
-            FROM 
-                {$this->table}
-            ORDER BY 
-               idEncadrant DESC
+            SELECT
+                e.idEncadrant, 
+                u.nom AS nom_utilisateur, 
+                u.prenom AS prenom_utilisateur,  
+                u.photo AS photo_utilisateur, 
+                e.profession AS profession_encadrant
+            FROM
+                {$this->table} e
+            JOIN utilisateur u ON e.Uti_idUtilisateur = u.idUtilisateur
+            ORDER BY e.idEncadrant DESC
         ");
         $stmt->setFetchMode(PDO::FETCH_CLASS,get_class($this),[$this->db]);
         // Récupère tous les résultats de la requête
@@ -72,11 +76,27 @@ abstract class Model{
     {
         // Prépare une requête SQL pour récupérer un profil d'utilisateur spécifique par son ID
         $stmt = $this->db->getPDO()->prepare("
-            SELECT 
-                *
-            FROM 
-                {$this->table}
-            WHERE id = ?
+            SELECT
+                e.idEncadrant, 
+                u.nom AS nom_utilisateur, 
+                u.prenom AS prenom_utilisateur,  
+                u.photo AS photo_utilisateur,
+                u.numero AS numero_utilisateur,
+                u.email AS email_utilisateur,
+                ps.gitlab AS gitlab, 
+                ps.github AS github, 
+                ps.facebook AS facebook, 
+                ps.instagram AS instagram, 
+                ps.google AS google,  
+                e.emailOrg AS email_organisationnel,
+                e.bio AS bio_encadrant,
+                e.profession AS profession_encadrant
+            FROM
+                {$this->table} e
+            JOIN utilisateur u ON e.Uti_idUtilisateur = u.idUtilisateur
+            JOIN profilsocial ps ON e.idEncadrant = ps.Enc_idEncadrant
+            WHERE e.idEncadrant = ?
+            ORDER BY e.idEncadrant DESC
         ");
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this), [$this->db]);
         $stmt->execute([$id]); // Exécute la requête avec l'ID fourni

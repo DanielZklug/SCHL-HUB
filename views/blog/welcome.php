@@ -1,4 +1,5 @@
-<?php $title="E-learning" ?>
+<?php $title="E-learning"?>
+
 <div class="navigation"></div>
     <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease-out" data-easing2="ease-out" role="banner" class="navigation w-nav">
         <div class="navigation-container">
@@ -36,23 +37,29 @@
             </div>
             <div  class="collection-list-wrapper w-dyn-list">
                 <div role="list" class="collection-list w-dyn-items">
-                    <?php foreach ($params['posts'] as $post): ?>
-                        <div role="listitem" class="collection-item w-dyn-item">
-                            <div style="border: 1px solid #ccc; border-radius: 5px;" class="feature-item-container">
-                                <!-- <div class="feature-icon">
-                                    <?php 
-                                        // if (empty($post->photo)){
-                                        //     $post->photo = "user.png";
-                                        // }                                     
-                                    ?>
-                                    <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR.$post->photo?>"/>
-                                </div> -->
-                                <h3 style="text-transform: capitalize;" class="h3"><?=$post->nom_utilisateur." ".$post->prenom_utilisateur?></h3>
-                                <!-- <p class="paragraph cc-gray"><?=$post->profession?></p>
-                                <a href="encadrants/<?=$post->id?>" id="btn-view-more">Voir plus</a> -->
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                    <?php
+                        if (!empty($params['posts'])) {
+                            foreach ($params['posts'] as $post) {
+                                ?>
+                                    <div role="listitem" class="collection-item w-dyn-item">
+                                        <div style="border: 1px solid #ccc; border-radius: 5px;" class="feature-item-container">
+                                            <div class="feature-icon">
+                                                <?php 
+                                                if (empty($post->photo_utilisateur)) {
+                                                    $post->photo_utilisateur = "user.png";
+                                                }                                     
+                                                ?>
+                                                <img alt="" src="<?= SCRIPTS . "img" . DIRECTORY_SEPARATOR . $post->photo_utilisateur ?>"/>
+                                            </div>
+                                            <h3 style="text-transform: capitalize;" class="h3"><?= htmlspecialchars($post->nom_utilisateur . " " . $post->prenom_utilisateur) ?></h3>
+                                            <p class="paragraph cc-gray"><?= htmlspecialchars($post->profession_encadrant) ?></p>
+                                            <a href="encadrants/<?= htmlspecialchars($post->idEncadrant) ?>" id="btn-view-more">Voir plus</a>
+                                        </div>
+                                    </div>
+                                <?php
+                            }
+                        }
+                    ?>
                 </div>
             </div>
             <br>

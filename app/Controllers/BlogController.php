@@ -16,24 +16,14 @@ class BlogController extends Controller {
             SELECT
                 e.idEncadrant, 
                 u.nom AS nom_utilisateur, 
-                u.prenom AS prenom_utilisateur, 
-                u.numero AS numero_utilisateur, 
-                u.email AS email_utilisateur, 
+                u.prenom AS prenom_utilisateur,  
                 u.photo AS photo_utilisateur, 
-                ps.gitlab, 
-                ps.github, 
-                ps.facebook, 
-                ps.instagram, 
-                ps.google, 
-                e.emailOrg AS email_organisationnel,
-                e.bio AS bio_encadrant
+                e.profession AS profession_encadrant
             FROM
-                Encadrant e
-            JOIN Utilisateur u ON e.Uti_idUtilisateur = u.idUtilisateur
-            JOIN ProfilSocial ps ON e.idPsocial = ps.idPsocial
+                encadrant e
+            JOIN utilisateur u ON e.Uti_idUtilisateur = u.idUtilisateur
             ORDER BY e.idEncadrant DESC
             LIMIT 6;
-            -- Limite les résultats à 6
 
         ");
         
