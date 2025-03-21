@@ -1,4 +1,6 @@
-<?php $title = "Etudiants" ?>
+<?php $title = "Etudiants"; 
+var_dump($params["posts"])
+?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Etudiants</h2>
@@ -41,9 +43,9 @@
                                                 </div>
                                                 <a href="/schl-hub/admin/student/<?=$user->id?>" class="customer-element w-inline-block">
                                                     <div class="grid-number-block">
-                                                        <div><?=$user->nom?></div>
+                                                        <div><?=$user->nom_utilisateur?></div>
                                                     </div>
-                                                    <div><?=$user->email?></div>
+                                                    <div><?=$user->email_utilisateur?></div>
                                                     <div class="mob-hidden"><?=$user->numero?></div>
                                                     <div>
                                                     <form hidden action="admin/student/delete/<?=$user->id?>" style="display:inline" method="post">

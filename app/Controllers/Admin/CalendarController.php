@@ -7,9 +7,11 @@ use App\Controllers\Controller;
 use App\Exceptions\NotFoundException;
 
 class CalendarController extends Controller{
-    
+
     public function index(){
-        return $this->viewAdmin('admin.calendar.index');
+        $this->isAdmin();
+
+        return $this->viewAdmin('admin.calendar.index',compact('post'));
     }
 
 }

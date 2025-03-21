@@ -18,25 +18,25 @@
                 <div class="module-header minimal">
                     <h3 class="module-heading">Etudiant(s)</h3>
                 </div>
-                <div class="module-main">
-                    <div class="module-number blue"><?= $params["totalCount"]?></div>
-                </div>
+                <!-- <div class="module-main">
+                    <div class="module-number blue"><?= $params["totalCount"]= 0?></div>
+                </div> -->
             </div>
             <div class="module blue">
                 <div class="module-header minimal">
                     <h3 class="module-heading">Fille(s)</h3>
                 </div>
-                <div class="module-main">
-                    <div class="module-number blue"><?= $params["femaleCount"]?></div>
-                </div>
+                <!-- <div class="module-main">
+                    <div class="module-number blue"><?= $params["femaleCount"] = 0?></div>
+                </div> -->
             </div>
             <div class="module blue">
                 <div class="module-header minimal">
                     <h3 class="module-heading">Garçon(s)</h3>
                 </div>
-                <div class="module-main">
-                    <div class="module-number blue"><?= $params["maleCount"]?></div>
-                </div>
+                <!-- <div class="module-main">
+                    <div class="module-number blue"><?= $params["maleCount"] = 0?></div>
+                </div> -->
             </div>
         </div>
         <div class="_2-grid">

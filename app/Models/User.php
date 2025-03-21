@@ -20,7 +20,7 @@ class User extends Model {
             }
         
             // Insertion dans la table Utilisateur (commune à tous les utilisateurs)
-            $sql = "INSERT INTO utilisateur (`nom`, `prenom`, `motPasse`, `numero`, `email`, `role`) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO {$this->table} (`nom`, `prenom`, `motPasse`, `numero`, `email`, `role`) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->db->getPDO()->prepare($sql);
             $stmt->execute(array_values($data));
 

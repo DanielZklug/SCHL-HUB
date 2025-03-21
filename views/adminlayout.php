@@ -1,9 +1,7 @@
 <?php
 // Fonction pour afficher un message
+// Fonction pour afficher un message
 function afficherMessage($type, $message) {
-    $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8'); // Échapper les guillemets
-    $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); // Échapper les guillemets
-
     echo "<script>
         document.addEventListener('DOMContentLoaded', function() {
             const alertContainer = document.createElement('div');
@@ -15,7 +13,6 @@ function afficherMessage($type, $message) {
             }, 5000); // Masquer après 5 secondes
         });
     </script>";
-
 }
 
 // Exemple d'utilisation
@@ -28,6 +25,7 @@ if (isset($_SESSION['error_message'])) {
     afficherMessage('erreur', $_SESSION['error_message']);
     unset($_SESSION['error_message']);
 }
+
 ?>
 <!DOCTYPE html>
 <!-- This site was created in Webflow. https://webflow.com -->
@@ -187,13 +185,18 @@ if (isset($_SESSION['error_message'])) {
                         <div data-hover="" data-delay="0" class="profile-menu-dropdown w-dropdown">
                             <div data-w-id="b24ef7f8-86e5-1c85-e1c5-b65466441b29" class="profile-menu w-dropdown-toggle">
                                 <div class="profile-image">
-                                    <img src="<?= SCRIPTS.'img'.DIRECTORY_SEPARATOR.'user.png'?>" loading="lazy" alt="" class="cover-image"/>
+                                    <?php 
+                                        if (empty($params['post']->photo_utilisateur)) {
+                                            $params['post']->photo_utilisateur = "user.png";
+                                        }                                     
+                                    ?>
+                                    <img style="height: 38px;"alt="" src="<?= SCRIPTS . "uploads" . DIRECTORY_SEPARATOR .$params['post']->photo_utilisateur ?>"/>
                                 </div>
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'6023423b0a5988466e83ffb8_CaretDown.svg'?>" loading="lazy" width="15" alt="" class="menu-down"/>
                             </div>
                             <nav class="profile-menu-list w-dropdown-list">
-                                <a href="/schl-hub/admin/profile" class="profile-menu-link w-nav-link">My Profile</a>
-                                <a href="/settings" class="profile-menu-link w-nav-link">Settings</a>
+                                <a href="/schl-hub/admin/profile" class="profile-menu-link w-nav-link">Mon profil</a>
+                                <a href="/settings" class="profile-menu-link w-nav-link">Paramètres</a>
                                 <div class="menu-divider"></div>
                                 <!-- <a href="/pages/help" class="profile-menu-link w-nav-link">Help Center</a>
                                 <a href="/pages/contact-sales" class="profile-menu-link w-nav-link">Report an Issue</a>
@@ -201,7 +204,7 @@ if (isset($_SESSION['error_message'])) {
                                 <a href="/pages/privacy-policy" class="profile-menu-link w-nav-link">Privacy Policy</a>
                                 <a href="/template-resources/licenses" class="profile-menu-link w-nav-link">Licenses</a>
                                 <div class="menu-divider"></div> -->
-                                <a href="/pages/sign-in" class="profile-menu-link w-nav-link">Log Out</a>
+                                <a href="/pages/sign-in" class="profile-menu-link w-nav-link">Se déconnecter</a>
                             </nav>
                         </div>
                     </div>
@@ -3145,7 +3148,7 @@ if (isset($_SESSION['error_message'])) {
             if ((u = !S.isEmptyObject(t)) || !S.isEmptyObject(d))
                 for (r in f && 1 === e.nodeType && (n.overflow = [h.overflow, h.overflowX, h.overflowY],
                 null == (l = v && v.display) && (l = Y.get(e, "display")),
-                "none" === (c = S.css(e, "display")) && (l ? c = l : (le([e], !0),
+                "" === (c = S.css(e, "display")) && (l ? c = l : (le([e], !0),
                 l = e.style.display || l,
                 c = S.css(e, "display"),
                 le([e]))),

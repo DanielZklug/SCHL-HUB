@@ -20,7 +20,7 @@
                                     $params['post']->photo_utilisateur = "user.png";
                                 }                                     
                             ?>
-                            <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR.$params['post']->photo_utilisateur?>"/>
+                            <img alt="" src="<?=SCRIPTS."uploads".DIRECTORY_SEPARATOR.$params['post']->photo_utilisateur?>"/>
                         </div>
                         <h2 style="text-transform: capitalize;" class="h3"><?=$params['post']->nom_utilisateur." ".$params['post']->prenom_utilisateur?></h2>
                         <p style="font-size: 1.2em;" class="paragraph cc-gray"><?=$params['post']->profession_encadrant?></p>
@@ -54,6 +54,10 @@
                             <div>
                                 <label class="info-label">Facebook :</label>
                                 <p style="font-size: 1.2em;" class="paragraph cc-gray"><?=$params['post']->facebook?></p>
+                            </div>
+                            <div>
+                                <label class="info-label">Instagram :</label>
+                                <p style="font-size: 1.2em;" class="paragraph cc-gray"><?=$params['post']->instagram?></p>
                             </div>
                         </div>
                     </div>

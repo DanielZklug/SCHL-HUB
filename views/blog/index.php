@@ -27,7 +27,7 @@
                                     $post->photo_utilisateur = "user.png";
                                 }                                     
                             ?>
-                            <img alt="" src="<?=SCRIPTS."img".DIRECTORY_SEPARATOR.$post->photo_utilisateur?>"/>
+                            <img alt="" src="<?=SCRIPTS."uploads".DIRECTORY_SEPARATOR.$post->photo_utilisateur?>"/>
                         </div>
                         <h3 style="text-transform: capitalize;" class="h3"><?=$post->nom_utilisateur." ".$post->prenom_utilisateur?></h3>
                         <p class="paragraph cc-gray"><?=$post->profession_encadrant?></p>
