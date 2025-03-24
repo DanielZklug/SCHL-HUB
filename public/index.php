@@ -19,13 +19,16 @@ $router->get('encadrants', 'App\Controllers\BlogController@index');
 $router->get('encadrants/:id', 'App\Controllers\BlogController@show');
 
 $router->get('admin/student','App\Controllers\Admin\StudentController@index');
-$router->get('admin/student','App\Controllers\Admin\StudentController@create');
 $router->get('admin/student/:id','App\Controllers\Admin\StudentController@show');
 $router->post('admin/student/delete/:id','App\Controllers\Admin\StudentController@delete');
 
 $router->get('admin/dashboard','App\Controllers\Admin\DashboardController@index');
 
+$router->get('admin/tasks','App\Controllers\Admin\TaskController@index');
+
 $router->get('admin/calendar','App\Controllers\Admin\CalendarController@index');
+
+$router->get('admin/classroom','App\Controllers\Admin\ClassController@index');
 
 $router->get('admin/support','App\Controllers\Admin\SupportController@index');
 

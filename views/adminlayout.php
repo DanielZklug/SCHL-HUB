@@ -96,7 +96,7 @@ if (isset($_SESSION['error_message'])) {
                                 <div class="sidebar-link-text">Tableau de bord</div>
                             </a>
                             <link rel="prefetch" href="/"/>
-                            <a href="/tasks" class="sidebar-link w-inline-block">
+                            <a href="/schl-hub/admin/tasks" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1038967373831278c_Note.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Tâches</div>
                             </a>
@@ -120,7 +120,7 @@ if (isset($_SESSION['error_message'])) {
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1c54adbe65e63f7a9_Chats.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Cours</div>
                             </a>
-                            <a href="/template-resources/style-guide" class="sidebar-link w-inline-block">
+                            <a href="/schl-hub/admin/classroom" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'60262456b5cd8b76429bfafd_Cube.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Classes</div>
                             </a>

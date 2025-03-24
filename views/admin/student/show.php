@@ -1,4 +1,6 @@
-<?php $title = $params['post']->nom." ".$params['post']->prenom; ?>
+<?php $title = $params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom ;
+var_dump($params['posts'])
+?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Détails</h2>
@@ -13,27 +15,27 @@
                     <div class="module-main">
                         <div class="_50-width">
                             <div class="field-label">Nom</div>
-                            <p><?=$params['post']->nom?></p>
+                            <p><?=$params['posts']->Stagiaire_nom?></p>
                         </div>
                         <div class="_50-width">
                             <div class="field-label">Prenom</div>
-                            <p><?=$params['post']->prenom?></p>
+                            <p><?=$params['posts']->Stagiaire_prenom?></p>
                         </div>
                         <div class="_50-width">
                             <div class="field-label">Email</div>
-                            <p><?=$params['post']->email?></p>
+                            <p><?=$params['posts']->Stagiaire_email?></p>
                         </div>
                         <div class="_50-width">
                             <div class="field-label">Email de l'institution</div>
-                            <p><?=$params['post']->email_ins?></p>
+                            <p><?=$params['posts']->emailUni?></p>
                         </div>
                         <div class="_50-width">
                             <div class="field-label">Numéro</div>
-                            <p><?=$params['post']->numero?></p>
+                            <p><?=$params['posts']->Stagiaire_numero?></p>
                         </div>
                         <div class="_50-width">
                             <div class="field-label">Genre</div>
-                            <p><?=$params['post']->genre?></p>
+                            <p><?=$params['posts']->Stagiaire_genre?></p>
                         </div>
                         <div class="_50-width">
                             <div class="field-label">Date d'inscription</div>
@@ -44,7 +46,6 @@
                 <div class="module">
                     <div class="module-header">
                         <h3 class="module-heading">Tâches assignées</h3>
-                        <a href="#" class="module-button add w-button">+</a>
                     </div>
                     <div class="module-main">
                         <div class="w-form">
@@ -84,6 +85,10 @@
                 <a href="#" class="action-card w-inline-block">
                     <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'60283f3a37c95faced8e4597_PaperPlaneRight.svg'?>" loading="lazy" width="22" alt="" class="action-icon"/>
                     <h3 class="module-heading">Envoyer une lettre</h3>
+                </a>
+                <a href="#" class="action-card w-inline-block">
+                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1038967373831278c_Note.svg'?>" loading="lazy" width="22" alt="" class="action-icon"/>
+                    <h3 class="module-heading">Attribuer une tâche</h3>
                 </a>
                 <!-- <a href="#" class="action-card w-inline-block">
                     <img src="https://cdn.prod.website-files.com/6022ffeab6f354c9aa1eb2a2/602339a1038967373831278c_Note.svg" loading="lazy" width="22" alt="" class="action-icon"/>

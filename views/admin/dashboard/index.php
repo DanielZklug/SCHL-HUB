@@ -18,25 +18,25 @@
                 <div class="module-header minimal">
                     <h3 class="module-heading">Etudiant(s)</h3>
                 </div>
-                <!-- <div class="module-main">
-                    <div class="module-number blue"><?= $params["totalCount"]= 0?></div>
-                </div> -->
+                <div class="module-main">
+                    <div class="module-number blue">0</div>
+                </div>
             </div>
             <div class="module blue">
                 <div class="module-header minimal">
                     <h3 class="module-heading">Fille(s)</h3>
                 </div>
-                <!-- <div class="module-main">
-                    <div class="module-number blue"><?= $params["femaleCount"] = 0?></div>
-                </div> -->
+                <div class="module-main">
+                    <div class="module-number blue">0</div>
+                </div>
             </div>
             <div class="module blue">
                 <div class="module-header minimal">
                     <h3 class="module-heading">Garçon(s)</h3>
                 </div>
-                <!-- <div class="module-main">
-                    <div class="module-number blue"><?= $params["maleCount"] = 0?></div>
-                </div> -->
+                <div class="module-main">
+                    <div class="module-number blue">0</div>
+                </div>
             </div>
         </div>
         <div class="_2-grid">
@@ -180,7 +180,7 @@
                 </div>
                 <div class="module-main">
                     <div class="empty-module-insert">
-                        <img src="assets/img/60244fb15bbcaab0b00a05d4_Check.svg" loading="lazy" width="27" alt="" class="empty-icon"/>
+                        <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'60244fb15bbcaab0b00a05d4_Check.svg'?>" loading="lazy" width="27" alt="" class="empty-icon"/>
                         <div>
                             No new <br/>tickets
                         </div>

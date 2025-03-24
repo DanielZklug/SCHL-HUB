@@ -1,9 +1,10 @@
-<?php $title = "Etudiants"; 
-var_dump($params["post"]);
+<?php $title = "Classes"; 
+var_dump($params["post"])
 ?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
-        <h2>Etudiants</h2>
+        <h2>Classes</h2>
+        <a href="#" onclick="showPopup()" class="button page w-button">Ajouter un nouvel étudiant</a>
     </div>
     <div class="container">
         <div class="module">
@@ -20,13 +21,12 @@ var_dump($params["post"]);
                             </form>
                         </div>
                         <h4 class="grid-header">Noms</h4>
-                        <h4 class="grid-header">Email</h4>
-                        <h4 class="grid-header mob-hidden">Classe</h4>
+                        <h4 class="grid-header">Stagiaires</h4>
+                        <h4 class="grid-header mob-hidden">Cours</h4>
                         <h4 class="grid-header mob-hidden">Actions</h4>
                     </div>
                     <div class="w-dyn-list">
                         <div role="list" class="w-dyn-items">
-                            
                                 <div class="w-dyn-list">
                                     <div role="list" class="w-dyn-items">
                                         <div role="listitem" class="w-dyn-item">
@@ -40,14 +40,14 @@ var_dump($params["post"]);
                                                         </label>
                                                     </form>
                                                 </div>
-                                                <a href="/schl-hub/admin/student/<?=$params["post"]->Stagiaire_Uti_idUtilisateur?>" class="customer-element w-inline-block">
+                                                <a href="/schl-hub/admin/student/<?=$params["post"]->idClasse?>" class="customer-element w-inline-block">
                                                     <div class="grid-number-block">
-                                                        <div><?=$params["post"]->Stagiaire_nom?></div>
+                                                        <div><?=$params["post"]->nom_classe?></div>
                                                     </div>
-                                                    <div><?=$params["post"]->Stagiaire_email?></div>
-                                                    <div class="mob-hidden"><?=$params["post"]->nom_classe?></div>
+                                                    <div></div>
+                                                    <div class="mob-hidden"></div>
                                                     <div>
-                                                    <form hidden action="admin/student/delete/<?=$params["post"]->Stagiaire_Uti_idUtilisateur?>" style="display:inline" method="post">
+                                                    <form hidden action="admin/student/delete/<?=$params["post"]->idClasse?>" style="display:inline" method="post">
                                                         <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
                                                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'?>" alt="">
                                                             Supprimer
@@ -59,7 +59,6 @@ var_dump($params["post"]);
                                         </div>
                                     </div>
                                 </div>
-                            
                             <!-- <div role="listitem" class="w-dyn-item">
                                 <div class="full-customer-row">
                                     <div class="checkbox-grid w-form">
@@ -517,6 +516,18 @@ var_dump($params["post"]);
         </div>
     </div>
 </div>
+<!-- Popup Form -->
+<div id="popupForm" class="popup-form" style="display: none;">
+    <div class="popup-content">
+        <form action="/schl-hub/admin/student/add" method="post">
+            <label for="Subscriber-Email-3" class="field-label">Email</label>
+            <input type="email" class="simple-input no-margin w-input" maxlength="256" name="Subscriber-Email" data-name="Subscriber Email" placeholder="name@company.com" id="Subscriber-Email" required=""/>
+            <div class="spacer _16"></div>
+            <input type="submit" value="Inviter" data-wait="Please wait..." class="button no-margin w-button"/>
+        </form>
+    </div>
+</div>
+
 <style>
     .popup-form {
         position: fixed;

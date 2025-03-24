@@ -21,45 +21,34 @@ class StudentController extends Controller{
         $post = $post->findProfil($_SESSION['user']);
 
         if (!$post) {
-            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[user]");
+            throw new NotFoundException("Aucun post trouvé avec l'identifiant : {$_SESSION['user']}");
         }
 
-        return $this->viewAdmin('admin.student.index',compact('post'));
+        return $this->viewAdmin('admin.student.index', compact('post'));
     }
 
-    public function create(){
-        $this->isAdmin();
 
-        if (!is_numeric($_SESSION['user']) || floor($_SESSION['user']) != $_SESSION['user']) {
-            throw new NotFoundException("L'identifiant du post doit être un entier.");
-        }
-
-        $_SESSION['user'] = (int)$_SESSION['user']; // Conversion explicite en entier
-        $post = new Student($this->getDB());
-        $posts = $post->allStudent($_SESSION['user']);
-
-        if (!$posts) {
-            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[user]");
-        }
-
-        return $this->viewAdmin('admin.student.index',compact('posts'));
-    }
     public function show($id) {
         $this->isAdmin();
     
-        // if (!is_numeric($id) || floor($id) != $id) {
-        //     throw new NotFoundException("L'identifiant du post doit être un entier.");
-        // }
+        if (!is_numeric($id) || floor($id) != $id) {
+            throw new NotFoundException("L'identifiant du post doit être un entier.");
+        }
 
-        // $id = (int)$id; // Conversion explicite en entier
-        // $post = new Student($this->getDB());
-        // $post = $post->findById($id);
+        $id = (int)$id; // Conversion explicite en entier
+        $post = new Student($this->getDB());
+        $posts = $post->findByIdStagiaire($id);
 
-        // if (!$post) {
-        //     throw new NotFoundException("Aucun post trouvé avec l'identifiant : $id");
-        // }
+        if (!$post) {
+            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $id");
+        }
 
-        return $this->viewAdmin('admin.student.show');
+        $_SESSION['user'] = (int)$_SESSION['user']; // Conversion explicite en entier
+        $post = new Post($this->getDB());
+        $post = $post->findProfil($_SESSION['user']);
+
+
+        return $this->viewAdmin('admin.student.show', compact('posts','post'));
     }
 
     public function delete(int $id){

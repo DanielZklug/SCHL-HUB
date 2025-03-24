@@ -7,7 +7,7 @@ use App\Models\Student;
 use App\Controllers\Controller;
 use App\Exceptions\NotFoundException;
 
-class CalendarController extends Controller{
+class TaskController extends Controller{
 
     public function index(){
         $this->isAdmin();
@@ -24,7 +24,7 @@ class CalendarController extends Controller{
             throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[user]");
         }
 
-        return $this->viewAdmin('admin.calendar.index',compact('post'));
+        return $this->viewAdmin('admin.tasks.index',compact('post'));
     }
 
 }

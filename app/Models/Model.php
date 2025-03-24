@@ -34,39 +34,35 @@ abstract class Model{
         return $stmt->fetchAll();
     }
 
-    public function allStudent(int $id): array{
-        try {
-            $stmt = $this->db->getPDO()->prepare("
-                SELECT 
-                    s.idStagiaire,
-                    u.nom AS nom_utilisateur, 
-                    u.prenom AS prenom_utilisateur,  
-                    u.photo AS photo_utilisateur,
-                    u.numero AS numero_utilisateur,
-                    u.email AS email_utilisateur
-                FROM 
-                    stagiaire s
-                JOIN utilisateur u ON s.Uti_idUtilisateur = u.idUtilisateur
-                JOIN encadrant e ON s.Enc_idEncadrant = e.idEncadrant
-                WHERE s.Enc_idEncadrant = ?
-            ");
-            
-            $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this), [$this->db]);
-            $stmt->execute([$id]); // Exécute la requête avec l'ID fourni
-            $result = $stmt->fetch();
-            // Vérifiez si des résultats ont été trouvés
-            if (!$result) {
-                return []; // Aucun stagiaire trouvé
-            }
-            
-            return $result; // Retourner les résultats trouvés
-        } catch (\Exception $e) {
-            // Gestion des erreurs SQL
-            $_SESSION["error_message"] = "Erreur lors de l'exécution de la requête : " . $e->getMessage();
-            return []; // Retourner un tableau vide en cas d'erreur
+
+    public function allStudent(int $id): array {
+        $stmt = $this->db->getPDO()->prepare("
+            SELECT 
+                s.idStagiaire,
+                u.nom AS nom_utilisateur, 
+                u.prenom AS prenom_utilisateur,  
+                u.photo AS photo_utilisateur,
+                u.numero AS numero_utilisateur,
+                u.email AS email_utilisateur
+            FROM 
+                {$this->table} s
+            JOIN utilisateur u ON s.Uti_idUtilisateur = u.idUtilisateur
+            JOIN encadrant e ON s.Enc_idEncadrant = e.idEncadrant
+            WHERE s.Enc_idEncadrant = ?
+        ");
+        
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this), [$this->db]);
+        $stmt->execute([$id]); // Exécute la requête avec l'ID fourni
+        $result = $stmt->fetch();
+
+        // Si aucun résultat n'est trouvé, lance une exception
+        if (!$result) {
+            throw new NotFoundException("Aucun enregistrement trouvé");
         }
+
+        return $result;
     }
-    
+        
     // public function delete(int $id){
     //     return $this->query("DELETE FROM {$this->table} WHERE id = ?", $id);
     // }
@@ -129,29 +125,91 @@ abstract class Model{
 
         return $result;
     }
+    public function findByIdStagiaire(int $id): ?Model{
+        // Prépare une requête SQL pour récupérer un profil d'utilisateur spécifique par son ID
+        $stmt = $this->db->getPDO()->prepare("
+            SELECT
+                s.idStagiaire,
+                s.emailUni,
+                su.nom AS Stagiaire_nom,
+                su.prenom AS Stagiaire_prenom,
+                su.photo AS Stagiaire_photo,
+                su.numero AS Stagiaire_numero,
+                su.email AS Stagiaire_email,
+                su.role AS Stagiaire_role,
+                su.genre AS Stagiaire_genre
+            FROM
+                {$this->table} s
+            JOIN utilisateur su ON s.Uti_idUtilisateur = su.idUtilisateur
+            WHERE
+                s.Uti_idUtilisateur = ?;
+
+        ");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this), [$this->db]);
+        $stmt->execute([$id]); // Exécute la requête avec l'ID fourni
+        $result = $stmt->fetch();
+
+        // Si aucun résultat n'est trouvé, lance une exception
+        if (!$result) {
+            throw new NotFoundException("Aucun enregistrement trouvé avec l'ID : $id");
+        }
+
+        return $result;
+    }
     public function findProfil(int $id): ?Model{
         // Prépare une requête SQL pour récupérer un profil d'utilisateur spécifique par son ID
         $stmt = $this->db->getPDO()->prepare("
             SELECT
-                e.idEncadrant, 
-                u.nom AS nom_utilisateur, 
-                u.prenom AS prenom_utilisateur,  
-                u.photo AS photo_utilisateur,
-                u.numero AS numero_utilisateur,
-                u.email AS email_utilisateur,
-                ps.gitlab AS gitlab, 
-                ps.github AS github, 
-                ps.facebook AS facebook, 
-                ps.instagram AS instagram, 
-                ps.google AS google,  
-                e.emailOrg AS email_organisationnel,
-                e.bio AS bio_encadrant,
-                e.profession AS profession_encadrant
-            FROM
-                utilisateur u
-            JOIN {$this->table} e ON u.idUtilisateur = e.Uti_idUtilisateur
-            JOIN profilsocial ps ON e.idEncadrant = ps.Enc_idEncadrant
-            WHERE u.idUtilisateur = ?
+    -- Informations de l'encadrant
+    e.idEncadrant, 
+    u.nom AS nom_utilisateur, 
+    u.prenom AS prenom_utilisateur,  
+    u.photo AS photo_utilisateur,
+    u.numero AS numero_utilisateur,
+    u.email AS email_utilisateur,
+    ps.gitlab AS gitlab, 
+    ps.github AS github, 
+    ps.facebook AS facebook, 
+    ps.instagram AS instagram, 
+    ps.google AS google,  
+    e.emailOrg AS email_organisationnel,
+    e.bio AS bio_encadrant,
+    e.profession AS profession_encadrant,
+
+    -- Informations des classes
+    c.idClasse,
+    c.nom AS nom_classe,
+    c.Uti_idUtilisateur AS Classe_Uti_idUtilisateur,
+    c.Enc_idEncadrant AS Classe_Enc_idEncadrant,
+    c.nbrStag AS Classe_nbrStag,
+    c.nbrCours AS Classe_nbrCours,
+    c.dateCreation AS Classe_dateCreation,
+
+    -- Informations des stagiaires
+    s.idStagiaire,
+    s.Uti_idUtilisateur AS Stagiaire_Uti_idUtilisateur,
+    su.nom AS Stagiaire_nom,
+    su.prenom AS Stagiaire_prenom,
+    su.photo AS Stagiaire_photo,
+    su.numero AS Stagiaire_numero,
+    su.email AS Stagiaire_email,
+    su.role AS Stagiaire_role,
+    s.emailUni AS Stagiaire_emailUni
+FROM
+    utilisateur u
+JOIN 
+    encadrant e ON u.idUtilisateur = e.Uti_idUtilisateur
+JOIN 
+    profilsocial ps ON e.idEncadrant = ps.Enc_idEncadrant
+LEFT JOIN 
+    classe c ON e.idEncadrant = c.Enc_idEncadrant
+LEFT JOIN 
+    stagiaire s ON c.idClasse = s.Cla_idClasse AND e.idEncadrant = s.Enc_idEncadrant
+LEFT JOIN 
+    utilisateur su ON s.Uti_idUtilisateur = su.idUtilisateur
+WHERE 
+    u.idUtilisateur = ?;  -- Remplacer par l'ID de l'utilisateur encadrant
+
         ");
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this), [$this->db]);
         $stmt->execute([$id]); // Exécute la requête avec l'ID fourni
