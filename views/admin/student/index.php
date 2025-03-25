@@ -30,32 +30,34 @@ var_dump($params["post"]);
                                 <div class="w-dyn-list">
                                     <div role="list" class="w-dyn-items">
                                         <div role="listitem" class="w-dyn-item">
-                                            <div class="full-customer-row">
-                                                <div class="checkbox-grid w-form">
-                                                    <form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="60259d093669095e053196cc" data-wf-element-id="8c95eb69-e008-2e41-a0e9-8b0b9d02bfba">
-                                                        <label data-w-id="8c95eb69-e008-2e41-a0e9-8b0b9d02bfbb" class="w-checkbox checkbox-field-simple">
-                                                            <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
-                                                            <input checked type="checkbox" id="checkbox-8" name="checkbox-8" data-name="Checkbox 8" style="opacity:0;position:absolute;z-index:-1"/>
-                                                            <!-- <span for="checkbox-8" class="hidden-checkbox-label w-form-label">Fix CSS styling on mobile</span> -->
-                                                        </label>
-                                                    </form>
-                                                </div>
-                                                <a href="/schl-hub/admin/student/<?=$params["post"]->Stagiaire_Uti_idUtilisateur?>" class="customer-element w-inline-block">
-                                                    <div class="grid-number-block">
-                                                        <div><?=$params["post"]->Stagiaire_nom?></div>
+                                            <?php foreach ($params['post'] as $stagiaire): ?>
+                                                <div class="full-customer-row">
+                                                    <div class="checkbox-grid w-form">
+                                                        <form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="60259d093669095e053196cc" data-wf-element-id="8c95eb69-e008-2e41-a0e9-8b0b9d02bfba">
+                                                            <label data-w-id="8c95eb69-e008-2e41-a0e9-8b0b9d02bfbb" class="w-checkbox checkbox-field-simple">
+                                                                <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
+                                                                <input checked type="checkbox" id="checkbox-8" name="checkbox-8" data-name="Checkbox 8" style="opacity:0;position:absolute;z-index:-1"/>
+                                                                <!-- <span for="checkbox-8" class="hidden-checkbox-label w-form-label">Fix CSS styling on mobile</span> -->
+                                                            </label>
+                                                        </form>
                                                     </div>
-                                                    <div><?=$params["post"]->Stagiaire_email?></div>
-                                                    <div class="mob-hidden"><?=$params["post"]->nom_classe?></div>
-                                                    <div>
-                                                    <form hidden action="admin/student/delete/<?=$params["post"]->Stagiaire_Uti_idUtilisateur?>" style="display:inline" method="post">
-                                                        <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
-                                                            <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'?>" alt="">
-                                                            Supprimer
-                                                        </button>
-                                                    </form>
+                                                    <a href="/schl-hub/admin/student/<?=$stagiaire->Stagiaire_Uti_idUtilisateur?>" class="customer-element w-inline-block">
+                                                        <div class="grid-number-block">
+                                                            <div><?=$stagiaire->Stagiaire_nom?></div>
+                                                        </div>
+                                                        <div><?=$stagiaire->Stagiaire_email?></div>
+                                                        <div class="mob-hidden"><?=$stagiaire->nom_classe?></div>
+                                                        <div>
+                                                        <form hidden action="admin/student/delete/<?=$stagiaire->Stagiaire_Uti_idUtilisateur?>" style="display:inline" method="post">
+                                                            <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
+                                                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'?>" alt="">
+                                                                Supprimer
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                    </a>
                                                 </div>
-                                                </a>
-                                            </div>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
                                 </div>

@@ -1,6 +1,5 @@
 <?php
 // Fonction pour afficher un message
-// Fonction pour afficher un message
 function afficherMessage($type, $message) {
     echo "<script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -91,40 +90,36 @@ if (isset($_SESSION['error_message'])) {
                     </div>
                     <div class="sidebar-menu">
                         <div class="sidebar-menu-section bottom-divider">
-                            <a href="/schl-hub/admin/dashboard" aria-current="page" class="sidebar-link w-inline-block w--current">
-                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0e958300219cd1f1d_House.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
-                                <div class="sidebar-link-text">Tableau de bord</div>
+                            <a href="/schl-hub/student/dashboard" class="sidebar-link w-inline-block">
+                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1c54adbe65e63f7a9_Chats.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
+                                <div class="sidebar-link-text">Cours</div>
                             </a>
                             <link rel="prefetch" href="/"/>
-                            <a href="/schl-hub/admin/tasks" class="sidebar-link w-inline-block">
+                            <a href="#" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1038967373831278c_Note.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Tâches</div>
                             </a>
                             <link rel="prefetch" href="/tasks"/>
-                            <a href="/schl-hub/admin/emails" class="sidebar-link w-inline-block">
+                            <a href="#" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a108f00aa2bc888ea5_EnvelopeOpen.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Emails</div>
                             </a>
                             <link rel="prefetch" href="/emails"/>
-                            <a href="/schl-hub/admin/calendar" class="sidebar-link w-inline-block">
+                            <a href="#" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0a91183f9fceef7b0_CalendarBlank.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Calendrier</div>
                             </a>
                         </div>
-                        <div class="sidebar-menu-section bottom-divider">
+                        <!-- <div class="sidebar-menu-section bottom-divider">
                             <a href="/schl-hub/admin/student" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a13109a7d51194a232_Users.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Etudiants</div>
-                            </a>
-                            <a href="/schl-hub/admin/support" class="sidebar-link w-inline-block">
-                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1c54adbe65e63f7a9_Chats.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
-                                <div class="sidebar-link-text">Cours</div>
                             </a>
                             <a href="/schl-hub/admin/classroom" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'60262456b5cd8b76429bfafd_Cube.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Classes</div>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- <div class="sidebar-footer">
                         <a href="/pages/help" class="sidebar-link w-inline-block">
@@ -195,8 +190,8 @@ if (isset($_SESSION['error_message'])) {
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'6023423b0a5988466e83ffb8_CaretDown.svg'?>" loading="lazy" width="15" alt="" class="menu-down"/>
                             </div>
                             <nav class="profile-menu-list w-dropdown-list">
-                                <a href="/schl-hub/admin/profile" class="profile-menu-link w-nav-link">Mon profil</a>
-                                <a href="/schl-hub/admin/settings" class="profile-menu-link w-nav-link">Paramètres</a>
+                                <a href="#" class="profile-menu-link w-nav-link">Mon profil</a>
+                                <a href="#" class="profile-menu-link w-nav-link">Paramètres</a>
                                 <div class="menu-divider"></div>
                                 <!-- <a href="/pages/help" class="profile-menu-link w-nav-link">Help Center</a>
                                 <a href="/pages/contact-sales" class="profile-menu-link w-nav-link">Report an Issue</a>

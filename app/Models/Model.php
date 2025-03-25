@@ -131,6 +131,7 @@ abstract class Model{
             SELECT
                 s.idStagiaire,
                 s.emailUni,
+                s.date_inscription,
                 su.nom AS Stagiaire_nom,
                 su.prenom AS Stagiaire_prenom,
                 su.photo AS Stagiaire_photo,

@@ -1,10 +1,10 @@
-<?php $title = "Classes"; 
-var_dump($params["post"])
+<?php $title = "Classes";
+var_dump($params['post']);
 ?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Classes</h2>
-        <a href="#" onclick="showPopup()" class="button page w-button">Ajouter un nouvel étudiant</a>
+        <a href="#" onclick="showPopup()" class="button page w-button">Ajouter une nouvelle classe</a>
     </div>
     <div class="container">
         <div class="module">
@@ -519,11 +519,14 @@ var_dump($params["post"])
 <!-- Popup Form -->
 <div id="popupForm" class="popup-form" style="display: none;">
     <div class="popup-content">
-        <form action="/schl-hub/admin/student/add" method="post">
-            <label for="Subscriber-Email-3" class="field-label">Email</label>
-            <input type="email" class="simple-input no-margin w-input" maxlength="256" name="Subscriber-Email" data-name="Subscriber Email" placeholder="name@company.com" id="Subscriber-Email" required=""/>
+        <form action="/schl-hub/admin/classroom" method="post">
+            <label for="Subscriber-Email-3" class="field-label">Nom de la classe</label>
+            <input type="text" class="simple-input no-margin w-input" maxlength="10" name="nom_classe" data-name="Subscriber Email" placeholder="Terminale A4" id="Subscriber-Email" required/>
             <div class="spacer _16"></div>
-            <input type="submit" value="Inviter" data-wait="Please wait..." class="button no-margin w-button"/>
+            <label for="Subscriber-Email-3" class="field-label">Email du stagiaire</label>
+            <input type="email" class="simple-input no-margin w-input" maxlength="50" name="stagiaire_email" data-name="Subscriber Email" placeholder="email@example.com" id="Subscriber-Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  required/>
+            <div class="spacer _16"></div>
+            <input type="submit" value="Créer" data-wait="Please wait..." class="button no-margin w-button"/>
         </form>
     </div>
 </div>

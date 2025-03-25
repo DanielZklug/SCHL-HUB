@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\Student;
 
 use App\Models\Post;
 use App\Models\Student;
@@ -10,18 +10,17 @@ use App\Exceptions\NotFoundException;
 class DashboardController extends Controller{
     
     public function index(){
-        $this->isAdmin();
 
-        if (!is_numeric($_SESSION['idEncUser']) || floor($_SESSION['idEncUser']) != $_SESSION['idEncUser']) {
+        if (!is_numeric($_SESSION['idStaUser']) || floor($_SESSION['idStaUser']) != $_SESSION['idStaUser']) {
             throw new NotFoundException("L'identifiant du post doit être un entier.");
         }
 
-        $_SESSION['idEncUser'] = (int)$_SESSION['idEncUser']; // Conversion explicite en entier
-        $post = new Post($this->getDB());
-        $post = $post->findProfil($_SESSION['idEncUser']);
+        $_SESSION['idStaUser'] = (int)$_SESSION['idStaUser']; // Conversion explicite en entier
+        $post = new Student($this->getDB());
+        $post = $post->findByIdStagiaire($_SESSION['idStaUser']);
 
         if (!$post) {
-            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idEncUser]");
+            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idStaUser]");
         }
         
         // $student = new Student($this->getDB());
@@ -31,7 +30,7 @@ class DashboardController extends Controller{
         // $maleCount = $student->countByGender('M');
         // $femaleCount = $student->countByGender('F');
 
-        return $this->viewAdmin('admin.dashboard.index',compact('post'));
+        return $this->viewStudent('student.dashboard.index',compact('post'));
     }
 
 }

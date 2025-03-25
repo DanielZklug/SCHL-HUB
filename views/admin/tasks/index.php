@@ -1,6 +1,7 @@
+<?php $title = "Tâches" ?>
 <div class="dashboard-main-content">
                         <div class="dashboard-page-header">
-                            <h2>Tasks</h2>
+                            <h2>Tâches</h2>
                         </div>
                         <div class="container">
                             <div class="_2-5-1-grid">

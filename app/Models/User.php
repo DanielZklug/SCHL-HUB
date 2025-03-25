@@ -65,6 +65,6 @@ class User extends Model {
     }
 
     public function getByUsername(string $email){
-        return $this->query("SELECT * FROM {$this->table} WHERE email = ?",$email, true);
+        return $this->query("SELECT role, idUtilisateur, motPasse FROM {$this->table} WHERE email = ?",$email, true);
     }
 }

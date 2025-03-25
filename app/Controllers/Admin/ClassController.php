@@ -2,6 +2,9 @@
 
 namespace App\Controllers\Admin;
 
+session_start();
+
+use App\Models\Classe;
 use App\Models\Post;
 use App\Models\Student;
 use App\Controllers\Controller;
@@ -12,19 +15,51 @@ class ClassController extends Controller{
     public function index(){
         $this->isAdmin();
 
-        if (!is_numeric($_SESSION['user']) || floor($_SESSION['user']) != $_SESSION['user']) {
+        if (!is_numeric($_SESSION['idEncUser']) || floor($_SESSION['idEncUser']) != $_SESSION['idEncUser']) {
             throw new NotFoundException("L'identifiant du post doit être un entier.");
         }
 
-        $_SESSION['user'] = (int)$_SESSION['user']; // Conversion explicite en entier
+        $_SESSION['idEncUser'] = (int)$_SESSION['idEncUser']; // Conversion explicite en entier
         $post = new Post($this->getDB());
-        $post = $post->findProfil($_SESSION['user']);
+        $post = $post->findProfil($_SESSION['idEncUser']);
 
         if (!$post) {
-            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[user]");
+            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idEncUser]");
         }
 
         return $this->viewAdmin('admin.classroom.index',compact('post'));
     }
 
+    public function createClass(){
+        $this->isAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Validation des entrées
+            $data = [
+                'idEncUser' => $_SESSION['idEncUser'],
+                'idEnc' => $_SESSION['idEnc'],
+                'nom_classe' => $_POST['nom_classe'],
+                'stagiaire_email' => $_POST['stagiaire_email']
+            ];
+
+            try {
+                $class = new Classe($this->getDB());
+                $result = $class->createClass($data);
+
+                if ($result) {
+                    $_SESSION['success_message'] = "Nouvelle classe créée";
+                    return header("Location: /schl-hub/admin/classroom");
+                } 
+                else {
+                    $_SESSION['error_message'] = "Une erreur est survenue lors de la création de la classe";
+                    return header("Location: /schl-hub/admin/classroom");
+                }
+            } catch (\Exception $e) {
+                $_SESSION['error_message'] = "Une erreur est survenue: " . $e->getMessage();
+                return header("Location: /schl-hub/admin/classroom");
+            }
+        }
+
+
+    }
 }

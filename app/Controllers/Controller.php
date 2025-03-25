@@ -60,6 +60,26 @@ abstract class Controller {
 
     }
 
+    protected function viewStudent(?string $path = null, array $params = null) {
+        // Démarre la mise en mémoire tampon de sortie
+        ob_start();
+        
+        
+        // Remplace les points par des séparateurs de répertoire dans le chemin de la vue
+        $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
+    
+        // Inclut le fichier de vue spécifié
+        require VIEWS . $path . '.php';
+        
+        
+        // Récupère le contenu de la mémoire tampon et la vide
+        $content = ob_get_clean();
+        
+        // Inclut le fichier de mise en page principal
+        require VIEWS . 'studentlayout.php';
+
+    }
+
     protected function viewLogin(string $path, array $params = null) {
         // Démarre la mise en mémoire tampon de sortie
         ob_start();
@@ -82,7 +102,7 @@ abstract class Controller {
     }
 
     protected function isAdmin(){
-        if(isset($_SESSION['admin']) && $_SESSION['admin'] === 'encadrant'){
+        if(isset($_SESSION['admin']) && isset($_SESSION['idEnc']) && $_SESSION['admin'] === 'encadrant'){
             return true;
         }else{
             return header("Location: /schl-hub/authentification");

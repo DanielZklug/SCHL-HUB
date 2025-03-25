@@ -39,7 +39,7 @@ var_dump($params['posts'])
                         </div>
                         <div class="_50-width">
                             <div class="field-label">Date d'inscription</div>
-                            <p>December 30, 2021</p>
+                            <p><?=$params['posts']->date_inscription?></p>
                         </div>
                     </div>
                 </div>

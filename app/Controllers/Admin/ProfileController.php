@@ -16,22 +16,23 @@ class ProfileController extends Controller{
     public function index(){
         $this->isAdmin();
 
-        if (!is_numeric($_SESSION['user']) || floor($_SESSION['user']) != $_SESSION['user']) {
+        if (!is_numeric($_SESSION['idEncUser']) || floor($_SESSION['idEncUser']) != $_SESSION['idEncUser']) {
             throw new NotFoundException("L'identifiant du post doit être un entier.");
         }
 
-        $_SESSION['user'] = (int)$_SESSION['user']; // Conversion explicite en entier
+        $_SESSION['idEncUser'] = (int)$_SESSION['idEncUser']; // Conversion explicite en entier
         $post = new Post($this->getDB());
-        $post = $post->findProfil($_SESSION['user']);
+        $post = $post->findProfil($_SESSION['idEncUser']);
 
         if (!$post) {
-            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[user]");
+            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idEncUser]");
         }
 
         return $this->viewAdmin('admin.profile.index',compact('post'));
     }
     
     public function updateProfile() {
+        $this->isAdmin();
         // Vérifiez si la requête est une soumission de formulaire
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Vérifiez si le formulaire de mise à jour de la photo de profil a été soumis
@@ -56,6 +57,7 @@ class ProfileController extends Controller{
     }
 
     public function uploadProfileImage() {
+        $this->isAdmin();
         if (empty($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
             $_SESSION['error_message'] = "Aucun fichier téléchargé ou erreur lors du téléchargement.";
             return;
@@ -89,7 +91,7 @@ class ProfileController extends Controller{
         if (file_exists($uploadFile)) {
             $_SESSION['error_message'] = "Un fichier avec ce nom existe déjà. Le fichier ne sera pas déplacé.";
             $post = new User($this->getDB());
-            if ($post->insertFile($_SESSION["user"])) {
+            if ($post->insertFile($_SESSION["idEncUser"])) {
                 $_SESSION['success_message'] = "Image de profil mise à jour avec succès.";
             } else {
                 $_SESSION['error_message'] = "Erreur lors de l'enregistrement des informations du fichier.";
@@ -98,13 +100,13 @@ class ProfileController extends Controller{
             if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
                 $_SESSION['success_message'] = "Image de profil mise à jour avec succès.";
     
-                if (!isset($_SESSION["user"])) {
+                if (!isset($_SESSION["idEncUser"])) {
                     $_SESSION['error_message'] = "Utilisateur non connecté.";
                     return;
                 }
     
                 $post = new User($this->getDB());
-                if ($post->insertFile($_SESSION["user"])) {
+                if ($post->insertFile($_SESSION["idEncUser"])) {
                     $_SESSION['success_message'] = "Image de profil mise à jour avec succès.";
                 } else {
                     $_SESSION['error_message'] = "Erreur lors de l'enregistrement des informations du fichier.";
@@ -121,6 +123,7 @@ class ProfileController extends Controller{
     
 
     public function updateAccountInformation() {
+        $this->isAdmin();
         // Récupérer et valider les données du formulaire
         $data = [
             'email_organisationnel' => $_POST['email_organisationnel'],
@@ -130,7 +133,7 @@ class ProfileController extends Controller{
         
 
         $post = new Post($this->getDB());
-        if ($post->update($_SESSION["user"],$data)) {
+        if ($post->update($_SESSION["idEncUser"],$data)) {
             $_SESSION['success_message'] = "Profil mise à jour avec succès.";
         } else {
             $_SESSION['error_message'] = "Erreur lors de l'enregistrement des informations du fichier.";
@@ -138,6 +141,7 @@ class ProfileController extends Controller{
     }
 
     private function updateSocialProfiles() {
+        $this->isAdmin();
         // Récupérer et valider les données des profils sociaux
         $facebook = $_POST['Facebook'];
         $instagram = $_POST['Instagram'];

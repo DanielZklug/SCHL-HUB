@@ -26,9 +26,14 @@ $router->get('admin/dashboard','App\Controllers\Admin\DashboardController@index'
 
 $router->get('admin/tasks','App\Controllers\Admin\TaskController@index');
 
+$router->get('admin/settings','App\Controllers\Admin\SetController@index');
+
 $router->get('admin/calendar','App\Controllers\Admin\CalendarController@index');
 
+$router->get('admin/emails','App\Controllers\Admin\LetterController@index');
+
 $router->get('admin/classroom','App\Controllers\Admin\ClassController@index');
+$router->post('admin/classroom','App\Controllers\Admin\ClassController@createClass');
 
 $router->get('admin/support','App\Controllers\Admin\SupportController@index');
 
@@ -37,6 +42,8 @@ $router->post('admin/profile','App\Controllers\Admin\ProfileController@updatePro
 
 $router->get('authentification','App\Controllers\UserController@login');
 $router->post('authentification','App\Controllers\UserController@loginPost');
+
+$router->get('student/dashboard','App\Controllers\Student\DashboardController@index');
 
 
 try{
