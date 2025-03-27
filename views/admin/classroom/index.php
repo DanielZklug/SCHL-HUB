@@ -1,5 +1,5 @@
 <?php $title = "Classes";
-var_dump($params['post']);
+var_dump($params['classes']);
 ?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
@@ -22,7 +22,7 @@ var_dump($params['post']);
                         </div>
                         <h4 class="grid-header">Noms</h4>
                         <h4 class="grid-header">Stagiaires</h4>
-                        <h4 class="grid-header mob-hidden">Cours</h4>
+                        <h4 class="grid-header mob-hidden">Date de création</h4>
                         <h4 class="grid-header mob-hidden">Actions</h4>
                     </div>
                     <div class="w-dyn-list">
@@ -30,6 +30,7 @@ var_dump($params['post']);
                                 <div class="w-dyn-list">
                                     <div role="list" class="w-dyn-items">
                                         <div role="listitem" class="w-dyn-item">
+                                        <?php foreach ($params['classes'] as $classe): ?>
                                             <div class="full-customer-row">
                                                 <div class="checkbox-grid w-form">
                                                     <form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="60259d093669095e053196cc" data-wf-element-id="8c95eb69-e008-2e41-a0e9-8b0b9d02bfba">
@@ -40,14 +41,14 @@ var_dump($params['post']);
                                                         </label>
                                                     </form>
                                                 </div>
-                                                <a href="/schl-hub/admin/student/<?=$params["post"]->idClasse?>" class="customer-element w-inline-block">
+                                                <a href="/schl-hub/admin/student/<?=$classe['idClasse']?>" class="customer-element w-inline-block">
                                                     <div class="grid-number-block">
-                                                        <div><?=$params["post"]->nom_classe?></div>
+                                                        <div><?=$classe['Classe_nom']?></div>
                                                     </div>
-                                                    <div></div>
-                                                    <div class="mob-hidden"></div>
+                                                    <div><?=$classe['Nombre_Stagiaires']?></div>
+                                                    <div class="mob-hidden"><?=$classe['Classe_dateCreation']?></div>
                                                     <div>
-                                                    <form hidden action="admin/student/delete/<?=$params["post"]->idClasse?>" style="display:inline" method="post">
+                                                    <form hidden action="admin/student/delete/<?=$classe['idClasse']?>" style="display:inline" method="post">
                                                         <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
                                                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'?>" alt="">
                                                             Supprimer
@@ -56,6 +57,7 @@ var_dump($params['post']);
                                                 </div>
                                                 </a>
                                             </div>
+                                        <?php endforeach; ?>
                                         </div>
                                     </div>
                                 </div>

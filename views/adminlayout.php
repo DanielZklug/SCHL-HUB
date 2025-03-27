@@ -113,16 +113,22 @@ if (isset($_SESSION['error_message'])) {
                         </div>
                         <div class="sidebar-menu-section bottom-divider">
                             <a href="/schl-hub/admin/student" class="sidebar-link w-inline-block">
-                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a13109a7d51194a232_Users.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
+                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'student.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Etudiants</div>
                             </a>
                             <a href="/schl-hub/admin/support" class="sidebar-link w-inline-block">
-                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1c54adbe65e63f7a9_Chats.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
+                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'files.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Cours</div>
                             </a>
                             <a href="/schl-hub/admin/classroom" class="sidebar-link w-inline-block">
-                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'60262456b5cd8b76429bfafd_Cube.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
+                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'chalkboard-simple.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Classes</div>
+                            </a>
+                        </div>
+                        <div class="sidebar-menu-section bottom-divider">
+                            <a href="#" class="sidebar-link w-inline-block">
+                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'monitor-play.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
+                                <div class="sidebar-link-text">Moniteur</div>
                             </a>
                         </div>
                     </div>
@@ -221,15 +227,15 @@ if (isset($_SESSION['error_message'])) {
                         <div>+</div>
                     </div>
                     <nav class="add-menu w-dropdown-list">
-                        <a href="/tasks" class="add-link w-inline-block">
+                        <a href="/schl-hub/admin/tasks" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1038967373831278c_Note.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                             <div class="sidebar-link-text">Nouvelle Tâche</div>
                         </a>
-                        <a href="/tasks" class="add-link w-inline-block">
+                        <a href="/schl-hub/admin/emails" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a108f00aa2bc888ea5_EnvelopeOpen.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                             <div class="sidebar-link-text">Nouveau Message</div>
                         </a>
-                        <a href="/tasks" class="add-link w-inline-block">
+                        <a href="/schl-hub/admin/calendar" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0a91183f9fceef7b0_CalendarBlank.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                             <div class="sidebar-link-text">Nouvel Evenement</div>
                         </a>

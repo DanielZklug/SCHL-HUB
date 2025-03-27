@@ -151,7 +151,8 @@
                                         maxlength="100" 
                                         class="text-area filled w-input" 
                                         pattern=".{1,}" 
-                                        title="Veuillez entrer une bio." 
+                                        title="Veuillez entrer une bio."
+                                        style="resize: none;" 
                                         required><?=$params['post']->bio_encadrant?></textarea>
                             </div>
                             <button type="submit" class="button settings w-button">Mettre à jour</button>

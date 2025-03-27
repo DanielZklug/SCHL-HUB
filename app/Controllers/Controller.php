@@ -102,7 +102,7 @@ abstract class Controller {
     }
 
     protected function isAdmin(){
-        if(isset($_SESSION['admin']) && isset($_SESSION['idEnc']) && $_SESSION['admin'] === 'encadrant'){
+        if(isset($_SESSION['admin']) && isset($_SESSION['idEncUser']) && $_SESSION['admin'] === 'encadrant'){
             return true;
         }else{
             return header("Location: /schl-hub/authentification");

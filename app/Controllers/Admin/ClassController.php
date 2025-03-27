@@ -27,7 +27,10 @@ class ClassController extends Controller{
             throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idEncUser]");
         }
 
-        return $this->viewAdmin('admin.classroom.index',compact('post'));
+        // Appelle la fonction pour récupérer les classes
+        $classes = (new Classe($this->getDB()))->getClassesByEncadrant($_SESSION['idEncUser']);
+
+        return $this->viewAdmin('admin.classroom.index',compact('post','classes'));
     }
 
     public function createClass(){

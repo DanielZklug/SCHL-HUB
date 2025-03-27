@@ -91,7 +91,7 @@ if (isset($_SESSION['error_message'])) {
                     <div class="sidebar-menu">
                         <div class="sidebar-menu-section bottom-divider">
                             <a href="/schl-hub/student/dashboard" class="sidebar-link w-inline-block">
-                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1c54adbe65e63f7a9_Chats.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
+                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'files.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Cours</div>
                             </a>
                             <link rel="prefetch" href="/"/>
@@ -145,27 +145,24 @@ if (isset($_SESSION['error_message'])) {
                             <div class="nav-dropdown-toggle w-dropdown-toggle">
                                 <div class="nav-icon-item">
                                     <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602447734ab6e4df1472dc60_Bell.svg'?>" loading="lazy" width="27" alt="" class="nav-icon"/>
-                                    <!-- <div class="bell-dot"></div> -->
+                                    <?php
+                                        if (isset($params['post']->notification_titre)) {
+                                            echo '<div class="bell-dot"></div>';
+                                        } 
+                                    ?>
                                 </div>
                             </div>
                             <nav class="nav-dropdown-list w-dropdown-list">
                                 <div class="module heavy-shadow">
                                     <div class="module-main">
-                                        <!-- <div class="notificaiton-element">
+                                        <div class="notificaiton-element">
                                             <div class="notification-top">
                                                 <div class="notification-dot"></div>
-                                                <div class="notificaiton-title">3 new emails</div>
+                                                <div class="notificaiton-title"><?=$params['post']->notification_titre?></div>
                                             </div>
-                                            <p class="notification-description">From AudioHunt, Domains R Us, and Google Accounts.</p>
+                                            <p class="notification-description"><?=$params['post']->notification_description?></p>
                                         </div>
-                                        <div class="notificaiton-element seen">
-                                            <div class="notification-top">
-                                                <div class="notification-dot seen"></div>
-                                                <div class="notificaiton-title">4 new orders</div>
-                                            </div>
-                                            <p class="notification-description">There are new orders to be fulfilled.</p>
-                                        </div>
-                                        <div class="notificaiton-element seen">
+                                        <!-- <div class="notificaiton-element seen">
                                             <div class="notification-top">
                                                 <div class="notification-dot seen"></div>
                                                 <div class="notificaiton-title">5 new tickets</div>

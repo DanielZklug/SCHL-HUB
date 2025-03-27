@@ -24,7 +24,10 @@ class StudentController extends Controller{
             throw new NotFoundException("Aucun post trouvé avec l'identifiant : {$_SESSION['idEncUser']}");
         }
 
-        return $this->viewAdmin('admin.student.index', compact('post'));
+        // Appelle la fonction pour récupérer les stagiaires
+        $stagiaires = (new Student($this->getDB()))->getStagiairesByEncadrant($_SESSION['idEncUser']);
+
+        return $this->viewAdmin('admin.student.index', compact('post', 'stagiaires'));
     }
 
 

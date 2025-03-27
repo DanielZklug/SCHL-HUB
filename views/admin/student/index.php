@@ -1,6 +1,4 @@
-<?php $title = "Etudiants"; 
-var_dump($params["post"]);
-?>
+<?php $title = "Etudiants"; ?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Etudiants</h2>
@@ -30,7 +28,7 @@ var_dump($params["post"]);
                                 <div class="w-dyn-list">
                                     <div role="list" class="w-dyn-items">
                                         <div role="listitem" class="w-dyn-item">
-                                            <?php foreach ($params['post'] as $stagiaire): ?>
+                                            <?php foreach ($params["stagiaires"] as $stagiaire): ?>
                                                 <div class="full-customer-row">
                                                     <div class="checkbox-grid w-form">
                                                         <form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="60259d093669095e053196cc" data-wf-element-id="8c95eb69-e008-2e41-a0e9-8b0b9d02bfba">
@@ -41,20 +39,20 @@ var_dump($params["post"]);
                                                             </label>
                                                         </form>
                                                     </div>
-                                                    <a href="/schl-hub/admin/student/<?=$stagiaire->Stagiaire_Uti_idUtilisateur?>" class="customer-element w-inline-block">
+                                                    <a href="/schl-hub/admin/student/<?=$stagiaire['Stagiaire_idUtilisateur'] ?>" class="customer-element w-inline-block">
                                                         <div class="grid-number-block">
-                                                            <div><?=$stagiaire->Stagiaire_nom?></div>
+                                                            <div><?= $stagiaire['Stagiaire_nom'] ?></div>
                                                         </div>
-                                                        <div><?=$stagiaire->Stagiaire_email?></div>
-                                                        <div class="mob-hidden"><?=$stagiaire->nom_classe?></div>
+                                                        <div><?=$stagiaire['Stagiaire_email'] ?></div>
+                                                        <div class="mob-hidden"><?=$stagiaire['Classe_nom'] ?></div>
                                                         <div>
-                                                        <form hidden action="admin/student/delete/<?=$stagiaire->Stagiaire_Uti_idUtilisateur?>" style="display:inline" method="post">
-                                                            <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
-                                                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'?>" alt="">
-                                                                Supprimer
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                                            <form hidden action="admin/student/delete/<?=$stagiaire['idStagiaire'] ?>" style="display:inline" method="post">
+                                                                <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
+                                                                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'?>" alt="">
+                                                                    Supprimer
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </a>
                                                 </div>
                                             <?php endforeach; ?>

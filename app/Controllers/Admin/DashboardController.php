@@ -23,6 +23,9 @@ class DashboardController extends Controller{
         if (!$post) {
             throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idEncUser]");
         }
+
+        // Appelle la méthode pour récupérer les statistiques
+        $statistics = (new Post($this->getDB()))->getEncadrantStatistics($_SESSION['idEncUser']);
         
         // $student = new Student($this->getDB());
 
@@ -31,7 +34,7 @@ class DashboardController extends Controller{
         // $maleCount = $student->countByGender('M');
         // $femaleCount = $student->countByGender('F');
 
-        return $this->viewAdmin('admin.dashboard.index',compact('post'));
+        return $this->viewAdmin('admin.dashboard.index',compact('post','statistics'));
     }
 
 }

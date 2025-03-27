@@ -33,35 +33,6 @@ abstract class Model{
         // Récupère tous les résultats de la requête
         return $stmt->fetchAll();
     }
-
-
-    public function allStudent(int $id): array {
-        $stmt = $this->db->getPDO()->prepare("
-            SELECT 
-                s.idStagiaire,
-                u.nom AS nom_utilisateur, 
-                u.prenom AS prenom_utilisateur,  
-                u.photo AS photo_utilisateur,
-                u.numero AS numero_utilisateur,
-                u.email AS email_utilisateur
-            FROM 
-                {$this->table} s
-            JOIN utilisateur u ON s.Uti_idUtilisateur = u.idUtilisateur
-            JOIN encadrant e ON s.Enc_idEncadrant = e.idEncadrant
-            WHERE s.Enc_idEncadrant = ?
-        ");
-        
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this), [$this->db]);
-        $stmt->execute([$id]); // Exécute la requête avec l'ID fourni
-        $result = $stmt->fetch();
-
-        // Si aucun résultat n'est trouvé, lance une exception
-        if (!$result) {
-            throw new NotFoundException("Aucun enregistrement trouvé");
-        }
-
-        return $result;
-    }
         
     // public function delete(int $id){
     //     return $this->query("DELETE FROM {$this->table} WHERE id = ?", $id);
@@ -129,21 +100,29 @@ abstract class Model{
         // Prépare une requête SQL pour récupérer un profil d'utilisateur spécifique par son ID
         $stmt = $this->db->getPDO()->prepare("
             SELECT
-                s.idStagiaire,
-                s.emailUni,
-                s.date_inscription,
-                su.nom AS Stagiaire_nom,
-                su.prenom AS Stagiaire_prenom,
-                su.photo AS Stagiaire_photo,
-                su.numero AS Stagiaire_numero,
-                su.email AS Stagiaire_email,
-                su.role AS Stagiaire_role,
-                su.genre AS Stagiaire_genre
-            FROM
-                {$this->table} s
-            JOIN utilisateur su ON s.Uti_idUtilisateur = su.idUtilisateur
-            WHERE
-                s.Uti_idUtilisateur = ?;
+    -- Informations sur le stagiaire
+    s.idStagiaire,
+    s.emailUni,
+    s.date_inscription,
+    su.nom AS Stagiaire_nom,
+    su.prenom AS Stagiaire_prenom,
+    su.photo AS Stagiaire_photo,
+    su.numero AS Stagiaire_numero,
+    su.email AS Stagiaire_email,
+    su.role AS Stagiaire_role,
+    su.genre AS Stagiaire_genre,
+
+    -- Informations sur les notifications du stagiaire
+    n.idNotification,
+    n.titre AS notification_titre,
+    n.description AS notification_description
+FROM
+    stagiaire s
+JOIN utilisateur su ON s.Uti_idUtilisateur = su.idUtilisateur
+LEFT JOIN notification n ON n.Uti_idUtilisateur = su.idUtilisateur  -- Jointure pour obtenir les notifications
+WHERE
+    s.Uti_idUtilisateur = ?;  -- Remplacer par l'ID de l'utilisateur stagiaire
+
 
         ");
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this), [$this->db]);
@@ -160,7 +139,7 @@ abstract class Model{
     public function findProfil(int $id): ?Model{
         // Prépare une requête SQL pour récupérer un profil d'utilisateur spécifique par son ID
         $stmt = $this->db->getPDO()->prepare("
-            SELECT
+         SELECT
     -- Informations de l'encadrant
     e.idEncadrant, 
     u.nom AS nom_utilisateur, 
@@ -177,25 +156,10 @@ abstract class Model{
     e.bio AS bio_encadrant,
     e.profession AS profession_encadrant,
 
-    -- Informations des classes
-    c.idClasse,
-    c.nom AS nom_classe,
-    c.Uti_idUtilisateur AS Classe_Uti_idUtilisateur,
-    c.Enc_idEncadrant AS Classe_Enc_idEncadrant,
-    c.nbrStag AS Classe_nbrStag,
-    c.nbrCours AS Classe_nbrCours,
-    c.dateCreation AS Classe_dateCreation,
-
-    -- Informations des stagiaires
-    s.idStagiaire,
-    s.Uti_idUtilisateur AS Stagiaire_Uti_idUtilisateur,
-    su.nom AS Stagiaire_nom,
-    su.prenom AS Stagiaire_prenom,
-    su.photo AS Stagiaire_photo,
-    su.numero AS Stagiaire_numero,
-    su.email AS Stagiaire_email,
-    su.role AS Stagiaire_role,
-    s.emailUni AS Stagiaire_emailUni
+    -- Informations sur les notifications du stagiaire
+    n.idNotification,
+    n.titre AS notification_titre,
+    n.description AS notification_description
 FROM
     utilisateur u
 JOIN 
@@ -203,13 +167,10 @@ JOIN
 JOIN 
     profilsocial ps ON e.idEncadrant = ps.Enc_idEncadrant
 LEFT JOIN 
-    classe c ON e.idEncadrant = c.Enc_idEncadrant
-LEFT JOIN 
-    stagiaire s ON c.idClasse = s.Cla_idClasse AND e.idEncadrant = s.Enc_idEncadrant
-LEFT JOIN 
-    utilisateur su ON s.Uti_idUtilisateur = su.idUtilisateur
+    notification n ON u.idUtilisateur = n.Uti_idUtilisateur  -- Jointure pour récupérer les notifications de l'utilisateur
 WHERE 
     u.idUtilisateur = ?;  -- Remplacer par l'ID de l'utilisateur encadrant
+
 
         ");
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this), [$this->db]);
@@ -221,6 +182,46 @@ WHERE
             throw new NotFoundException("Aucun enregistrement trouvé");
         }
 
+        return $result;
+    }
+
+    public function getStagiairesByEncadrant(int $idEncadrant): array {
+        // Prépare une requête SQL pour récupérer les stagiaires associés à un encadrant
+        $stmt = $this->db->getPDO()->prepare("
+                    SELECT
+    -- Informations des stagiaires
+    s.idStagiaire,
+    su.nom AS Stagiaire_nom,
+    su.prenom AS Stagiaire_prenom,
+    su.photo AS Stagiaire_photo,
+    su.numero AS Stagiaire_numero,
+    su.email AS Stagiaire_email,
+    su.role AS Stagiaire_role,
+    s.emailUni AS Stagiaire_emailUni,
+    s.Uti_idUtilisateur AS Stagiaire_idUtilisateur,  -- Ajout de l'idUtilisateur du stagiaire
+    
+    -- Informations de la classe
+    c.idClasse AS Classe_idClasse,
+    c.nom AS Classe_nom
+FROM
+    stagiaire s
+JOIN
+    utilisateur su ON s.Uti_idUtilisateur = su.idUtilisateur
+JOIN
+    encadrant e ON s.Enc_idEncadrant = e.idEncadrant
+JOIN
+    classe c ON s.Cla_idClasse = c.idClasse  -- Jointure pour obtenir les informations de la classe
+WHERE
+    e.Uti_idUtilisateur = ?;  -- Remplacer par l'ID de l'utilisateur encadrant
+
+        ");
+    
+        // Exécute la requête avec l'ID de l'encadrant
+        $stmt->execute([$idEncadrant]);
+    
+        // Récupère tous les résultats sous forme de tableau associatif
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
         return $result;
     }
 
@@ -286,6 +287,70 @@ WHERE
             $_SESSION['error_message'] = "Erreur lors de la mise à jour des informations : " . $e->getMessage();
         }
     }
+
+    public function getClassesByEncadrant(int $idEncadrant): array {
+        // Prépare une requête SQL pour récupérer les classes associées à un encadrant
+        $stmt = $this->db->getPDO()->prepare("
+            SELECT
+                c.idClasse,
+                c.nom AS Classe_nom,
+                c.Uti_idUtilisateur AS Classe_Uti_idUtilisateur,
+                c.Enc_idEncadrant AS Classe_Enc_idEncadrant,
+                c.nbrCours AS Classe_nbrCours,
+                c.dateCreation AS Classe_dateCreation,
+                COUNT(s.idStagiaire) AS Nombre_Stagiaires
+            FROM
+                {$this->table} c
+            JOIN
+                encadrant e ON c.Enc_idEncadrant = e.idEncadrant
+            LEFT JOIN
+                stagiaire s ON c.idClasse = s.Cla_idClasse
+            WHERE
+                e.Uti_idUtilisateur = ?
+            GROUP BY
+                c.idClasse;
+        ");
     
+        // Exécute la requête avec l'ID de l'encadrant
+        $stmt->execute([$idEncadrant]);
     
+        // Récupère tous les résultats sous forme de tableau associatif
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $result;
+    }
+    
+    public function getEncadrantStatistics(int $idEncadrant): array {
+        // Prépare une requête SQL pour récupérer les statistiques de l'encadrant
+        $stmt = $this->db->getPDO()->prepare("
+            SELECT
+                COUNT(DISTINCT c.idClasse) AS Nombre_de_classes,
+                COUNT(s.idStagiaire) AS Nombre_total_etudiants,
+                COUNT(CASE WHEN su.genre = 'F' THEN 1 END) AS Nombre_de_filles,
+                COUNT(CASE WHEN su.genre = 'M' THEN 1 END) AS Nombre_de_garcons
+            FROM
+                encadrant e
+            JOIN
+                classe c ON e.idEncadrant = c.Enc_idEncadrant
+            LEFT JOIN
+                stagiaire s ON c.idClasse = s.Cla_idClasse
+            LEFT JOIN
+                utilisateur su ON s.Uti_idUtilisateur = su.idUtilisateur
+            WHERE
+                e.Uti_idUtilisateur = ?;
+        ");
+    
+        // Exécute la requête avec l'ID de l'encadrant
+        $stmt->execute([$idEncadrant]);
+    
+        // Récupère le résultat sous forme de tableau associatif
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        // Si aucun résultat n'est trouvé, retourne un tableau vide
+        if (!$result) {
+            throw new NotFoundException("Aucune statistique trouvée pour l'encadrant avec l'ID : $idEncadrant");
+        }
+    
+        return $result;
+    }
 }

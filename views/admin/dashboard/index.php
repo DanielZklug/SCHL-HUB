@@ -11,7 +11,7 @@
                     <h3 class="module-heading">Classe(s)</h3>
                 </div>
                 <div class="module-main">
-                    <div class="module-number blue">0</div>
+                    <div class="module-number blue"><?= htmlspecialchars($params['statistics']['Nombre_de_classes']) ?></div>
                 </div>
             </div>
             <div class="module blue">
@@ -19,7 +19,7 @@
                     <h3 class="module-heading">Etudiant(s)</h3>
                 </div>
                 <div class="module-main">
-                    <div class="module-number blue">0</div>
+                    <div class="module-number blue"><?= htmlspecialchars($params['statistics']['Nombre_total_etudiants']) ?></div>
                 </div>
             </div>
             <div class="module blue">
@@ -27,7 +27,7 @@
                     <h3 class="module-heading">Fille(s)</h3>
                 </div>
                 <div class="module-main">
-                    <div class="module-number blue">0</div>
+                    <div class="module-number blue"><?= htmlspecialchars($params['statistics']['Nombre_de_filles']) ?></div>
                 </div>
             </div>
             <div class="module blue">
@@ -35,7 +35,7 @@
                     <h3 class="module-heading">Garçon(s)</h3>
                 </div>
                 <div class="module-main">
-                    <div class="module-number blue">0</div>
+                    <div class="module-number blue"><?= htmlspecialchars($params['statistics']['Nombre_de_garcons']) ?></div>
                 </div>
             </div>
         </div>

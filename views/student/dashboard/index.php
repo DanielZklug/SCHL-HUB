@@ -1,5 +1,7 @@
 
-<?php $title="Cours" ?>
+<?php $title="Cours";
+var_dump($params['post']); ?> 
+?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Cours</h2>
