@@ -40,7 +40,7 @@ class ClassController extends Controller{
             // Validation des entrées
             $data = [
                 'idEncUser' => $_SESSION['idEncUser'],
-                'idEnc' => $_SESSION['idEnc'],
+                'idEnc' => $_SESSION['idEncadrant'],
                 'nom_classe' => $_POST['nom_classe'],
                 'stagiaire_email' => $_POST['stagiaire_email']
             ];
@@ -64,5 +64,27 @@ class ClassController extends Controller{
         }
 
 
+    }
+
+    public function show(int $id) {
+        $this->isAdmin(); // Vérifie si l'utilisateur est un administrateur
+
+        if (!is_numeric($_SESSION['idEncUser']) || floor($_SESSION['idEncUser']) != $_SESSION['idEncUser']) {
+            throw new NotFoundException("L'identifiant du post doit être un entier.");
+        }
+
+        $_SESSION['idEncUser'] = (int)$_SESSION['idEncUser']; // Conversion explicite en entier
+        $post = new Post($this->getDB());
+        $post = $post->findProfil($_SESSION['idEncUser']);
+
+        if (!$post) {
+            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idEncUser]");
+        }
+        
+        // Appelle la méthode pour récupérer les informations de la classe
+        $class = (new Classe($this->getDB()))->getClassById($id);
+    
+        // Retourne la vue avec les informations de la classe
+        return $this->viewAdmin('admin.classroom.show', compact('post','class'));
     }
 }

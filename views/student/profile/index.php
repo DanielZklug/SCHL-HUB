@@ -1,6 +1,6 @@
 <?php 
 $title = "Profil" ;
-$_SESSION['idEncadrant'] = $params['post']->idEncadrant;
+$_SESSION['idEncadrant'] = $params['post']->idStagiaire;
 ?>
 <div class="main-content">
     <div class="container w-container">
@@ -10,14 +10,14 @@ $_SESSION['idEncadrant'] = $params['post']->idEncadrant;
         <div class="module center-align sticky">
             <div class="profile-image large">
                 <?php 
-                    if (empty($params['post']->photo_utilisateur)) {
-                        $params['post']->photo_utilisateur = "user.png";
+                    if (empty($params['post']->Stagiaire_photo)) {
+                        $params['post']->Stagiaire_photo = "user.png";
                     }                                     
                 ?>
-                <img src="<?= SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$params['post']->photo_utilisateur?>" loading="lazy" alt="" class="cover-image"/>
+                <img src="<?= SCRIPTS.'uploads'.DIRECTORY_SEPARATOR.$params['post']->Stagiaire_photo?>" loading="lazy" alt="" class="cover-image"/>
             </div>
-            <h3 class="no-margin"><?=$params['post']->nom_utilisateur." ".$params['post']->prenom_utilisateur?></h3>
-            <h5><?=$params['post']->profession_encadrant?></h5>
+            <h3 class="no-margin"><?=$params['post']->Stagiaire_nom." ".$params['post']->Stagiaire_prenom?></h3>
+            <h5></h5>
             <div class="profile-buttons-div"></div>
         </div>
         <div class="module-group">
@@ -28,7 +28,7 @@ $_SESSION['idEncadrant'] = $params['post']->idEncadrant;
                 <div class="module-main">
                     <div class="settings-label">Photo de profil</div>
                     <div class="w-form">
-                        <form id="email-form" name="email-form" data-name="Email Form" class="form" action="admin/profile" method="post" enctype="multipart/form-data">
+                        <form id="email-form" name="email-form" data-name="Email Form" class="form" action="student/profile" method="post" enctype="multipart/form-data">
                             <div class="field-block">
                                 <label for="file" class="custum-file-upload">
                                     <div class="icon">
@@ -105,12 +105,12 @@ $_SESSION['idEncadrant'] = $params['post']->idEncadrant;
                     </p>
                     <div class="divider"></div>
                     <div class="w-form">
-                        <form action="admin/profile" method="post">
+                        <form action="student/profile" method="post">
                             <div class="field-block">
                                 <label for="name">Nom</label>
                                 <input type="text" class="text-input filled w-input" 
                                     maxlength="100" 
-                                    value="<?=$params['post']->nom_utilisateur." ".$params['post']->prenom_utilisateur?>" 
+                                    value="<?=$params['post']->Stagiaire_nom." ".$params['post']->Stagiaire_prenom?>" 
                                     required 
                                     disabled 
                                     pattern="[A-Za-zÀ-ÿ\s]+" 
@@ -120,7 +120,7 @@ $_SESSION['idEncadrant'] = $params['post']->idEncadrant;
                                 <label for="profile-email">Email Personnel</label>
                                 <input type="email" class="text-input filled w-input" 
                                     maxlength="100" 
-                                    value="<?=$params['post']->email_utilisateur?>" 
+                                    value="<?=$params['post']->Stagiaire_email?>" 
                                     required 
                                     disabled 
                                     pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" 
@@ -130,88 +130,33 @@ $_SESSION['idEncadrant'] = $params['post']->idEncadrant;
                                 <label for="profile-email">Email Organisationnel</label>
                                 <input type="email" name="email_organisationnel" class="text-input filled w-input" 
                                     maxlength="100" 
-                                    value="<?=$params['post']->email_organisationnel?>" 
+                                    value="<?=$params['post']->emailUni?>" 
                                     required 
                                     pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" 
                                     title="Veuillez entrer un email valide."/>
                             </div>
                             <div class="field-block">
-                                <label for="Role">Profession</label>
+                                <label for="Role">genre</label>
                                 <input type="text" name="profession_encadrant" class="text-input filled w-input" 
                                     maxlength="100" 
-                                    value="<?=$params['post']->profession_encadrant?>" 
+                                    value="<?=$params['post']->Stagiaire_genre?>" 
                                     id="Role" 
                                     required 
                                     pattern="[A-Za-zÀ-ÿ\s]+" 
                                     title="Veuillez entrer uniquement des lettres et des espaces."/>
                             </div>
                             <div class="field-block">
-                                <label for="Username">Bio</label>
-                                <textarea name="bio_encadrant"
-                                        maxlength="100" 
-                                        class="text-area filled w-input" 
-                                        pattern=".{1,}" 
-                                        title="Veuillez entrer une bio."
-                                        style="resize: none;" 
-                                        required><?=$params['post']->bio_encadrant?></textarea>
+                                <label for="Role">Numero</label>
+                                <input type="text" name="profession_encadrant" class="text-input filled w-input" 
+                                    maxlength="100" 
+                                    value="<?=$params['post']->Stagiaire_numero?>" 
+                                    id="Role" 
+                                    required 
+                                    pattern="[A-Za-zÀ-ÿ\s]+" 
+                                    title="Veuillez entrer uniquement des lettres et des espaces."/>
                             </div>
                             <button type="submit" class="button settings w-button">Mettre à jour</button>
                         </form>
-                    </div>
-                </div>
-            </div>
-            <div id="Social-Profiles" class="module">
-                <div class="module-header minimal">
-                    <h3 class="module-heading">Profils sociaux</h3>
-                </div>
-                <div class="module-main">
-                    <div class="w-form">
-                        <form id="email-form" name="email-form" data-name="Email Form" class="form">
-                            <div class="field-block">
-                                <label for="Facebook">Facebook</label>
-                                <input type="text" class="text-input filled w-input" maxlength="100" name="Facebook" placeholder="<?=$params['post']->facebook?>" data-name="Facebook" required class="text-input w-input"/>
-                            </div>
-                            <div class="field-block">
-                                <label for="Facebook">Instagram</label>
-                                <input type="text" class="text-input filled w-input" maxlength="100" name="Facebook-4" data-name="Facebook 4" placeholder="<?=$params['post']->instagram?>" required/>
-                            </div>
-                            <div class="field-block">
-                                <label for="Facebook">Google</label>
-                                <input type="text" class="text-input filled w-input" maxlength="100" name="Facebook-3" placeholder="<?=$params['post']->google?>" data-name="Facebook 3" required class="text-input w-input"/>
-                            </div>
-                            <div class="field-block">
-                                <label for="Facebook">Github</label>
-                                <input type="text" class="text-input filled w-input" maxlength="100" name="Facebook-2" data-name="Facebook 2" placeholder="<?=$params['post']->github?>" required class="text-input w-input"/>
-                            </div>
-                            <div class="field-block">
-                                <label for="Facebook">Gitalb</label>
-                                <input type="text" class="text-input filled w-input" maxlength="100" name="Facebook-2" data-name="Facebook 2" placeholder="<?=$params['post']->gitlab?>" required class="text-input w-input"/>
-                            </div>
-                            <button type="submit" data-wait="Please wait..." class="button settings w-button">Mettre à jour</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div id="Social-Profiles" class="module">
-                <div class="module-header minimal">
-                    <h3 class="module-heading">Profile Stats</h3>
-                </div>
-                <div id="module-main" class="module-main">
-                    <div class="_50-width">
-                        <div class="field-label">Classes crées</div>
-                        <p>0</p>
-                    </div>
-                    <div class="_50-width">
-                        <div class="field-label">Tâches attribuées</div>
-                        <p>0</p>
-                    </div>
-                    <div class="_50-width">
-                        <div class="field-label">Cours publiées</div>
-                        <p>0</p>
-                    </div>
-                    <div class="_50-width">
-                        <div class="field-label">Stagiaires enregistrés</div>
-                        <p>0</p>
                     </div>
                 </div>
             </div>

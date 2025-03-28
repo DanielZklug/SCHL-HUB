@@ -353,4 +353,33 @@ WHERE
     
         return $result;
     }
+
+    public function getClassById(int $idClasse): array {
+        // Prépare une requête SQL pour récupérer les informations d'une classe spécifique
+        $stmt = $this->db->getPDO()->prepare("
+            SELECT 
+                c.idClasse,
+                c.nom,
+                c.nbrStag,
+                c.nbrCours,
+                c.dateCreation
+            FROM 
+                classe c
+            WHERE 
+                c.idClasse = ?;
+        ");
+    
+        // Exécute la requête avec l'ID de la classe
+        $stmt->execute([$idClasse]);
+    
+        // Récupère le résultat sous forme de tableau associatif
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        // Si aucun résultat n'est trouvé, lève une exception
+        if (!$result) {
+            throw new \Exception("Aucune classe trouvée avec l'ID : $idClasse");
+        }
+    
+        return $result;
+    }
 }

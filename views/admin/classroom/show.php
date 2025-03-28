@@ -1,5 +1,5 @@
-<?php $title = $params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom ;
-var_dump($params['posts'])
+<?php $title = $params['class']['nom'];
+var_dump($params['class'])
 ?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
@@ -15,31 +15,11 @@ var_dump($params['posts'])
                     <div class="module-main">
                         <div class="_50-width">
                             <div class="field-label">Nom</div>
-                            <p><?=$params['posts']->Stagiaire_nom?></p>
+                            <p><?=$params['class']['nom']?></p>
                         </div>
                         <div class="_50-width">
-                            <div class="field-label">Prénom</div>
-                            <p><?=$params['posts']->Stagiaire_prenom?></p>
-                        </div>
-                        <div class="_50-width">
-                            <div class="field-label">Email</div>
-                            <p><?=$params['posts']->Stagiaire_email?></p>
-                        </div>
-                        <div class="_50-width">
-                            <div class="field-label">Email de l'institution</div>
-                            <p><?=$params['posts']->emailUni?></p>
-                        </div>
-                        <div class="_50-width">
-                            <div class="field-label">Numéro</div>
-                            <p><?=$params['posts']->Stagiaire_numero?></p>
-                        </div>
-                        <div class="_50-width">
-                            <div class="field-label">Genre</div>
-                            <p><?=$params['posts']->Stagiaire_genre?></p>
-                        </div>
-                        <div class="_50-width">
-                            <div class="field-label">Date d'inscription</div>
-                            <p><?=$params['posts']->date_inscription?></p>
+                            <div class="field-label">Date de création</div>
+                            <p><?=$params['class']['dateCreation']?></p>
                         </div>
                     </div>
                 </div>
@@ -79,12 +59,8 @@ var_dump($params['posts'])
             </div>
             <div id="w-node-_78978071-a043-772a-06ef-09b2a97f8681-43db2df1" class="action-group">
                 <a href="#" onclick="showPopup()" class="action-card w-inline-block">
-                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'60283f3a37c95faced8e4597_PaperPlaneRight.svg'?>" loading="lazy" width="22" alt="" class="action-icon"/>
-                    <h3 class="module-heading">Envoyer une lettre</h3>
-                </a>
-                <a href="#" onclick="showPopupAssignTask()" class="action-card w-inline-block">
-                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1038967373831278c_Note.svg'?>" loading="lazy" width="22" alt="" class="action-icon"/>
-                    <h3 class="module-heading">Attribuer une tâche</h3>
+                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'files.svg'?>" loading="lazy" width="22" alt="" class="action-icon"/>
+                    <h3 class="module-heading">Publier Cours</h3>
                 </a>
             </div>
         </div>
@@ -94,30 +70,19 @@ var_dump($params['posts'])
 <!-- Popup Form for Sending Letter -->
 <div id="popupForm" class="popup-form" style="display: none;">
     <div class="popup-content">
-        <form action="/schl-hub/student/:id%" method="post">
-            <label for="Subscriber-Email" class="field-label">Envoyer à</label>
-            <input type="text" class="simple-input no-margin w-input" maxlength="10" name="nom_classe" data-name="Subscriber Email" value="<?=$params['posts']->Stagiaire_email?>" disabled placeholder="Terminale A4" id="Subscriber-Email" required/>
-            <div class="spacer _16"></div>
-            <label for="bio_encadrant" class="field-label">Contenu</label>
-            <textarea name="bio_encadrant" maxlength="500" class="text-area filled w-input" pattern=".{1,}" style="resize: none;" title="Veuillez entrer un message." required></textarea>
+        <button onclick="hidePopup()" class="close-button">X</button>
+        <form action="/schl-hub/admin/classroom" method="post">
+            <label for="file" class="custum-file-upload">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" fill=""></path> </g></svg>
+                </div>
+                <div class="text">
+                    <span class="settings-label" >Charger un fichier</span>
+                </div>
+                <input name="file" id="file" type="file" accept=".pdf, .ppt, .pptx, .doc, .docx" hidden required>
+            </label>
             <div class="spacer _16"></div>
             <input type="submit" value="Envoyer" data-wait="Veuillez patienter..." class="button no-margin w-button"/>
-        </form>
-    </div>
-</div>
-
-<!-- Popup Form for Assign Task -->
-<div id="popupAssignTask" class="popup-form" style="display: none;">
-    <div class="popup-content">
-        <button onclick="hidePopupAssignTask()" class="close-button">X</button>
-        <form action="/schl-hub/admin/classroom/assign-task" method="post">
-            <label for="task-title" class="field-label">Titre de la tâche</label>
-            <input type="text" class="simple-input no-margin w-input" maxlength="50" name="task_title" data-name="Task Title" placeholder="Entrez le titre de la tâche" id="task-title" required/>
-            <div class="spacer _16"></div>
-            <label for="task-description" class="field-label">Description</label>
-            <textarea name="task_description" maxlength="500" class="text-area filled w-input" pattern=".{1,}" style="resize: none;" title="Veuillez entrer une description." required></textarea>
-            <div class="spacer _16"></div>
-            <input type="submit" value="Attribuer la tâche" data-wait="Veuillez patienter..." class="button no-margin w-button"/>
         </form>
     </div>
 </div>
@@ -164,6 +129,16 @@ var_dump($params['posts'])
         width: 300px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
+    .close-button {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
 </style>
 
 <script>
@@ -174,22 +149,10 @@ var_dump($params['posts'])
     function hidePopup() {
         document.getElementById('popupForm').style.display = 'none';
     }
-
-    function showPopupAssignTask() {
-        document.getElementById('popupAssignTask').style.display = 'flex';
-    }
-
-    function hidePopupAssignTask() {
-        document.getElementById('popupAssignTask').style.display = 'none';
-    }
-
     // Fermer le pop-up en cliquant en dehors de celui-ci
     window.onclick = function(event) {
         if (event.target === document.getElementById('popupForm')) {
             hidePopup();
-        }
-        if (event.target === document.getElementById('popupAssignTask')) {
-            hidePopupAssignTask();
         }
     }
 </script>

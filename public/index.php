@@ -33,6 +33,7 @@ $router->get('admin/calendar','App\Controllers\Admin\CalendarController@index');
 $router->get('admin/emails','App\Controllers\Admin\LetterController@index');
 
 $router->get('admin/classroom','App\Controllers\Admin\ClassController@index');
+$router->get('admin/classroom/:id','App\Controllers\Admin\ClassController@show');
 $router->post('admin/classroom','App\Controllers\Admin\ClassController@createClass');
 
 $router->get('admin/support','App\Controllers\Admin\SupportController@index');
@@ -44,6 +45,11 @@ $router->get('authentification','App\Controllers\UserController@login');
 $router->post('authentification','App\Controllers\UserController@loginPost');
 
 $router->get('student/dashboard','App\Controllers\Student\DashboardController@index');
+
+$router->get('student/profile','App\Controllers\Student\ProfileController@index');
+$router->post('student/profile','App\Controllers\Student\ProfileController@updateProfile');
+
+$router->get('student/settings','App\Controllers\Student\SetController@index');
 
 
 try{

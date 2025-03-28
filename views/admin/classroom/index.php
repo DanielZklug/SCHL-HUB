@@ -41,7 +41,7 @@ var_dump($params['classes']);
                                                         </label>
                                                     </form>
                                                 </div>
-                                                <a href="/schl-hub/admin/student/<?=$classe['idClasse']?>" class="customer-element w-inline-block">
+                                                <a href="/schl-hub/admin/classroom/<?=$classe['idClasse']?>" class="customer-element w-inline-block">
                                                     <div class="grid-number-block">
                                                         <div><?=$classe['Classe_nom']?></div>
                                                     </div>

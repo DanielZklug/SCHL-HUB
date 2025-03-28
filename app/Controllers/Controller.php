@@ -109,4 +109,11 @@ abstract class Controller {
         }
     }
     
+    protected function isStudent(){
+        if(isset($_SESSION['user']) && isset($_SESSION['idStaUser']) && $_SESSION['user'] === 'etudiant'){
+            return true;
+        }else{
+            return header("Location: /schl-hub/authentification");
+        }
+    }
 }

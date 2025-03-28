@@ -26,7 +26,6 @@ $header = '<div class="support-row head">
 <div class="dashboard-main-content">
 <div class="dashboard-page-header">
     <h2>Cours</h2>
-    <a href="#" class="button page w-button">Ajouter un nouveau cours</a>
 </div>
 <div class="container">
     <div class="module">
@@ -42,7 +41,7 @@ $header = '<div class="support-row head">
                     <div>PowerPoint</div>
                 </a>
                 <a data-w-tab="Tab 4" class="tab w-inline-block w-tab-link">
-                    <div>Lien</div>
+                    <div>Word</div>
                 </a>
             </div>
             <div class="module-main w-tab-content">
