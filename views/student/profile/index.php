@@ -138,12 +138,12 @@ $_SESSION['idEncadrant'] = $params['post']->idStagiaire;
                             <div class="field-block">
                                 <label for="Role">genre</label>
                                 <input type="text" name="profession_encadrant" class="text-input filled w-input" 
-                                    maxlength="100" 
+                                    maxlength="1" 
                                     value="<?=$params['post']->Stagiaire_genre?>" 
                                     id="Role" 
                                     required 
                                     pattern="[A-Za-zÀ-ÿ\s]+" 
-                                    title="Veuillez entrer uniquement des lettres et des espaces."/>
+                                    title="Veuillez entrer uniquement des lettres et des espaces." placeholder="M ou F"/>
                             </div>
                             <div class="field-block">
                                 <label for="Role">Numero</label>
@@ -152,8 +152,7 @@ $_SESSION['idEncadrant'] = $params['post']->idStagiaire;
                                     value="<?=$params['post']->Stagiaire_numero?>" 
                                     id="Role" 
                                     required 
-                                    pattern="[A-Za-zÀ-ÿ\s]+" 
-                                    title="Veuillez entrer uniquement des lettres et des espaces."/>
+                                    pattern="\+?[0-9]{10,15}" title="10 à 15 chiffres (peut inclure un code pays)."/>
                             </div>
                             <button type="submit" class="button settings w-button">Mettre à jour</button>
                         </form>

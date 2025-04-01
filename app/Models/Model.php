@@ -268,6 +268,29 @@ WHERE
             return false; // Échec de l'insertion
         }
     }
+
+    public function insertCourse(int $idEnc, int $idCla, string $fileName, string $fileExtension) {
+        try {
+            // Préparation de la requête avec un paramètre lié pour éviter l'injection SQL
+            $stmt = $this->db->getPDO()->prepare("INSERT INTO {$this->table} (Enc_idEncadrant, Cla_idClasse, nom, format) VALUES (?, ?, ?, ?)");
+            
+            // Lier les paramètres
+            $stmt->execute([$idEnc, $idCla, $fileName, $fileExtension]); // Exécute la requête avec le nom de fichier et l'ID utilisateur
+            
+            return true; // Indique que l'insertion a réussi
+        } catch (\Exception $e) {
+            // Gérer l'erreur en enregistrant le message d'erreur dans la session
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start(); // Démarre la session si elle n'est pas déjà démarrée
+            }
+            $_SESSION['error_message'] = "Erreur lors de l'insertion du fichier : " . $e->getMessage();
+            
+            // Optionnel : journaliser l'erreur pour le débogage
+            error_log("Insertion de fichier échouée : " . $e->getMessage());
+            
+            return false; // Échec de l'insertion
+        }
+    }
     
     public function update($userId, array $data) {
         try {
@@ -280,6 +303,24 @@ WHERE
                 $data['bio_encadrant'],         // bio
                 $data['profession_encadrant'],  // profession
                 $userId               // idUtilisateur
+            ]);
+    
+            $_SESSION['success_message'] = "Informations sur le compte mises à jour avec succès.";
+        } catch (\Exception $e) {
+            $_SESSION['error_message'] = "Erreur lors de la mise à jour des informations : " . $e->getMessage();
+        }
+    }
+
+    public function insertStudent(array $data) {
+        try {
+            // Préparer et exécuter la requête
+            $stmt = $this->db->getPDO()->prepare("INSERT INTO {this->table} ()");
+            
+            // Passer explicitement les valeurs de $data dans le bon ordre
+            $stmt->execute([
+                $data['idEnc'],    // id de l'encadrant
+                $data['idCla'],         // id de la classe
+                $data['stagiaire_email'],  // email du stagiaire
             ]);
     
             $_SESSION['success_message'] = "Informations sur le compte mises à jour avec succès.";

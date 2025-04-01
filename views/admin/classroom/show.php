@@ -1,5 +1,5 @@
 <?php $title = $params['class']['nom'];
-var_dump($params['class'])
+$_SESSION['idClasse'] = $params['class']['idClasse'];
 ?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
@@ -23,44 +23,15 @@ var_dump($params['class'])
                         </div>
                     </div>
                 </div>
-                <div class="module">
-                    <div class="module-header">
-                        <h3 class="module-heading">Tâches assignées</h3>
-                    </div>
-                    <div class="module-main">
-                        <div class="w-form">
-                            <form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="6025c4b7fb18b28643db2df1" data-wf-element-id="d309adb5-dbcd-dd05-b840-0f29e6dbe0fc">
-                                <div class="checkbox-element">
-                                    <label data-w-id="d309adb5-dbcd-dd05-b840-0f29e6dbe0fe" class="w-checkbox checkbox-top">
-                                        <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
-                                        <input type="checkbox" id="checkbox-8" name="checkbox-8" data-name="Checkbox 8" style="opacity:0;position:absolute;z-index:-1"/>
-                                        <span for="checkbox-8" class="task-title w-form-label">Submit refund for latest order</span>
-                                        <div class="tag task">Urgent</div>
-                                    </label>
-                                    <p class="task-description">Customer had issues with latest order and requires a refund to their account</p>
-                                </div>
-                                <div class="checkbox-element">
-                                    <label data-w-id="d309adb5-dbcd-dd05-b840-0f29e6dbe115" class="w-checkbox checkbox-top">
-                                        <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
-                                        <input type="checkbox" id="checkbox-6" name="checkbox-6" data-name="Checkbox 6" style="opacity:0;position:absolute;z-index:-1"/>
-                                        <span for="checkbox-6" class="task-title w-form-label">Update customer phone number</span>
-                                    </label>
-                                </div>
-                            </form>
-                            <div class="w-form-done">
-                                <div>Thank you! Your submission has been received!</div>
-                            </div>
-                            <div class="w-form-fail">
-                                <div>Oops! Something went wrong while submitting the form.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div id="w-node-_78978071-a043-772a-06ef-09b2a97f8681-43db2df1" class="action-group">
                 <a href="#" onclick="showPopup()" class="action-card w-inline-block">
                     <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'files.svg'?>" loading="lazy" width="22" alt="" class="action-icon"/>
                     <h3 class="module-heading">Publier Cours</h3>
+                </a>
+                <a href="#" onclick="showPopupAssignTask()" class="action-card w-inline-block">
+                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'student.svg'?>" loading="lazy" width="22" alt="" class="action-icon"/>
+                    <h3 class="module-heading">Ajouter un stagiaire</h3>
                 </a>
             </div>
         </div>
@@ -71,7 +42,7 @@ var_dump($params['class'])
 <div id="popupForm" class="popup-form" style="display: none;">
     <div class="popup-content">
         <button onclick="hidePopup()" class="close-button">X</button>
-        <form action="/schl-hub/admin/classroom" method="post">
+        <form action="/schl-hub/admin/classroom/:id" method="post">
             <label for="file" class="custum-file-upload">
                 <div class="icon">
                     <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" fill=""></path> </g></svg>
@@ -79,10 +50,24 @@ var_dump($params['class'])
                 <div class="text">
                     <span class="settings-label" >Charger un fichier</span>
                 </div>
-                <input name="file" id="file" type="file" accept=".pdf, .ppt, .pptx, .doc, .docx" hidden required>
+                <input name="file" id="file" type="file" accept=".pdf, .ppt, .pptx, .doc, .docx" required>
             </label>
             <div class="spacer _16"></div>
             <input type="submit" value="Envoyer" data-wait="Veuillez patienter..." class="button no-margin w-button"/>
+        </form>
+    </div>
+</div>
+
+<!-- Popup Form for Assign Task -->
+<div id="popupAssignTask" class="popup-form" style="display: none;">
+    <div class="popup-content">
+        <button onclick="hidePopupAssignTask()" class="close-button">X</button>
+        <form action="/schl-hub/admin/classroom/show/:id" method="post">
+            <label for="task-title" class="field-label">Email du stagiaire</label>
+            <input type="email" class="simple-input no-margin w-input" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" 
+            title="Veuillez entrer un email valide." name="email_stagiaire" data-name="Task Title" placeholder="Entrez l'email du  stagiaire" id="task-title" required/>
+            <div class="spacer _16"></div>
+            <input type="submit" value="Ajouter" data-wait="Veuillez patienter..." class="button no-margin w-button"/>
         </form>
     </div>
 </div>
@@ -149,10 +134,22 @@ var_dump($params['class'])
     function hidePopup() {
         document.getElementById('popupForm').style.display = 'none';
     }
+
+    function showPopupAssignTask() {
+        document.getElementById('popupAssignTask').style.display = 'flex';
+    }
+
+    function hidePopupAssignTask() {
+        document.getElementById('popupAssignTask').style.display = 'none';
+    }
+
     // Fermer le pop-up en cliquant en dehors de celui-ci
     window.onclick = function(event) {
         if (event.target === document.getElementById('popupForm')) {
             hidePopup();
+        }
+        if (event.target === document.getElementById('popupAssignTask')) {
+            hidePopupAssignTask();
         }
     }
 </script>

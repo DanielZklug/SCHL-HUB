@@ -20,6 +20,7 @@ $router->get('encadrants/:id', 'App\Controllers\BlogController@show');
 
 $router->get('admin/student','App\Controllers\Admin\StudentController@index');
 $router->get('admin/student/:id','App\Controllers\Admin\StudentController@show');
+$router->post('admin/student/:id','App\Controllers\Admin\StudentController@sendMessage');
 $router->post('admin/student/delete/:id','App\Controllers\Admin\StudentController@delete');
 
 $router->get('admin/dashboard','App\Controllers\Admin\DashboardController@index');
@@ -34,6 +35,7 @@ $router->get('admin/emails','App\Controllers\Admin\LetterController@index');
 
 $router->get('admin/classroom','App\Controllers\Admin\ClassController@index');
 $router->get('admin/classroom/:id','App\Controllers\Admin\ClassController@show');
+$router->post('admin/classroom/:id','App\Controllers\Admin\ClassController@publish');
 $router->post('admin/classroom','App\Controllers\Admin\ClassController@createClass');
 
 $router->get('admin/support','App\Controllers\Admin\SupportController@index');

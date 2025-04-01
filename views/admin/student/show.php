@@ -1,5 +1,6 @@
 <?php $title = $params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom ;
-var_dump($params['posts'])
+$_SESSION['idSta'] = $params['posts']->idStagiaire;
+var_dump($params['post']);
 ?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
@@ -94,22 +95,24 @@ var_dump($params['posts'])
 <!-- Popup Form for Sending Letter -->
 <div id="popupForm" class="popup-form" style="display: none;">
     <div class="popup-content">
-        <form action="/schl-hub/student/:id%" method="post">
+        <form action="admin/student/:id" method="post">
             <label for="Subscriber-Email" class="field-label">Envoyer à</label>
-            <input type="text" class="simple-input no-margin w-input" maxlength="10" name="nom_classe" data-name="Subscriber Email" value="<?=$params['posts']->Stagiaire_email?>" disabled placeholder="Terminale A4" id="Subscriber-Email" required/>
+            <input type="text" class="simple-input no-margin w-input" maxlength="10" name="recever_name" value="<?=$params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom?>" readonly placeholder="Terminale A4" id="Subscriber-Email" required/>
+            <div class="spacer _16"></div>
+            <input type="email" class="simple-input no-margin w-input" maxlength="10" name="recever_email" value="<?=$params['posts']->Stagiaire_email?>" readonly placeholder="Terminale A4" id="Subscriber-Email" required/>
             <div class="spacer _16"></div>
             <label for="bio_encadrant" class="field-label">Contenu</label>
-            <textarea name="bio_encadrant" maxlength="500" class="text-area filled w-input" pattern=".{1,}" style="resize: none;" title="Veuillez entrer un message." required></textarea>
+            <textarea name="content" maxlength="500" class="text-area filled w-input" pattern=".{1,}" style="resize: none;" title="Veuillez entrer un message." required></textarea>
             <div class="spacer _16"></div>
             <input type="submit" value="Envoyer" data-wait="Veuillez patienter..." class="button no-margin w-button"/>
         </form>
     </div>
 </div>
 
+
 <!-- Popup Form for Assign Task -->
 <div id="popupAssignTask" class="popup-form" style="display: none;">
     <div class="popup-content">
-        <button onclick="hidePopupAssignTask()" class="close-button">X</button>
         <form action="/schl-hub/admin/classroom/assign-task" method="post">
             <label for="task-title" class="field-label">Titre de la tâche</label>
             <input type="text" class="simple-input no-margin w-input" maxlength="50" name="task_title" data-name="Task Title" placeholder="Entrez le titre de la tâche" id="task-title" required/>
