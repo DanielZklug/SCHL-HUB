@@ -1,6 +1,4 @@
-<?php $title = "Classes";
-var_dump($params['classes']);
-?>
+<?php $title = "Classes"?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Classes</h2>
@@ -521,7 +519,7 @@ var_dump($params['classes']);
 <!-- Popup Form -->
 <div id="popupForm" class="popup-form" style="display: none;">
     <div class="popup-content">
-        <form action="/schl-hub/admin/classroom" method="post">
+        <form action="admin/classroom" method="post">
             <label for="Subscriber-Email-3" class="field-label">Nom de la classe</label>
             <input type="text" class="simple-input no-margin w-input" maxlength="10" name="nom_classe" data-name="Subscriber Email" placeholder="Terminale A4" id="Subscriber-Email" required/>
             <div class="spacer _16"></div>

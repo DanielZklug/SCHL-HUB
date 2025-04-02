@@ -107,12 +107,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="w-node-_3ad77f9c-d057-0adf-fdf5-76b3307f7a6b-d699f26a" class="action-group">
+                                <!-- <div id="w-node-_3ad77f9c-d057-0adf-fdf5-76b3307f7a6b-d699f26a" class="action-group">
                                     <div class="action-card">
                                         <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'60262457bb75062ba521b75e_Pencil.svg'?>" loading="lazy" width="22" alt="" class="action-icon"/>
                                         <h3 class="module-heading">New task</h3>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

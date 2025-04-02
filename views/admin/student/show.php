@@ -1,6 +1,5 @@
 <?php $title = $params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom ;
 $_SESSION['idSta'] = $params['posts']->idStagiaire;
-var_dump($params['post']);
 ?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
@@ -97,9 +96,9 @@ var_dump($params['post']);
     <div class="popup-content">
         <form action="admin/student/:id" method="post">
             <label for="Subscriber-Email" class="field-label">Envoyer à</label>
-            <input type="text" class="simple-input no-margin w-input" maxlength="10" name="recever_name" value="<?=$params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom?>" readonly placeholder="Terminale A4" id="Subscriber-Email" required/>
+            <input type="text" class="simple-input no-margin w-input" maxlength="20" name="recever_name" value="<?=$params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom?>" placeholder="Nom du stagiaire" id="Subscriber-Email" required/>
             <div class="spacer _16"></div>
-            <input type="email" class="simple-input no-margin w-input" maxlength="10" name="recever_email" value="<?=$params['posts']->Stagiaire_email?>" readonly placeholder="Terminale A4" id="Subscriber-Email" required/>
+            <input type="email" class="simple-input no-margin w-input" maxlength="50" name="recever_email" value="<?=$params['posts']->Stagiaire_email?>" placeholder="exemple@gmail.com" id="Subscriber-Email" required/>
             <div class="spacer _16"></div>
             <label for="bio_encadrant" class="field-label">Contenu</label>
             <textarea name="content" maxlength="500" class="text-area filled w-input" pattern=".{1,}" style="resize: none;" title="Veuillez entrer un message." required></textarea>

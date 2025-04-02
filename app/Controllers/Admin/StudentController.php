@@ -98,8 +98,8 @@ class StudentController extends Controller{
                 $mail->SMTPAuth   = true;
                 $mail->Username   = 'danielzklug@gmail.com';
                 $mail->Password   = 'lsnkbshsjqicyygh';
-                $mail->SMTPSecure = 'ssl';
-                $mail->Port       = 465;
+                $mail->SMTPSecure =  PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port       = 587;
     
                 // Destinataires
                 $mail->setFrom('danielzklug@gmail.com', 'Admin SCHL-HUB');
@@ -112,28 +112,74 @@ class StudentController extends Controller{
                 // Contenu HTML du message
                 $mail->Body = "
                     <html>
-                    <head>
-                        <style>
-                            body { font-family: Arial, sans-serif; line-height: 1.6; }
-                            .header { background-color: #f4f4f4; padding: 10px; text-align: center; }
-                            .content { margin: 20px; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
-                            .footer { margin-top: 20px; text-align: center; font-size: 12px; color: #888; }
-                        </style>
-                    </head>
-                    <body>
-                        <div class='header'>
-                            <h2>Message de SCHL-HUB</h2>
-                        </div>
-                        <div class='content'>
-                            <p>Bonjour <strong>{$receverName}</strong>,</p>
-                            <p>{$content}</p>
-                            <p>Cordialement,<br>L'équipe SCHL-HUB</p>
-                        </div>
-                        <div class='footer'>
-                            <p>Ce message a été envoyé depuis la plateforme SCHL-HUB.</p>
-                        </div>
-                    </body>
-                    </html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f7f7f7;
+            }
+            .header {
+                background-color: #ffffff;
+                padding: 20px;
+                text-align: center;
+            }
+            .logo {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-bottom: 20px;
+            }
+            .logo img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .content {
+                background-color: #ffffff;
+                margin: 20px;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border: 1px solid #ddd;
+            }
+            .footer {
+                margin-top: 20px;
+                text-align: center;
+                font-size: 12px;
+                color: #888;
+                padding: 15px;
+            }
+            h2 {
+                margin-bottom: 20px;
+                font-size: 24px;
+            }
+            p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='header'>
+            <!-- Zone circulaire pour le logo -->
+            <div class='logo'>
+                <img src='https://drive.google.com/file/d/1mv5jq-jhdZxKE9KLn_Dz_Jxb6lCSD8DU/view?usp=drive_link' alt='Logo SCHL-HUB' />
+            </div>
+        </div>
+        <div class='content'>
+            <p>Bonjour <strong>{$receverName}</strong>,</p>
+            <p>{$content}</p>
+        </div>
+        <div class='footer'>
+            <p>Ce message a été envoyé depuis la plateforme <strong>SCHL-HUB</strong>.</p>
+        </div>
+    </body>
+</html>
+
                 ";
     
                 // Contenu texte brut
