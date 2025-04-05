@@ -98,10 +98,13 @@ $_SESSION['idSta'] = $params['posts']->idStagiaire;
             <label for="Subscriber-Email" class="field-label">Envoyer à</label>
             <input type="text" class="simple-input no-margin w-input" maxlength="20" name="recever_name" value="<?=$params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom?>" placeholder="Nom du stagiaire" id="Subscriber-Email" required/>
             <div class="spacer _16"></div>
-            <input type="email" class="simple-input no-margin w-input" maxlength="50" name="recever_email" value="<?=$params['posts']->Stagiaire_email?>" placeholder="exemple@gmail.com" id="Subscriber-Email" required/>
+            <input type="email" class="simple-input no-margin w-input" maxlength="50" name="recever_email" hidden value="<?=$params['posts']->Stagiaire_email?>" placeholder="exemple@gmail.com" id="Subscriber-Email" required/>
+            <div class="spacer _16"></div>
+            <label for="title-Email" class="field-label">Objet</label>
+            <input type="text" class="simple-input no-margin w-input" maxlength="50" name="content-title" placeholder="Objet de la lettre" id="title-Email" required/>
             <div class="spacer _16"></div>
             <label for="bio_encadrant" class="field-label">Contenu</label>
-            <textarea name="content" maxlength="500" class="text-area filled w-input" pattern=".{1,}" style="resize: none;" title="Veuillez entrer un message." required></textarea>
+            <textarea name="content" maxlength="500" class="simple-input no-margin w-input" pattern=".{1,}" style="resize : vertical" rows="10" placeholder="Veuillez entrer un message. max 500 caractères" required></textarea>
             <div class="spacer _16"></div>
             <input type="submit" value="Envoyer" data-wait="Veuillez patienter..." class="button no-margin w-button"/>
         </form>

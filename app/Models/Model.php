@@ -313,21 +313,37 @@ WHERE
 
     public function insertStudent(array $data) {
         try {
-            // Préparer et exécuter la requête
-            $stmt = $this->db->getPDO()->prepare("INSERT INTO {this->table} ()");
-            
-            // Passer explicitement les valeurs de $data dans le bon ordre
+            // Préparer la requête avec une jointure entre la table stagiaire et utilisateur
+            $stmt = $this->db->getPDO()->prepare(
+                "UPDATE {$this->table} AS s
+                 JOIN utilisateur AS u ON u.email = :stagiaire_email
+                 SET s.Enc_idEncadrant = :idEnc, 
+                     s.Cla_idClasse = :idCla, 
+                     s.date_inscription = NOW()
+                 WHERE s.Uti_idUtilisateur = u.idUtilisateur 
+                 AND u.role = 'etudiant'"
+            );
+    
+            // Exécuter la requête en passant les valeurs de $data
             $stmt->execute([
-                $data['idEnc'],    // id de l'encadrant
-                $data['idCla'],         // id de la classe
-                $data['stagiaire_email'],  // email du stagiaire
+                ':idEnc' => $data['idEnc'],               // id de l'encadrant
+                ':idCla' => $data['idCla'],               // id de la classe
+                ':stagiaire_email' => $data['stagiaire_email'], // email du stagiaire
             ]);
     
-            $_SESSION['success_message'] = "Informations sur le compte mises à jour avec succès.";
+            // Vérifier si une ligne a été affectée (si aucune ligne n'est affectée, cela signifie que l'email ne correspond pas à un étudiant)
+            if ($stmt->rowCount() > 0) {
+                $_SESSION['success_message'] = "Stagiaire enregistré avec succès.";
+            } else {
+                $_SESSION['error_message'] = "Aucun étudiant trouvé avec cet email ou l'utilisateur n'est pas un étudiant.";
+            }
         } catch (\Exception $e) {
+            // Message d'erreur
             $_SESSION['error_message'] = "Erreur lors de la mise à jour des informations : " . $e->getMessage();
         }
     }
+    
+    
 
     public function getClassesByEncadrant(int $idEncadrant): array {
         // Prépare une requête SQL pour récupérer les classes associées à un encadrant

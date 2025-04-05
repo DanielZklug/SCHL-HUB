@@ -140,7 +140,7 @@
             <div class="module">
                 <div class="module-header">
                     <h3 class="module-heading">Derniers Email</h3>
-                    <a href="emails.html" class="module-button w-button">See All</a>
+                    <a href="emails" class="module-button w-button">Voir tout</a>
                 </div>
                 <div class="module-main">
                     <div>
@@ -156,21 +156,23 @@
                         <div class="email-element simple w-inline-block">
                             <div class="notification-top">
                                 <div class="notification-dot"></div>
-                                <div class="notificaiton-title">Gooble Accounts</div>
-                                <div class="email-time">9:39am</div>
+                                <div class="notificaiton-title">Objet</div>
+                                <div class="email-time">Date et heure</div>
                             </div>
-                            <p class="notification-subtitle">Security alert</p>
-                            <p class="notification-description">A new device from New York has signed in</p>
+                            <p class="notification-subtitle">Destinataire</p>
+                            <p class="notification-description">Message</p>
                         </div>
-                        <div class="email-element">
-                            <div class="notification-top">
-                                <div class="notification-dot"></div>
-                                <div class="notificaiton-title">Gooble Accounts</div>
-                                <div class="email-time">9:39am</div>
-                            </div>
-                            <p class="notification-subtitle">Security alert</p>
-                            <p class="notification-description">A new device from New York has signed in</p>
-                        </div>
+                        <?php foreach ($params["limit"] as $limit): ?>
+                            <a href="emails/<?=$limit['idMessage']?>" data-id="<?=$limit['idMessage']?>" class="email-element">
+                                <div class="notification-top">
+                                    <div class="notification-dot"></div>
+                                    <div class="notificaiton-title"><?=$limit['objet']?></div>
+                                    <div class="email-time"><?=$limit['date_envoi']?></div>
+                                </div>
+                                <p class="notification-subtitle"><?=$limit['NomUrecepteur']?></p>
+                                <p class="notification-description"><?=$limit['contenu']?></p>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -190,3 +192,36 @@
         </div>
     </div>
 </div>
+<script>
+    // Fonction pour mettre à jour l'état des messages vus
+    function updateSeenMessages() {
+        let seenMessages = JSON.parse(localStorage.getItem('seenMessages')) || [];
+        let messages = document.querySelectorAll('.email-element');
+
+        messages.forEach(element => {
+            let messageId = element.getAttribute('data-id'); // Utiliser un attribut pour identifier le message
+            if (seenMessages.includes(messageId)) {
+                element.classList.add('seen'); // Ajoute la classe 'seen' si le message est marqué
+                let dot = element.querySelector('.notification-dot');
+                if (dot) {
+                    dot.classList.add('seen'); // Ajoute la classe 'seen' à 'notification-dot'
+                }
+            }
+
+            element.addEventListener("click", () => {
+                if (!seenMessages.includes(messageId)) {
+                    seenMessages.push(messageId); // Ajoute l'ID du message aux vus
+                    localStorage.setItem('seenMessages', JSON.stringify(seenMessages)); // Enregistre dans localStorage
+                }
+                element.classList.add('seen'); // Ajoute la classe 'seen' à l'élément cliqué
+                let dot = element.querySelector('.notification-dot');
+                if (dot) {
+                    dot.classList.add('seen'); // Ajoute la classe 'seen' à 'notification-dot'
+                }
+            });
+        });
+    }
+
+    // Appel de la fonction pour initialiser l'état des messages
+    updateSeenMessages();
+</script>

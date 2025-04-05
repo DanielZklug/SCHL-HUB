@@ -35,4 +35,16 @@ class UserController extends Controller{
         }
     }
 
+    public function logout(){
+        // Unset the session variable for the encadrant user
+        unset($_SESSION['idEncUser']);
+        unset($_SESSION['admin']);
+        
+        // Optionally, destroy the entire session
+        // session_destroy();
+
+        // Redirect to the login page or any other page
+        return header("Location: /schl-hub/authentification");
+    }
+
 }

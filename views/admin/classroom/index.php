@@ -1,4 +1,4 @@
-<?php $title = "Classes"?>
+<?php $title = "Classes";?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Classes</h2>
@@ -46,9 +46,9 @@
                                                     <div><?=$classe['Nombre_Stagiaires']?></div>
                                                     <div class="mob-hidden"><?=$classe['Classe_dateCreation']?></div>
                                                     <div>
-                                                    <form hidden action="admin/student/delete/<?=$classe['idClasse']?>" style="display:inline" method="post">
+                                                    <form hidden action="'admin/classroom/delete/<?=$classe['idClasse']?>" style="display:inline" method="post">
                                                         <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
-                                                            <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'?>" alt="">
+                                                            <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'trash.svg'?>" alt="">
                                                             Supprimer
                                                         </button>
                                                     </form>

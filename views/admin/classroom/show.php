@@ -1,6 +1,4 @@
-<?php $title = $params['class']['nom'];
-$_SESSION['idClasse'] = $params['class']['idClasse'];
-?>
+<?php $title = $params['class']['nom'];?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Détails</h2>
@@ -62,7 +60,7 @@ $_SESSION['idClasse'] = $params['class']['idClasse'];
 <div id="popupAssignTask" class="popup-form" style="display: none;">
     <div class="popup-content">
         <button onclick="hidePopupAssignTask()" class="close-button">X</button>
-        <form action="/schl-hub/admin/classroom/show/:id" method="post">
+        <form action="admin/classroom/<?=$params['class']['idClasse']?>" method="post">
             <label for="task-title" class="field-label">Email du stagiaire</label>
             <input type="email" class="simple-input no-margin w-input" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" 
             title="Veuillez entrer un email valide." name="email_stagiaire" data-name="Task Title" placeholder="Entrez l'email du  stagiaire" id="task-title" required/>

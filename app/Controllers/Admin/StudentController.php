@@ -66,6 +66,7 @@ class StudentController extends Controller{
             // Valider les données du formulaire
             $receverEmail = $_POST['recever_email'] ?? null;
             $receverName = $_POST['recever_name'] ?? null;
+            $contentTitle = $_POST['content-title'] ?? null;
             $content = $_POST['content'] ?? null;
     
             if (empty($receverEmail) || empty($content)) {
@@ -87,7 +88,8 @@ class StudentController extends Controller{
                 $messageModel = new Message($this->getDB());
                 $result = $messageModel->saveMessage([
                     'idEnc' => $_SESSION['idEncUser'],
-                    'idStag' => $_SESSION['idStaUser'],
+                    'recever' => $receverName,
+                    'title' => $contentTitle,
                     'content' => $content
                 ]);
     
@@ -98,8 +100,8 @@ class StudentController extends Controller{
                 $mail->SMTPAuth   = true;
                 $mail->Username   = 'danielzklug@gmail.com';
                 $mail->Password   = 'lsnkbshsjqicyygh';
-                $mail->SMTPSecure =  PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port       = 587;
+                $mail->SMTPSecure =  PHPMailer::ENCRYPTION_SMTPS;
+                $mail->Port       = 465;
     
                 // Destinataires
                 $mail->setFrom('danielzklug@gmail.com', 'Admin SCHL-HUB');
@@ -206,11 +208,11 @@ class StudentController extends Controller{
     public function delete(int $id){
         $this->isAdmin();
 
-        // $post = new Student($this->getDB());
-        // $result = $post->delete($id);
+        $post = new Student($this->getDB());
+        $result = $post->delete($id);
 
-        // if($result){
-        //     return header("Location: /schl-hub/admin/student");
-        // }
+        if($result){
+            return header("Location: /schl-hub/admin/student");
+        }
     }
 }

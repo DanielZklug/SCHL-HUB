@@ -48,7 +48,7 @@
                                                         <div>
                                                             <form hidden action="admin/student/delete/<?=$stagiaire['idStagiaire'] ?>" style="display:inline" method="post">
                                                                 <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
-                                                                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'?>" alt="">
+                                                                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'trash.svg'?>" alt="">
                                                                     Supprimer
                                                                 </button>
                                                             </form>

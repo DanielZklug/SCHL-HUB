@@ -38,38 +38,34 @@ class ClassController extends Controller {
 
     public function createClass() {
         $this->isAdmin();
-
+    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Validation des entrées
             $data = [
                 'idEncUser' => $_SESSION['idEncUser'],
                 'idEnc' => $_SESSION['idEncadrant'],
-                'nom_classe' => $_POST['nom_classe'] ?? null,
-                'stagiaire_email' => $_POST['stagiaire_email'] ?? null
+                'nom_classe' => $_POST['nom_classe'],
+                'stagiaire_email' => $_POST['stagiaire_email']
             ];
-
-            // Vérification des données nécessaires
-            if (empty($data['nom_classe']) || empty($data['stagiaire_email'])) {
-                $_SESSION['error_message'] = "Tous les champs obligatoires doivent être remplis.";
-                return header("Location: /schl-hub/admin/classroom");
-            }
-
             try {
                 $class = new Classe($this->getDB());
                 $result = $class->createClass($data);
-
+    
                 if ($result) {
-                    $_SESSION['success_message'] = "Nouvelle classe créée";
+                    $_SESSION['success_message'] = "Nouvelle classe créée avec succès.";
                 } else {
-                    $_SESSION['error_message'] = "Une erreur est survenue lors de la création de la classe";
+                    $_SESSION['error_message'] = "Une erreur est survenue lors de la création de la classe.";
                 }
                 return header("Location: /schl-hub/admin/classroom");
             } catch (\Exception $e) {
-                $_SESSION['error_message'] = "Une erreur est survenue: " . $e->getMessage();
+                // Log l'erreur dans un fichier et retourne un message d'erreur détaillé
+                error_log("Erreur dans ClassController::createClass : " . $e->getMessage(), 3, __DIR__ . '/../../logs/errors.log');
+                $_SESSION['error_message'] = "Une erreur est survenue : " . $e->getMessage();
                 return header("Location: /schl-hub/admin/classroom");
             }
         }
     }
+    
 
     public function show(int $id) {
         $this->isAdmin(); // Vérifie si l'utilisateur est un administrateur
@@ -94,25 +90,38 @@ class ClassController extends Controller {
         return $this->viewAdmin('admin.classroom.show', compact('post', 'class'));
     }
 
-    public function publish() {
+    public function publish($id) {
         $this->isAdmin();
-
+    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Vérifiez si un fichier a été soumis
-            if (isset($_FILES['file']) && $this->publishFile()) {
-                return header("Location: /schl-hub/admin/classroom");
+            if (isset($_FILES['file'])) {
+                if ($this->publishFile()) {
+                    // Si le fichier a été publié avec succès, rediriger
+                    return header("Location: /schl-hub/admin/classroom");
+                } else {
+                    // Si la publication du fichier échoue, ajouter un message d'erreur
+                    $_SESSION['error_message'] = "Échec de la publication du fichier.";
+                    return header("Location: /schl-hub/admin/classroom");
+                }
             }
-
+    
             // Vérifiez si des données doivent être insérées
-            if (isset($_POST['email_stagiaire']) && $this->insertData()) {
+            if (isset($_POST['email_stagiaire']) && $this->insertData($id)) {
+                // Si les données sont insérées avec succès, rediriger
+                return header("Location: /schl-hub/admin/classroom");
+            } else {
+                // Si l'insertion échoue, ajouter un message d'erreur
+                $_SESSION['error_message'] = "Échec de l'insertion des données.";
                 return header("Location: /schl-hub/admin/classroom");
             }
         }
-
-        // Redirigez en cas d'erreur
-        $_SESSION['error_message'] = "Échec de la publication du fichier.";
+    
+        // Si la méthode n'est pas POST, rediriger
+        $_SESSION['error_message'] = "Méthode de requête invalide.";
         return header("Location: /schl-hub/admin/classroom");
     }
+    
 
     public function publishFile() {
         $this->isAdmin();
@@ -179,14 +188,14 @@ class ClassController extends Controller {
         }
     }
 
-    public function insertData() {
+    public function insertData(int $id) {
         $this->isAdmin();
 
        // Validation des entrées
        $data = [
         'idEnc' => $_SESSION['idEncadrant'],
-        'idCla' => $_SESSION['idClasse'],
-        'stagiaire_email' => $_POST['stagiaire_email'] ?? null
+        'idCla' => $id,
+        'stagiaire_email' => $_POST['email_stagiaire'] ?? null
         ];
 
         if (empty($data['stagiaire_email'])) {
@@ -202,6 +211,18 @@ class ClassController extends Controller {
         } else {
             $_SESSION['error_message'] = "Erreur lors de l'insertion de la classe.";
             return false;
+        }
+    }
+
+    public function delete(int $id){
+        $this->isAdmin();
+
+        $post = new Classe($this->getDB());
+        $result = $post->delete($id);
+
+        if($result){
+            $_SESSION['success_message'] = "Classe supprimée avec succès.";
+            return header("Location: /schl-hub/admin/classroom");
         }
     }
 }

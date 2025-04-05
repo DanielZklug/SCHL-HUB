@@ -32,11 +32,14 @@ $router->get('admin/settings','App\Controllers\Admin\SetController@index');
 $router->get('admin/calendar','App\Controllers\Admin\CalendarController@index');
 
 $router->get('admin/emails','App\Controllers\Admin\LetterController@index');
+$router->get('admin/emails/:id','App\Controllers\Admin\LetterController@show');
+$router->post('admin/emails/delete/:id','App\Controllers\Admin\LetterController@delete');
 
 $router->get('admin/classroom','App\Controllers\Admin\ClassController@index');
+$router->post('admin/classroom','App\Controllers\Admin\ClassController@createClass');
 $router->get('admin/classroom/:id','App\Controllers\Admin\ClassController@show');
 $router->post('admin/classroom/:id','App\Controllers\Admin\ClassController@publish');
-$router->post('admin/classroom','App\Controllers\Admin\ClassController@createClass');
+$router->post('admin/classroom/delete/:id','App\Controllers\Admin\ClassController@delete');
 
 $router->get('admin/support','App\Controllers\Admin\SupportController@index');
 
@@ -44,6 +47,7 @@ $router->get('admin/profile','App\Controllers\Admin\ProfileController@index');
 $router->post('admin/profile','App\Controllers\Admin\ProfileController@updateProfile');
 
 $router->get('authentification','App\Controllers\UserController@login');
+$router->get('logout','App\Controllers\UserController@logout');
 $router->post('authentification','App\Controllers\UserController@loginPost');
 
 $router->get('student/dashboard','App\Controllers\Student\DashboardController@index');
