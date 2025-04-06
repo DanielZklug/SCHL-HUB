@@ -147,7 +147,7 @@ if (isset($_SESSION['error_message'])) {
                 <div class="sidebar-spacer"></div>
                 <div class="dashboard-content">
                     <div data-collapse="all" data-animation="default" data-duration="0" role="banner" class="dashboard-nav w-nav">
-                        <form action="/search" class="search w-form">
+                        <form action="search" class="search w-form">
                             <input type="submit" value="Search" class="search-button w-button"/>
                             <input type="search" class="search-input w-input" maxlength="256" name="query" placeholder="Rechercher" id="search" required/>
                         </form>

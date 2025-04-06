@@ -41,13 +41,13 @@ class Classe extends Model {
                 throw new \Exception("L'utilisateur n'a pas le rôle 'etudiant'.");
             }
     
-            // Vérification si l'étudiant est déjà associé
-            $stagiaireCheckSql = "SELECT COUNT(*) FROM stagiaire WHERE Uti_idUtilisateur = ?";
-            $stagiaireCheckStmt = $this->db->getPDO()->prepare($stagiaireCheckSql);
-            $stagiaireCheckStmt->execute([$user->idUtilisateur]);
-            if ($stagiaireCheckStmt->fetchColumn() > 0) {
-                throw new \Exception("Cet étudiant est déjà associé à une classe ou un encadrant.");
-            }
+            // // Vérification si l'étudiant est déjà associé
+            // $stagiaireCheckSql = "SELECT COUNT(*) FROM stagiaire WHERE Uti_idUtilisateur = ?";
+            // $stagiaireCheckStmt = $this->db->getPDO()->prepare($stagiaireCheckSql);
+            // $stagiaireCheckStmt->execute([$user->idUtilisateur]);
+            // if ($stagiaireCheckStmt->fetchColumn() > 0) {
+            //     throw new \Exception("Cet étudiant est déjà associé à une classe ou un encadrant.");
+            // }
     
             // Insertion dans la table classe
             $sql = "INSERT INTO {$this->table} (`Uti_idUtilisateur`, `Enc_idEncadrant`, `nom`, `dateCreation`) VALUES (?, ?, ?, NOW())";

@@ -103,7 +103,7 @@ abstract class Model{
     -- Informations sur le stagiaire
     s.idStagiaire,
     s.emailUni,
-    s.date_inscription,
+    DATE_FORMAT(s.date_inscription, '%d/%m/%Y à %Hh%imin%ss') AS date_inscription,
     su.nom AS Stagiaire_nom,
     su.prenom AS Stagiaire_prenom,
     su.photo AS Stagiaire_photo,
@@ -354,7 +354,7 @@ WHERE
                 c.Uti_idUtilisateur AS Classe_Uti_idUtilisateur,
                 c.Enc_idEncadrant AS Classe_Enc_idEncadrant,
                 c.nbrCours AS Classe_nbrCours,
-                c.dateCreation AS Classe_dateCreation,
+                DATE_FORMAT(c.dateCreation, '%d/%m/%Y à %Hh%imin%ss') AS Classe_dateCreation,
                 COUNT(s.idStagiaire) AS Nombre_Stagiaires
             FROM
                 {$this->table} c
@@ -419,7 +419,7 @@ WHERE
                 c.nom,
                 c.nbrStag,
                 c.nbrCours,
-                c.dateCreation
+                DATE_FORMAT(c.dateCreation, '%d/%m/%Y à %Hh%imin%ss') AS dateCreation
             FROM 
                 classe c
             WHERE 

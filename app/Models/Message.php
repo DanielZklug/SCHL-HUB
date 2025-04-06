@@ -29,7 +29,7 @@ class Message extends Model {
                 NomUrecepteur,
                 objet,
                 contenu,
-                date_envoi 
+                DATE_FORMAT(date_envoi, '%d/%m/%Y à %Hh%imin%ss') AS date_envoi 
             FROM
                 {$this->table} m
             WHERE idUemetteur = ?
@@ -53,7 +53,7 @@ class Message extends Model {
                 NomUrecepteur,
                 objet,
                 contenu,
-                date_envoi
+                DATE_FORMAT(date_envoi, '%d/%m/%Y à %Hh%imin%ss') AS date_envoi
             FROM
                 {$this->table} m
             WHERE idMessage = ?

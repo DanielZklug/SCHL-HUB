@@ -43,6 +43,8 @@ $router->post('admin/classroom/delete/:id','App\Controllers\Admin\ClassControlle
 
 $router->get('admin/support','App\Controllers\Admin\SupportController@index');
 
+$router->get('admin/search','App\Controllers\Admin\SearchController@index');
+
 $router->get('admin/profile','App\Controllers\Admin\ProfileController@index');
 $router->post('admin/profile','App\Controllers\Admin\ProfileController@updateProfile');
 

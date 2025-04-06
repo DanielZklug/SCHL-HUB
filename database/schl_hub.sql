@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 21 mars 2025 à 18:50
+-- Généré le : dim. 06 avr. 2025 à 20:53
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -31,10 +31,19 @@ CREATE TABLE `classe` (
   `Uti_idUtilisateur` int(11) DEFAULT NULL,
   `Enc_idEncadrant` int(11) DEFAULT NULL,
   `idClasse` int(11) NOT NULL,
+  `nom` varchar(254) NOT NULL,
   `nbrStag` int(11) DEFAULT NULL,
   `nbrCours` int(11) DEFAULT NULL,
-  `dateCreation` datetime DEFAULT NULL
+  `dateCreation` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `classe`
+--
+
+INSERT INTO `classe` (`Uti_idUtilisateur`, `Enc_idEncadrant`, `idClasse`, `nom`, `nbrStag`, `nbrCours`, `dateCreation`) VALUES
+(6, 3, 24, 'GL2', NULL, NULL, '2025-04-05 21:26:14'),
+(6, 3, 25, 'TerminaleA', NULL, NULL, '2025-04-06 16:02:15');
 
 -- --------------------------------------------------------
 
@@ -49,7 +58,7 @@ CREATE TABLE `cours` (
   `idCours` int(11) NOT NULL,
   `nom` varchar(254) DEFAULT NULL,
   `format` varchar(50) DEFAULT NULL,
-  `datePub` datetime DEFAULT NULL
+  `datePub` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -71,9 +80,10 @@ CREATE TABLE `encadrant` (
 --
 
 INSERT INTO `encadrant` (`idEncadrant`, `Uti_idUtilisateur`, `emailOrg`, `bio`, `profession`) VALUES
-(3, 6, 'jean.dupont@example.com', 'Développeur web passionné, expert en HTML, CSS, et JavaScript, créant des sites modernes et réactifs', 'Web designer'),
+(3, 6, 'danielzklug@gmail.com', 'Je suis un developper web', 'Développeur Java'),
 (14, 17, NULL, 'Créateur de sites web innovants, alliant esthétique et fonctionnalité pour une expérience utilisateur optimale.', 'Infographie et Web design'),
-(15, 31, NULL, NULL, NULL);
+(15, 31, NULL, NULL, NULL),
+(17, 40, 'exemple@entreprise.com', 'Je code en dur', 'Web designer');
 
 -- --------------------------------------------------------
 
@@ -83,10 +93,11 @@ INSERT INTO `encadrant` (`idEncadrant`, `Uti_idUtilisateur`, `emailOrg`, `bio`, 
 
 CREATE TABLE `message` (
   `idMessage` int(11) NOT NULL,
-  `Uti_idUtilisateur` int(11) NOT NULL,
   `idUemetteur` varchar(254) DEFAULT NULL,
-  `idUrecepteur` varchar(254) DEFAULT NULL,
-  `contenu` varchar(254) DEFAULT NULL
+  `NomUrecepteur` varchar(254) DEFAULT NULL,
+  `objet` varchar(50) NOT NULL,
+  `contenu` varchar(254) DEFAULT NULL,
+  `date_envoi` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -101,6 +112,15 @@ CREATE TABLE `notification` (
   `titre` varchar(254) DEFAULT NULL,
   `description` varchar(254) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `notification`
+--
+
+INSERT INTO `notification` (`idNotification`, `Uti_idUtilisateur`, `titre`, `description`) VALUES
+(8, 39, 'Nouvelle classe', 'Une nouvelle classe a été créée pour vous.'),
+(9, 39, 'Nouvelle classe', 'Une nouvelle classe a été créée pour vous.'),
+(10, 39, 'Nouvelle classe', 'Une nouvelle classe a été créée pour vous.');
 
 -- --------------------------------------------------------
 
@@ -125,7 +145,8 @@ CREATE TABLE `profilsocial` (
 INSERT INTO `profilsocial` (`idPsocial`, `Enc_idEncadrant`, `gitlab`, `github`, `facebook`, `instagram`, `google`) VALUES
 (2, 3, 'https://gitlab.com/jeandupont', 'https://github.com/jeandupont', 'https://facebook.com/jean.dupont', 'https://instagram.com/jeandupont', 'https://plus.google.com/jean.dupont'),
 (3, 14, NULL, NULL, NULL, NULL, NULL),
-(4, 15, NULL, NULL, NULL, NULL, NULL);
+(4, 15, NULL, NULL, NULL, NULL, NULL),
+(6, 17, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -139,15 +160,18 @@ CREATE TABLE `stagiaire` (
   `Cla_idClasse` int(11) DEFAULT NULL,
   `Uti_idUtilisateur` int(11) NOT NULL,
   `idStagiaire` int(11) NOT NULL,
-  `emailUni` varchar(254) NOT NULL
+  `emailUni` varchar(254) NOT NULL,
+  `date_inscription` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `stagiaire`
 --
 
-INSERT INTO `stagiaire` (`Cla_Uti_idUtilisateur`, `Enc_idEncadrant`, `Cla_idClasse`, `Uti_idUtilisateur`, `idStagiaire`, `emailUni`) VALUES
-(NULL, NULL, NULL, 30, 15, '');
+INSERT INTO `stagiaire` (`Cla_Uti_idUtilisateur`, `Enc_idEncadrant`, `Cla_idClasse`, `Uti_idUtilisateur`, `idStagiaire`, `emailUni`, `date_inscription`) VALUES
+(NULL, 3, 25, 38, 21, '', '2025-04-06 16:03:10'),
+(NULL, 3, 24, 39, 22, '', '2025-04-06 16:11:07'),
+(NULL, 3, 24, 41, 23, '', '2025-04-05 21:38:10');
 
 -- --------------------------------------------------------
 
@@ -174,6 +198,7 @@ CREATE TABLE `utilisateur` (
   `idUtilisateur` int(11) NOT NULL,
   `nom` varchar(254) DEFAULT NULL,
   `prenom` varchar(254) DEFAULT NULL,
+  `genre` varchar(254) DEFAULT NULL,
   `motPasse` varchar(254) DEFAULT NULL,
   `numero` varchar(254) DEFAULT NULL,
   `email` varchar(254) DEFAULT NULL,
@@ -185,11 +210,14 @@ CREATE TABLE `utilisateur` (
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `prenom`, `motPasse`, `numero`, `email`, `role`, `photo`) VALUES
-(6, 'Dupont', 'Jean', '$2y$10$O6zJna6lE5kHhLAKEf.dmuFDYXeBcDosR4WXOmFZH3ebnbfvrbZ42', '+237699699666', 'jean.dupont@example.com', 'encadrant', 'blog3.jpg'),
-(17, 'Abondo', 'Daniel', '$2y$10$UWezkI10afkXQy3Z1Jw4xOP/sPw813b9KGkHo1W8S3CSXz2ijXqT6', '+237657822189', 'danielzklug@gmail.com', 'encadrant', NULL),
-(30, 'Abondo', 'Daniel', '$2y$10$1Vc4dPW9.SZrV7mODVKdFemiT7mmG.CR4X.aAs3S8oS.ZHfCuaWcm', '+237657822189', 'danielzklug2@gmail.com', 'etudiant', NULL),
-(31, 'Eyondo', 'Bertrand', '$2y$10$hhkRDsLonoOeCHr0W7fm5e/vqMl32Gd8PvhGAk6OB0b25g9xDAe5e', '+237655832639', 'ekofranky@gmail.com', 'encadrant', NULL);
+INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `prenom`, `genre`, `motPasse`, `numero`, `email`, `role`, `photo`) VALUES
+(6, 'Dupont', 'Jean', 'Masculin', '$2y$10$O6zJna6lE5kHhLAKEf.dmuFDYXeBcDosR4WXOmFZH3ebnbfvrbZ42', '+237699699666', 'jean.dupont@example.com', 'encadrant', 'OIP (11).jpeg'),
+(17, 'Abondo', 'Daniel', 'Masculin', '$2y$10$UWezkI10afkXQy3Z1Jw4xOP/sPw813b9KGkHo1W8S3CSXz2ijXqT6', '+237657822189', 'danielzklug@gmail.com', 'encadrant', NULL),
+(31, 'Eyondo', 'Bertrand', 'Masculin', '$2y$10$hhkRDsLonoOeCHr0W7fm5e/vqMl32Gd8PvhGAk6OB0b25g9xDAe5e', '+237655832639', 'ekofranky@gmail.com', 'encadrant', NULL),
+(38, 'Justin', 'Leroy', 'M', '$2y$10$vQO7rrQBmTepoO7mnWmy0OLneTN.osmIbUXZTmFD6UJLcrVnvYWEe', '+237655832639', 'exemple@gmail.com', 'etudiant', NULL),
+(39, 'Chan', 'Manuela', 'F', '$2y$10$l8rA0ERPsc315HLiHUgZDuj9pbv5gw5uPfZn0yHCWGXvqZqUUfNJu', '+237657822189', 'manouchan@gmail.com', 'etudiant', NULL),
+(40, 'Abatsong', 'Isaac Octave', NULL, '$2y$10$IxRwNGhjGATMV8ic7ouXOOq9lGEYirhozVCvmwDFJzMemKpU.f7KC', '+237655832639', 'abatchmonster@gmail.com', 'encadrant', 'edge.jpeg'),
+(41, 'Abatsong', 'Isaac', 'M', '$2y$10$1k/jldkZZqtFhqimmtBkyukgjYJWj2s13gQkQyPb3rBhvD2wZUDaK', '+237657822189', 'abatchmonster123@gmail.com', 'etudiant', 'OIP (8).jpeg');
 
 --
 -- Index pour les tables déchargées
@@ -220,8 +248,7 @@ ALTER TABLE `encadrant`
 -- Index pour la table `message`
 --
 ALTER TABLE `message`
-  ADD PRIMARY KEY (`idMessage`),
-  ADD KEY `message_ibfk_1` (`Uti_idUtilisateur`);
+  ADD PRIMARY KEY (`idMessage`);
 
 --
 -- Index pour la table `notification`
@@ -268,7 +295,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `classe`
 --
 ALTER TABLE `classe`
-  MODIFY `idClasse` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idClasse` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `cours`
@@ -280,31 +307,31 @@ ALTER TABLE `cours`
 -- AUTO_INCREMENT pour la table `encadrant`
 --
 ALTER TABLE `encadrant`
-  MODIFY `idEncadrant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idEncadrant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `message`
 --
 ALTER TABLE `message`
-  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `idNotification` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idNotification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `profilsocial`
 --
 ALTER TABLE `profilsocial`
-  MODIFY `idPsocial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPsocial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `stagiaire`
 --
 ALTER TABLE `stagiaire`
-  MODIFY `idStagiaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idStagiaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT pour la table `tache`
@@ -316,7 +343,7 @@ ALTER TABLE `tache`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Contraintes pour les tables déchargées
@@ -339,12 +366,6 @@ ALTER TABLE `cours`
 --
 ALTER TABLE `encadrant`
   ADD CONSTRAINT `encadrant_ibfk_1` FOREIGN KEY (`Uti_idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `message`
---
-ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`Uti_idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `notification`

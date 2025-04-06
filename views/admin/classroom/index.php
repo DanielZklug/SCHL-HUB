@@ -46,7 +46,7 @@
                                                     <div><?=$classe['Nombre_Stagiaires']?></div>
                                                     <div class="mob-hidden"><?=$classe['Classe_dateCreation']?></div>
                                                     <div>
-                                                    <form hidden action="'admin/classroom/delete/<?=$classe['idClasse']?>" style="display:inline" method="post">
+                                                    <form hidden action="/schl-hub/admin/classroom/delete/<?=$classe['idClasse']?>" style="display:inline" method="post">
                                                         <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
                                                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'trash.svg'?>" alt="">
                                                             Supprimer
