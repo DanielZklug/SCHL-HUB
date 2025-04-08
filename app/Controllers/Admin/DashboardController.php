@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\Course;
 use App\Models\Message;
 use App\Models\Student;
 use App\Controllers\Controller;
@@ -31,6 +32,8 @@ class DashboardController extends Controller{
         $_SESSION['idEncUser'] = (int)$_SESSION['idEncUser']; // Conversion explicite en entier
         $posts = new Message($this->getDB());
         $limit = $posts->allMessage($_SESSION['idEncUser'], "LIMIT 3");
+
+        $support = (new Course($this->getDB()))->getCoursesAllByExtension("",$_SESSION['idEncadrant']);
         
         // $student = new Student($this->getDB());
 
@@ -39,7 +42,7 @@ class DashboardController extends Controller{
         // $maleCount = $student->countByGender('M');
         // $femaleCount = $student->countByGender('F');
 
-        return $this->viewAdmin('admin.dashboard.index',compact('post','statistics', 'limit'));
+        return $this->viewAdmin('admin.dashboard.index',compact('post','statistics', 'limit','support'));
     }
 
 }

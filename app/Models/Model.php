@@ -327,7 +327,6 @@ WHERE
                 c.nom AS Classe_nom,
                 c.Uti_idUtilisateur AS Classe_Uti_idUtilisateur,
                 c.Enc_idEncadrant AS Classe_Enc_idEncadrant,
-                c.nbrCours AS Classe_nbrCours,
                 DATE_FORMAT(c.dateCreation, '%d/%m/%Y à %Hh%imin%ss') AS Classe_dateCreation,
                 COUNT(s.idStagiaire) AS Nombre_Stagiaires
             FROM
@@ -391,8 +390,6 @@ WHERE
             SELECT 
                 c.idClasse,
                 c.nom,
-                c.nbrStag,
-                c.nbrCours,
                 DATE_FORMAT(c.dateCreation, '%d/%m/%Y à %Hh%imin%ss') AS dateCreation
             FROM 
                 classe c

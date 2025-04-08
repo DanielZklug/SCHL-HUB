@@ -24,7 +24,7 @@ class SupportController extends Controller{
         if (!$post) {
             throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idEncUser]");
         }
-        $support = (new Course($this->getDB()))->getCoursesByExtension("",$_SESSION['idEncadrant']);
+        $support = (new Course($this->getDB()))->getCoursesByExtension("",$_SESSION['idEncadrant'],);
         $supportPdf = (new Course($this->getDB()))->getCoursesByExtension("pdf",$_SESSION['idEncadrant']);
         $supportDocx = (new Course($this->getDB()))->getCoursesByExtension("docx",$_SESSION['idEncadrant']);
         $supportPptx = (new Course($this->getDB()))->getCoursesByExtension("pptx",$_SESSION['idEncadrant']);

@@ -27,7 +27,7 @@ class Course extends Model{
         try {
             // Construire la requête de base avec une jointure pour récupérer le nom de la classe
             $query = "
-                SELECT c.nom, c.idCours ,DATE_FORMAT(c.datePub, '%d/%m/%Y à %Hh%imin%ss') AS datePub, cl.nom AS class_name
+                SELECT c.nom, c.idCours, DATE_FORMAT(c.datePub, '%d/%m/%Y à %Hh%imin%ss') AS datePub, cl.nom AS class_name
                 FROM {$this->table} c
                 JOIN classe cl ON c.Cla_idClasse = cl.idClasse
                 WHERE c.Enc_idEncadrant = ?
@@ -41,6 +41,46 @@ class Course extends Model{
                 $params[] = $extension;
             }
     
+            // Préparer et exécuter la requête
+            $stmt = $this->db->getPDO()->prepare($query);
+            $stmt->execute($params);
+    
+            // Retourner les résultats sous forme de tableau associatif
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            // Journaliser l'erreur pour le débogage
+            error_log("Erreur lors de la récupération des cours : " . $e->getMessage());
+            return [];
+        }
+    }
+    public function getCoursesAllByExtension(string $extension = null, int $idEncadrant): array {
+        try {
+            // Construire la requête de base avec une jointure pour récupérer le nom de la classe
+            $query = "
+                SELECT c.nom, c.idCours, DATE_FORMAT(c.datePub, '%m/%Y à %Hh%imin%ss') AS date,CASE DAYNAME(c.datePub)
+                WHEN 'Sunday' THEN 'Dimanche'
+                WHEN 'Monday' THEN 'Lundi'
+                WHEN 'Tuesday' THEN 'Mardi'
+                WHEN 'Wednesday' THEN 'Mercredi'
+                WHEN 'Thursday' THEN 'Jeudi'
+                WHEN 'Friday' THEN 'Vendredi'
+                WHEN 'Saturday' THEN 'Samedi'
+            END AS jour  , DATE_FORMAT(c.datePub, '%Hh%imin') AS Heure, cl.nom AS class_name
+                FROM {$this->table} c
+                JOIN classe cl ON c.Cla_idClasse = cl.idClasse
+                WHERE c.Enc_idEncadrant = ?
+                ORDER BY c.idCours DESC
+                LIMIT 6
+            ";
+    
+            // Ajouter la condition pour l'extension si elle est spécifiée
+            $params = [$idEncadrant];
+
+            if ($extension) {
+                $query .= " AND c.extension = ?";
+                $params[] = $extension;
+            }
+
             // Préparer et exécuter la requête
             $stmt = $this->db->getPDO()->prepare($query);
             $stmt->execute($params);

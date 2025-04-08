@@ -1,6 +1,5 @@
 <?php $title = "Tableau de bord";
-$_SESSION['idEncadrant'] = $params['post']->idEncadrant;
-?>
+$_SESSION['idEncadrant'] = $params['post']->idEncadrant;?>
 
 <div class="dashboard-content">
     <div class="dashboard-main-content">
@@ -46,27 +45,19 @@ $_SESSION['idEncadrant'] = $params['post']->idEncadrant;
                 <div class="module-header">
                     <h3 class="module-heading">Cours</h3>
                     <div class="module-filters">
-                        <div data-hover="" data-delay="0" class="module-dropdown w-dropdown">
-                            <div class="dropdown-toggle w-dropdown-toggle">
-                                <div class="filter-dropdown-icon w-icon-dropdown-toggle"></div>
-                                <div>Today</div>
-                            </div>
-                            <nav class="filter-dropdown-3 w-dropdown-list">
-                                <a href="#" class="filter-option w-dropdown-link">Last Week</a>
-                                <a href="#" class="filter-option w-dropdown-link">This Month</a>
-                            </nav>
-                        </div>
+                        <a href="support" class="module-button add w-button">+</a>
                     </div>
                 </div>
                 <div class="module-main">
                     <div class="w-layout-grid schedule-grid">
-                        <div class="schedue-time">
-                            <div>9 AM</div>
-                        </div>
-                        <div class="schedule-div current">
-                            <div>Cours de python</div>
-                        </div>
-                        <div id="w-node-_106a5750-9e07-9a9c-ad64-eca7a9e20770-20776f55" class="schedule-div blank"></div>
+                       <?php foreach($params['support'] as $support) : ?>
+                            <div class="schedue-time">
+                                <div><?=$support['Heure']?></div>
+                            </div>
+                            <div title="<?=$support['jour']." ".$support['date']?>" class="schedule-div current">
+                                <div><?=$support['nom']?></div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -74,7 +65,7 @@ $_SESSION['idEncadrant'] = $params['post']->idEncadrant;
                 <div class="module-header">
                     <h3 class="module-heading">Tâches</h3>
                     <div class="module-filters">
-                        <a href="/tasks" class="module-button add w-button">+</a>
+                        <a href="tasks" class="module-button add w-button">+</a>
                     </div>
                 </div>
                 <div class="module-main">
