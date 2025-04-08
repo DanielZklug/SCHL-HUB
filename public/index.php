@@ -42,6 +42,7 @@ $router->post('admin/classroom/:id','App\Controllers\Admin\ClassController@publi
 $router->post('admin/classroom/delete/:id','App\Controllers\Admin\ClassController@delete');
 
 $router->get('admin/support','App\Controllers\Admin\SupportController@index');
+$router->post('admin/support/delete/:id','App\Controllers\Admin\SupportController@delete');
 
 $router->get('admin/search','App\Controllers\Admin\SearchController@index');
 

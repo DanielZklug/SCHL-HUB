@@ -1,660 +1,92 @@
-<?php $title="Recherches"; 
-var_dump($params['query']);var_dump($params['results']);
-?>
+<?php $title="Recherches";?>
 <div class="dashboard-main-content">
     <div class="w-container">
         <h1 class="page-title">Résutats de recherche</h1>
-        <div class="module">
-            <div class="main-content search-result-items">
-                <div>
-                    <a href="/sample-result">You &#x27;re viewing sample results.</a>
-                    <div><?=$params['results'][0]['date_created']?></div>
-                    <p>
-                        <span>Cras</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span></span>
-                        <span>velit</span>
-                        <span></span>
-                        <span>id</span>
-                        <span></span>
-                        <span>nulla</span>
-                        <span></span>
-                        <span>tempus</span>
-                        <span></span>
-                        <span>dictum</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span></span>
-                        <span>eu</span>
-                        <span></span>
-                        <span>nisi</span>
-                        <span>. </span>
-                        <span>Donec</span>
-                        <span></span>
-                        <span>eu</span>
-                        <span></span>
-                        <span>felis</span>
-                        <span></span>
-                        <span>at</span>
-                        <span></span>
-                        <span>libero</span>
-                        <span></span>
-                        <span>consequat</span>
-                        <span></span>
-                        <span>sagittis</span>
-                        <span></span>
-                        <span>a</span>
-                        <span></span>
-                        <span>et</span>
-                        <span></span>
-                        <span>urna</span>
-                        <span>. </span>
-                        <span>Vestibulum</span>
-                        <span></span>
-                        <span>ante</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>primis</span>
-                        <span></span>
-                        <span>in</span>
-                        <span></span>
-                        <span>faucibus</span>
-                        <span></span>
-                        <span>orci</span>
-                        <span></span>
-                        <span>luctus</span>
-                        <span></span>
-                        <span>et</span>
-                        <span></span>
-                        <span>ultrices</span>
-                        <span></span>
-                        <span>posuere</span>
-                        <span></span>
-                        <span>cubilia</span>
-                        <span></span>
-                        <span>curae</span>
-                        <span>. </span>
-                        <span>Vivamus</span>
-                        <span></span>
-                        <span>vit</span>
-                        <span>…</span>
-                    </p>
+        <div class="container">
+            <div class="module">
+            <div class="module-main">
+                <div class="grid-section">
+                    <div class="customer-row head">
+                        <div class="checkbox-grid w-form">
+                            <form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="60259d093669095e053196cc" data-wf-element-id="8c95eb69-e008-2e41-a0e9-8b0b9d02bfa2">
+                                <label data-w-id="8c95eb69-e008-2e41-a0e9-8b0b9d02bfa3" class="w-checkbox checkbox-field-simple">
+                                    <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
+                                    <input  type="checkbox" id="checkbox-8" name="checkbox-8" data-name="Checkbox 8" style="opacity:0;position:absolute;z-index:-1"/>
+                                    <!-- <span for="checkbox-8" class="hidden-checkbox-label w-form-label">Fix CSS styling on mobile</span> -->
+                                </label>
+                            </form>
+                        </div>
+                        <h4 class="grid-header">Noms</h4>
+                        <h4 class="grid-header"></h4>
+                        <h4 class="grid-header mob-hidden">Date</h4>
+                        <h4 class="grid-header mob-hidden">Actions</h4>
+                    </div>
+                    <div class="w-dyn-list">
+                        <div role="list" class="w-dyn-items">
+                            <div class="w-dyn-list">
+                                <div role="list" class="w-dyn-items">
+                                    <div role="listitem" class="w-dyn-item">
+                                        <div class="full-customer-row">
+                                            <div class="checkbox-grid w-form">
+                                                <form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="60259d093669095e053196cc" data-wf-element-id="8c95eb69-e008-2e41-a0e9-8b0b9d02bfba">
+                                                    <label data-w-id="8c95eb69-e008-2e41-a0e9-8b0b9d02bfbb" class="w-checkbox checkbox-field-simple">
+                                                        <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
+                                                        <input checked type="checkbox" id="checkbox-8" name="checkbox-8" data-name="Checkbox 8" style="opacity:0;position:absolute;z-index:-1"/>
+                                                        <!-- <span for="checkbox-8" class="hidden-checkbox-label w-form-label">Fix CSS styling on mobile</span> -->
+                                                    </label>
+                                                </form>
+                                            </div>
+                                            <?php
+                                                if(count($params['results']) == 2){
+                                                    ?>
+                                                        <a href="/schl-hub/admin/classroom/<?=$params['results'][0]['idClasse']?>" class="customer-element w-inline-block">
+                                                            <div class="grid-number-block">
+                                                                <div><?=$params['results'][0]['class_name']?></div>
+                                                            </div>
+                                                            <div></div>
+                                                            <div class="mob-hidden"><?=$params['results'][0]['class_creation_date']?></div>
+                                                            <div>
+                                                                <form hidden action="/schl-hub/admin/classroom/delete/<?=$params['results'][0]['idClasse']?>" style="display:inline" method="post">
+                                                                    <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
+                                                                        <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'trash.svg'?>" alt="">
+                                                                        Supprimer
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </a>
+                                                    <?php
+                                                }else if (count($params['results']) == 1){
+                                                    ?>
+                                                        <a href="/schl-hub/admin/student/<?=$params['results'][0]['idUtilisateur']?>" class="customer-element w-inline-block">
+                                                            <div class="grid-number-block">
+                                                                <div><?=$params['results'][0]['stagiaire_name']?></div>
+                                                            </div>
+                                                            <div></div>
+                                                            <div class="mob-hidden"><?=$params['results'][0]['date_inscription']?></div>
+                                                            <div>
+                                                                <form hidden action="/schl-hub/admin/classroom/delete/<?=$params['results'][0]['idUtilisateur']?>" style="display:inline" method="post">
+                                                                    <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
+                                                                        <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'trash.svg'?>" alt="">
+                                                                        Supprimer
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </a>
+                                                    <?php
+                                                }else if(empty($params['results'])){
+                                                    ?>
+                                                        <h1 class="page-title">Aucun résultat trouvé</h1>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <a href="/sample-result">Add CMS or Business Hosting and index your site to see real search results!</a>
-                    <div>dawn-dashboard.webflow.io/sample-result</div>
-                    <p>
-                        <span>Praesent</span>
-                        <span></span>
-                        <span>nec</span>
-                        <span></span>
-                        <span>orci</span>
-                        <span></span>
-                        <span>at</span>
-                        <span></span>
-                        <span>nulla</span>
-                        <span></span>
-                        <span>consequat</span>
-                        <span></span>
-                        <span>congue</span>
-                        <span></span>
-                        <span>ut</span>
-                        <span></span>
-                        <span>non</span>
-                        <span></span>
-                        <span>arcu</span>
-                        <span>. </span>
-                        <span>Sed</span>
-                        <span></span>
-                        <span>auctor</span>
-                        <span></span>
-                        <span>augue</span>
-                        <span></span>
-                        <span>id</span>
-                        <span></span>
-                        <span>tellus</span>
-                        <span></span>
-                        <span>lacinia</span>
-                        <span>, </span>
-                        <span>nec</span>
-                        <span></span>
-                        <span>ultricies</span>
-                        <span></span>
-                        <span>est</span>
-                        <span></span>
-                        <span>ferment</span>
-                        <span>…</span>
-                    </p>
-                </div>
-                <div>
-                    <a href="/sample-result">Want more from search? Add your idea to our Wishlist</a>
-                    <div>dawn-dashboard.webflow.io/sample-result</div>
-                    <p>
-                        <span>Lorem</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>dolor</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span>, </span>
-                        <span>consectetur</span>
-                        <span></span>
-                        <span>adipiscing</span>
-                        <span></span>
-                        <span>elit</span>
-                        <span>. </span>
-                        <span>Praesent</span>
-                        <span></span>
-                        <span>nec</span>
-                        <span></span>
-                        <span>orci</span>
-                        <span></span>
-                        <span>at</span>
-                        <span></span>
-                        <span>nulla</span>
-                        <span></span>
-                        <span>consequat</span>
-                        <span></span>
-                        <span>congue</span>
-                        <span></span>
-                        <span>ut</span>
-                        <span></span>
-                        <span>non</span>
-                        <span></span>
-                        <span>arcu</span>
-                        <span>. </span>
-                        <span>Vestibulum</span>
-                        <span></span>
-                        <span>ante</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>primis</span>
-                        <span></span>
-                        <span>in</span>
-                        <span></span>
-                        <span>faucibus</span>
-                        <span></span>
-                        <span>orci</span>
-                        <span></span>
-                        <span>luctus</span>
-                        <span></span>
-                        <span>et</span>
-                        <span></span>
-                        <span>ultrices</span>
-                        <span></span>
-                        <span>posuere</span>
-                        <span></span>
-                        <span>cubilia</span>
-                        <span>…</span>
-                    </p>
-                </div>
-                <div>
-                    <a href="/sample-result">Define a search image in Page Settings to add some imagery to results</a>
-                    <div>dawn-dashboard.webflow.io/sample-result</div>
-                    <p>
-                        <span>Cras</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span></span>
-                        <span>velit</span>
-                        <span></span>
-                        <span>id</span>
-                        <span></span>
-                        <span>nulla</span>
-                        <span></span>
-                        <span>tempus</span>
-                        <span></span>
-                        <span>dictum</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span></span>
-                        <span>eu</span>
-                        <span></span>
-                        <span>nisi</span>
-                        <span>. </span>
-                        <span>Maecenas</span>
-                        <span></span>
-                        <span>euismod</span>
-                        <span></span>
-                        <span>sapien</span>
-                        <span></span>
-                        <span>eu</span>
-                        <span></span>
-                        <span>arcu</span>
-                        <span></span>
-                        <span>convallis</span>
-                        <span>, </span>
-                        <span>vitae</span>
-                        <span></span>
-                        <span>vest</span>
-                        <span>…</span>
-                    </p>
-                </div>
-                <div>
-                    <a href="/sample-result">Search snippets too long? Limit their character count in the Settings panel</a>
-                    <div>dawn-dashboard.webflow.io/sample-result</div>
-                    <p>
-                        <span>Cras</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span></span>
-                        <span>velit</span>
-                        <span></span>
-                        <span>id</span>
-                        <span></span>
-                        <span>nulla</span>
-                        <span></span>
-                        <span>tempus</span>
-                        <span></span>
-                        <span>dictum</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span></span>
-                        <span>eu</span>
-                        <span></span>
-                        <span>nisi</span>
-                        <span>. </span>
-                        <span>Maecenas</span>
-                        <span></span>
-                        <span>euismod</span>
-                        <span></span>
-                        <span>sapien</span>
-                        <span></span>
-                        <span>eu</span>
-                        <span></span>
-                        <span>arcu</span>
-                        <span></span>
-                        <span>convallis</span>
-                        <span>, </span>
-                        <span>vitae</span>
-                        <span></span>
-                        <span>vestibulum</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>maximus</span>
-                        <span>. </span>
-                        <span>Cras</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span></span>
-                        <span>velit</span>
-                        <span></span>
-                        <span>id</span>
-                        <span></span>
-                        <span>nulla</span>
-                        <span></span>
-                        <span>tempus</span>
-                        <span>…</span>
-                    </p>
-                </div>
-                <div>
-                    <a href="/sample-result">You can exclude any page from site search in Page Settings</a>
-                    <div>dawn-dashboard.webflow.io/sample-result</div>
-                    <p>
-                        <span>Sed</span>
-                        <span></span>
-                        <span>auctor</span>
-                        <span></span>
-                        <span>augue</span>
-                        <span></span>
-                        <span>id</span>
-                        <span></span>
-                        <span>tellus</span>
-                        <span></span>
-                        <span>lacinia</span>
-                        <span>, </span>
-                        <span>nec</span>
-                        <span></span>
-                        <span>ultricies</span>
-                        <span></span>
-                        <span>est</span>
-                        <span></span>
-                        <span>fermentum</span>
-                        <span>. </span>
-                        <span>Integer</span>
-                        <span></span>
-                        <span>rutrum</span>
-                        <span></span>
-                        <span>ante</span>
-                        <span></span>
-                        <span>et</span>
-                        <span></span>
-                        <span>nunc</span>
-                        <span></span>
-                        <span>venenatis</span>
-                        <span>, </span>
-                        <span>id</span>
-                        <span></span>
-                        <span>ultricies</span>
-                        <span></span>
-                        <span>risus</span>
-                        <span></span>
-                        <span>ultricies</span>
-                        <span>. </span>
-                        <span>Lorem</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>dolor</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span>, </span>
-                        <span>consectetur</span>
-                        <span></span>
-                        <span>adipiscing</span>
-                        <span></span>
-                        <span>elit</span>
-                        <span>. </span>
-                        <span>Lorem</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>dolor</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span>, </span>
-                        <span>consectetur</span>
-                        <span></span>
-                        <span>adipiscing</span>
-                        <span></span>
-                        <span>elit</span>
-                        <span>. </span>
-                        <span>Vestibul</span>
-                        <span>…</span>
-                    </p>
-                </div>
-                <div>
-                    <a href="/sample-result">Components and Collection Lists are excluded from site search by default</a>
-                    <div>dawn-dashboard.webflow.io/sample-result</div>
-                    <p>
-                        <span>Praesent</span>
-                        <span></span>
-                        <span>nec</span>
-                        <span></span>
-                        <span>orci</span>
-                        <span></span>
-                        <span>at</span>
-                        <span></span>
-                        <span>nulla</span>
-                        <span></span>
-                        <span>consequat</span>
-                        <span></span>
-                        <span>congue</span>
-                        <span></span>
-                        <span>ut</span>
-                        <span></span>
-                        <span>non</span>
-                        <span></span>
-                        <span>arcu</span>
-                        <span>. </span>
-                        <span>Cras</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span></span>
-                        <span>velit</span>
-                        <span></span>
-                        <span>id</span>
-                        <span></span>
-                        <span>nulla</span>
-                        <span></span>
-                        <span>tempus</span>
-                        <span></span>
-                        <span>dictum</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span></span>
-                        <span>eu</span>
-                        <span></span>
-                        <span>nisi</span>
-                        <span>. </span>
-                        <span>Praesent</span>
-                        <span></span>
-                        <span>nec</span>
-                        <span></span>
-                        <span>orci</span>
-                        <span></span>
-                        <span>at</span>
-                        <span></span>
-                        <span>nulla</span>
-                        <span></span>
-                        <span>consequat</span>
-                        <span></span>
-                        <span>congue</span>
-                        <span></span>
-                        <span>ut</span>
-                        <span></span>
-                        <span>non</span>
-                        <span></span>
-                        <span>arcu</span>
-                        <span>.</span>
-                        <span>…</span>
-                    </p>
-                </div>
-                <div>
-                    <a href="/sample-result">Have a super-secret style guide on your site? Exclude it in Page Settings</a>
-                    <div>dawn-dashboard.webflow.io/sample-result</div>
-                    <p>
-                        <span>Vestibulum</span>
-                        <span></span>
-                        <span>ante</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>primis</span>
-                        <span></span>
-                        <span>in</span>
-                        <span></span>
-                        <span>faucibus</span>
-                        <span></span>
-                        <span>orci</span>
-                        <span></span>
-                        <span>luctus</span>
-                        <span></span>
-                        <span>et</span>
-                        <span></span>
-                        <span>ultrices</span>
-                        <span></span>
-                        <span>posuere</span>
-                        <span></span>
-                        <span>cubilia</span>
-                        <span></span>
-                        <span>curae</span>
-                        <span>. </span>
-                        <span>Maecenas</span>
-                        <span></span>
-                        <span>euismod</span>
-                        <span></span>
-                        <span>sapien</span>
-                        <span></span>
-                        <span>eu</span>
-                        <span></span>
-                        <span>arcu</span>
-                        <span></span>
-                        <span>convallis</span>
-                        <span>, </span>
-                        <span>vitae</span>
-                        <span></span>
-                        <span>vestibulum</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>maximus</span>
-                        <span>. </span>
-                        <span>Praesent</span>
-                        <span></span>
-                        <span>nec</span>
-                        <span></span>
-                        <span>orci</span>
-                        <span></span>
-                        <span>at</span>
-                        <span></span>
-                        <span>nulla</span>
-                        <span></span>
-                        <span>consequat</span>
-                        <span></span>
-                        <span>con</span>
-                        <span>…</span>
-                    </p>
-                </div>
-                <div>
-                    <a href="/sample-result">Highlight search terms in results in the Settings tab</a>
-                    <div>dawn-dashboard.webflow.io/sample-result</div>
-                    <p>
-                        <span>Integer</span>
-                        <span></span>
-                        <span>rutrum</span>
-                        <span></span>
-                        <span>ante</span>
-                        <span></span>
-                        <span>et</span>
-                        <span></span>
-                        <span>nunc</span>
-                        <span></span>
-                        <span>venenatis</span>
-                        <span>, </span>
-                        <span>id</span>
-                        <span></span>
-                        <span>ultricies</span>
-                        <span></span>
-                        <span>risus</span>
-                        <span></span>
-                        <span>ultricies</span>
-                        <span>. </span>
-                        <span>Integer</span>
-                        <span></span>
-                        <span>rutrum</span>
-                        <span></span>
-                        <span>ante</span>
-                        <span></span>
-                        <span>et</span>
-                        <span></span>
-                        <span>nunc</span>
-                        <span></span>
-                        <span>venenatis</span>
-                        <span>, </span>
-                        <span>id</span>
-                        <span></span>
-                        <span>ultricies</span>
-                        <span></span>
-                        <span>risus</span>
-                        <span></span>
-                        <span>ultricies</span>
-                        <span>. </span>
-                        <span>D</span>
-                        <span>…</span>
-                    </p>
-                </div>
-                <div>
-                    <a href="/sample-result">Pro tip: Tell people what they can search for in your search input &#x27;s placeholder text!</a>
-                    <div>dawn-dashboard.webflow.io/sample-result</div>
-                    <p>
-                        <span>Lorem</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>dolor</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span>, </span>
-                        <span>consectetur</span>
-                        <span></span>
-                        <span>adipiscing</span>
-                        <span></span>
-                        <span>elit</span>
-                        <span>. </span>
-                        <span>Lorem</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>dolor</span>
-                        <span></span>
-                        <span>sit</span>
-                        <span></span>
-                        <span>amet</span>
-                        <span>, </span>
-                        <span>consectetur</span>
-                        <span></span>
-                        <span>adipiscing</span>
-                        <span></span>
-                        <span>elit</span>
-                        <span>. </span>
-                        <span>Fusce</span>
-                        <span></span>
-                        <span>aliquet</span>
-                        <span></span>
-                        <span>turpis</span>
-                        <span></span>
-                        <span>at</span>
-                        <span></span>
-                        <span>orci</span>
-                        <span></span>
-                        <span>bibendum</span>
-                        <span>, </span>
-                        <span>non</span>
-                        <span></span>
-                        <span>convallis</span>
-                        <span></span>
-                        <span>justo</span>
-                        <span></span>
-                        <span>tempor</span>
-                        <span>. </span>
-                        <span>Vestibulum</span>
-                        <span></span>
-                        <span>ante</span>
-                        <span></span>
-                        <span>ipsum</span>
-                        <span></span>
-                        <span>primis</span>
-                        <span></span>
-                        <span>in</span>
-                        <span></span>
-                        <span>faucibus</span>
-                        <span></span>
-                        <span>orci</span>
-                        <span></span>
-                        <span>luctus</span>
-                        <span></span>
-                        <span>et</span>
-                        <span></span>
-                        <span>ultrices</span>
-                        <span></span>
-                        <span>posuere</span>
-                        <span></span>
-                        <span>cu</span>
-                        <span>…</span>
-                    </p>
-                </div>
+            </div>
             </div>
         </div>
     </div>

@@ -1,4 +1,6 @@
-<?php $title = "Tableau de bord";?>
+<?php $title = "Tableau de bord";
+$_SESSION['idEncadrant'] = $params['post']->idEncadrant;
+?>
 
 <div class="dashboard-content">
     <div class="dashboard-main-content">

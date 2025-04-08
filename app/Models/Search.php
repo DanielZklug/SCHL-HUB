@@ -18,17 +18,27 @@ class Search extends Model {
         }
     
         $sql = "
-        SELECT  
-            cl.nom AS class_name, 
-            DATE_FORMAT(cl.dateCreation, '%d/%m/%Y à %Hh%imin%ss') AS date_created
-        FROM classe cl
-        LEFT JOIN encadrant e ON cl.Enc_idEncadrant = e.idEncadrant
-        WHERE e.idEncadrant = :encadrantId
-        AND 
-            (cl.nom LIKE :query OR
-            cl.dateCreation LIKE :query)
-        ";
-    
+       SELECT 
+        cl.idClasse, 
+        cl.nom AS class_name, 
+        DATE_FORMAT(cl.dateCreation, '%d/%m/%Y à %Hh%imin%ss') AS class_creation_date,
+        u.idUtilisateur,
+        CONCAT(u.nom, ' ', u.prenom) AS stagiaire_name,
+        u.email,
+        DATE_FORMAT(st.date_inscription, '%d/%m/%Y à %Hh%imin%ss') AS date_inscription
+        FROM 
+            classe cl
+        JOIN 
+            stagiaire st ON cl.idClasse = st.Cla_idClasse
+        JOIN 
+            utilisateur u ON st.Uti_idUtilisateur = u.idUtilisateur
+        WHERE 
+            cl.Enc_idEncadrant = :encadrantId
+        AND (
+            cl.nom LIKE :query OR
+            u.email LIKE :query OR
+            CONCAT(u.nom, ' ', u.prenom) LIKE :query
+        )";
         $stmt = $this->db->getPDO()->prepare($sql);
     
         try {

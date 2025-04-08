@@ -25,7 +25,6 @@ if (isset($_SESSION['error_message'])) {
     afficherMessage('erreur', $_SESSION['error_message']);
     unset($_SESSION['error_message']);
 }
-
 ?>
 <!DOCTYPE html>
 <!-- This site was created in Webflow. https://webflow.com -->

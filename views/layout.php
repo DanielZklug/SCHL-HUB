@@ -1,5 +1,5 @@
 <?php
-// Fonction pour afficher un message
+// Fonction pour afficher un messa
 function afficherMessage($type, $message) {
     $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8'); // Échapper les guillemets
     $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); // Échapper les guillemets

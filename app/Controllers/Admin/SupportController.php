@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Models\Course;
 use App\Models\Post;
 use App\Models\Student;
 use App\Controllers\Controller;
@@ -23,8 +24,29 @@ class SupportController extends Controller{
         if (!$post) {
             throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idEncUser]");
         }
+        $support = (new Course($this->getDB()))->getCoursesByExtension("",$_SESSION['idEncadrant']);
+        $supportPdf = (new Course($this->getDB()))->getCoursesByExtension("pdf",$_SESSION['idEncadrant']);
+        $supportDocx = (new Course($this->getDB()))->getCoursesByExtension("docx",$_SESSION['idEncadrant']);
+        $supportPptx = (new Course($this->getDB()))->getCoursesByExtension("pptx",$_SESSION['idEncadrant']);
         
-        return $this->viewAdmin('admin.support.index',compact('post'));
+        return $this->viewAdmin('admin.support.index',compact('post','support', 'supportPdf','supportDocx', 'supportPptx'));
     }
+    public function delete($id) {
+        $this->isAdmin();
 
+        if (!is_numeric($id) || floor($id) != $id) {
+            throw new NotFoundException("L'identifiant du support doit être un entier.");
+        }
+
+        $course = new Course($this->getDB());
+        $result = $course->delete($id);
+
+        if ($result) {
+            $_SESSION['success_message'] = "Support supprimé avec succès.";
+        } else {
+            $_SESSION['error_message'] = "Erreur lors de la suppression du support.";
+        }
+
+        return header("Location: /schl-hub/admin/support");
+    }
 }
