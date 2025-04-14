@@ -209,7 +209,7 @@ if (isset($_SESSION['error_message'])) {
                                 <a href="/pages/privacy-policy" class="profile-menu-link w-nav-link">Privacy Policy</a>
                                 <a href="/template-resources/licenses" class="profile-menu-link w-nav-link">Licenses</a>
                                 <div class="menu-divider"></div> -->
-                                <a href="/schl-hub/logout" class="profile-menu-link w-nav-link">Se déconnecter</a>
+                                <a href="/schl-hub/logoutAdmin" class="profile-menu-link w-nav-link">Se déconnecter</a>
                             </nav>
                         </div>
                     </div>

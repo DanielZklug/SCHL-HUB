@@ -95,19 +95,25 @@ if (isset($_SESSION['error_message'])) {
                                 <div class="sidebar-link-text">Cours</div>
                             </a>
                             <link rel="prefetch" href="/"/>
-                            <a href="#" class="sidebar-link w-inline-block">
+                            <a href="/schl-hub/student/tasks" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1038967373831278c_Note.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Tâches</div>
                             </a>
                             <link rel="prefetch" href="/tasks"/>
-                            <a href="#" class="sidebar-link w-inline-block">
+                            <a href="/schl-hub/student/emails" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a108f00aa2bc888ea5_EnvelopeOpen.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Emails</div>
                             </a>
                             <link rel="prefetch" href="/emails"/>
-                            <a href="#" class="sidebar-link w-inline-block">
+                            <a href="/schl-hub/student/calendar" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0a91183f9fceef7b0_CalendarBlank.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Calendrier</div>
+                            </a>
+                        </div>
+                        <div class="sidebar-menu-section bottom-divider">
+                            <a href="#" class="sidebar-link w-inline-block">
+                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'monitor-play.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
+                                <div class="sidebar-link-text">Moniteur</div>
                             </a>
                         </div>
                         <!-- <div class="sidebar-menu-section bottom-divider">
@@ -154,7 +160,7 @@ if (isset($_SESSION['error_message'])) {
                             </div>
                             <nav class="nav-dropdown-list w-dropdown-list">
                                 <div class="module heavy-shadow">
-                                    <div class="module-main">
+                                    <div id="module-main" class="module-main">
                                         <div class="notificaiton-element">
                                             <div class="notification-top">
                                                 <div class="notification-dot"></div>
@@ -196,7 +202,7 @@ if (isset($_SESSION['error_message'])) {
                                 <a href="/pages/privacy-policy" class="profile-menu-link w-nav-link">Privacy Policy</a>
                                 <a href="/template-resources/licenses" class="profile-menu-link w-nav-link">Licenses</a>
                                 <div class="menu-divider"></div> -->
-                                <a href="/pages/sign-in" class="profile-menu-link w-nav-link">Se déconnecter</a>
+                                <a href="/schl-hub/logoutUser" class="profile-menu-link w-nav-link">Se déconnecter</a>
                             </nav>
                         </div>
                     </div>
@@ -213,15 +219,15 @@ if (isset($_SESSION['error_message'])) {
                         <div>+</div>
                     </div>
                     <nav class="add-menu w-dropdown-list">
-                        <a href="/tasks" class="add-link w-inline-block">
+                        <a href="/schl-hub/student/tasks" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1038967373831278c_Note.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
-                            <div class="sidebar-link-text">Nouvelle Tâche</div>
+                            <div class="sidebar-link-text">Voir Tâche</div>
                         </a>
-                        <a href="/tasks" class="add-link w-inline-block">
+                        <a href="#"  onclick="showPopup()" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a108f00aa2bc888ea5_EnvelopeOpen.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                             <div class="sidebar-link-text">Nouveau Message</div>
                         </a>
-                        <a href="/tasks" class="add-link w-inline-block">
+                        <a href="/schl-hub/student/calendar" class="add-link w-inline-block">
                             <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0a91183f9fceef7b0_CalendarBlank.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                             <div class="sidebar-link-text">Nouvel Evenement</div>
                         </a>
@@ -230,6 +236,83 @@ if (isset($_SESSION['error_message'])) {
             </div>
         </div>
     </body>
+    <!-- Popup Form for Sending Letter -->
+    <div id="popupForm" class="popup-form" style="display: none;">
+        <div class="popup-content">
+            <form action="admin/student/:id" method="post">
+                <label for="Subscriber-Email" class="field-label">Envoyer à</label>
+                <input type="text" class="simple-input no-margin w-input" maxlength="20" name="recever_name" placeholder="Nom de l'encadrant" id="Subscriber-Email" required/>
+                <div class="spacer _16"></div>
+                <input type="email" class="simple-input no-margin w-input" maxlength="50" name="recever_email" hidden placeholder="exemple@gmail.com" id="Subscriber-Email" required/>
+                <div class="spacer _16"></div>
+                <label for="title-Email" class="field-label">Objet</label>
+                <input type="text" class="simple-input no-margin w-input" maxlength="50" name="content-title" placeholder="Objet de la lettre" id="title-Email" required/>
+                <div class="spacer _16"></div>
+                <label for="bio_encadrant" class="field-label">Contenu</label>
+                <textarea name="content" maxlength="500" class="simple-input no-margin w-input" pattern=".{1,}" style="resize : vertical" rows="10" placeholder="Veuillez entrer un message. max 500 caractères" required></textarea>
+                <div class="spacer _16"></div>
+                <input type="submit" value="Envoyer" data-wait="Veuillez patienter..." class="button no-margin w-button"/>
+            </form>
+        </div>
+    </div>
+    <style>
+    #module-main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    ._50-width {
+        width: 50%; /* 2 éléments par rangée */
+        box-sizing: border-box; /* Pour inclure padding et border dans la largeur */
+    }
+
+    .field-label {
+        font-weight: bold; /* Met en gras les étiquettes */
+    }
+
+    /* Styles pour les écrans plus petits */
+    @media (max-width: 600px) {
+        ._50-width {
+            width: 100%; /* 1 élément par rangée sur les petits écrans */
+        }
+    }
+
+    .popup-form {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000; /* Ensure the popup is on top */
+    }
+
+    .popup-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        width: 300px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<script>
+    function showPopup() {
+        document.getElementById('popupForm').style.display = 'flex';
+    }
+
+    function hidePopup() {
+        document.getElementById('popupForm').style.display = 'none';
+    }
+    // Fermer le pop-up en cliquant en dehors de celui-ci
+    window.onclick = function(event) {
+        if (event.target === document.getElementById('popupForm')) {
+            hidePopup();
+        }
+    }
+</script>
    <script title="adminjquery" defer>
     /*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */
 !function(e, t) {

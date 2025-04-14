@@ -50,7 +50,8 @@ $router->get('admin/profile','App\Controllers\Admin\ProfileController@index');
 $router->post('admin/profile','App\Controllers\Admin\ProfileController@updateProfile');
 
 $router->get('authentification','App\Controllers\UserController@login');
-$router->get('logout','App\Controllers\UserController@logout');
+$router->get('logoutAdmin','App\Controllers\UserController@logoutAdmin');
+$router->get('logoutUser','App\Controllers\UserController@logoutUser');
 $router->post('authentification','App\Controllers\UserController@loginPost');
 
 $router->get('student/dashboard','App\Controllers\Student\DashboardController@index');
@@ -60,7 +61,13 @@ $router->post('student/profile','App\Controllers\Student\ProfileController@updat
 
 $router->get('student/settings','App\Controllers\Student\SetController@index');
 
+$router->get('student/tasks','App\Controllers\Student\TaskController@index');
 
+$router->get('student/emails','App\Controllers\Student\LetterController@index');
+$router->get('student/emails/:id','App\Controllers\Student\LetterController@show');
+$router->post('student/emails/delete/:id','App\Controllers\Student\LetterController@delete');
+
+$router->get('student/calendar','App\Controllers\Student\CalendarController@index');
 try{
     $router->run();
 }catch(NotFoundException $e){

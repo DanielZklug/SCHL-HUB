@@ -102,6 +102,7 @@ abstract class Model{
             SELECT
     -- Informations sur le stagiaire
     s.idStagiaire,
+    s.Cla_idClasse,
     s.emailUni,
     DATE_FORMAT(s.date_inscription, '%d/%m/%Y à %Hh%imin%ss') AS date_inscription,
     su.nom AS Stagiaire_nom,
@@ -116,6 +117,7 @@ abstract class Model{
     n.idNotification,
     n.titre AS notification_titre,
     n.description AS notification_description
+     
 FROM
     stagiaire s
 JOIN utilisateur su ON s.Uti_idUtilisateur = su.idUtilisateur
