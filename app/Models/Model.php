@@ -144,6 +144,7 @@ WHERE
          SELECT
     -- Informations de l'encadrant
     e.idEncadrant, 
+    u.idUtilisateur,
     u.nom AS nom_utilisateur, 
     u.prenom AS prenom_utilisateur,  
     u.photo AS photo_utilisateur,
@@ -162,6 +163,7 @@ WHERE
     n.idNotification,
     n.titre AS notification_titre,
     n.description AS notification_description
+
 FROM
     utilisateur u
 JOIN 

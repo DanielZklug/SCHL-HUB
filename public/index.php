@@ -30,6 +30,9 @@ $router->get('admin/tasks','App\Controllers\Admin\TaskController@index');
 $router->get('admin/settings','App\Controllers\Admin\SetController@index');
 
 $router->get('admin/calendar','App\Controllers\Admin\CalendarController@index');
+$router->get('admin/calendar/:id','App\Controllers\Admin\CalendarController@show');
+$router->post('admin/calendar','App\Controllers\Admin\CalendarController@store');
+$router->post('admin/calendar/delete/:id','App\Controllers\Admin\CalendarController@delete');
 
 $router->get('admin/emails','App\Controllers\Admin\LetterController@index');
 $router->get('admin/emails/:id','App\Controllers\Admin\LetterController@show');
