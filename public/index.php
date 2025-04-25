@@ -52,6 +52,8 @@ $router->get('admin/search','App\Controllers\Admin\SearchController@index');
 $router->get('admin/profile','App\Controllers\Admin\ProfileController@index');
 $router->post('admin/profile','App\Controllers\Admin\ProfileController@updateProfile');
 
+$router->get('admin/monitor','App\Controllers\Admin\MonitorController@index');
+
 $router->get('authentification','App\Controllers\UserController@login');
 $router->get('logoutAdmin','App\Controllers\UserController@logoutAdmin');
 $router->get('logoutUser','App\Controllers\UserController@logoutUser');

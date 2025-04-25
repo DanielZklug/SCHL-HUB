@@ -1,4 +1,6 @@
-<?php $title="Recherches";?>
+<?php $title="Recherches";
+var_dump($params['results'])
+?>
 <div class="dashboard-main-content">
     <div class="w-container">
         <h1 class="page-title">Résutats de recherche</h1>
@@ -37,7 +39,7 @@
                                                 </form>
                                             </div>
                                             <?php
-                                                if(count($params['results']) == 2){
+                                                if(!empty($params['results'])){
                                                     ?>
                                                         <a href="/schl-hub/admin/classroom/<?=$params['results'][0]['idClasse']?>" class="customer-element w-inline-block">
                                                             <div class="grid-number-block">
@@ -55,25 +57,7 @@
                                                             </div>
                                                         </a>
                                                     <?php
-                                                }else if (count($params['results']) == 1){
-                                                    ?>
-                                                        <a href="/schl-hub/admin/student/<?=$params['results'][0]['idUtilisateur']?>" class="customer-element w-inline-block">
-                                                            <div class="grid-number-block">
-                                                                <div><?=$params['results'][0]['stagiaire_name']?></div>
-                                                            </div>
-                                                            <div></div>
-                                                            <div class="mob-hidden"><?=$params['results'][0]['date_inscription']?></div>
-                                                            <div>
-                                                                <form hidden action="/schl-hub/admin/classroom/delete/<?=$params['results'][0]['idUtilisateur']?>" style="display:inline" method="post">
-                                                                    <button style="color:white; padding: 5px; border-radius: 5px; background:#3898ec;" type="submit">
-                                                                        <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'trash.svg'?>" alt="">
-                                                                        Supprimer
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </a>
-                                                    <?php
-                                                }else if(empty($params['results'])){
+                                                }else{
                                                     ?>
                                                         <h1 class="page-title">Aucun résultat trouvé</h1>
                                                     <?php

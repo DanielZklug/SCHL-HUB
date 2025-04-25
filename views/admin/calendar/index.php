@@ -18,7 +18,7 @@ $reminderDates = array_map(function($rappel) {
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Calendrier</h2>
-        <a onclick="showPopup()" href="#" class="button page w-button" id="add-event-btn">Ajouter un nouvel évènement</a>
+        <a onclick="showPopup()" href="#" class="button page w-button" id="add-event-btn">Ajouter un nouveau rappel</a>
     </div>
     <div class="container">
         <div class="module">

@@ -7,7 +7,7 @@
         <div class="module sticky">
             <div class="menu-list-section">
                 <a href="#Edit-Profile" class="menu-link w-inline-block">
-                    <div class="sidebar-link-text">Pramètres de compte</div>
+                    <div class="sidebar-link-text">Paramètres de compte</div>
                 </a>
                 <a href="#Password" class="menu-link w-inline-block">
                     <div class="sidebar-link-text">Mot de passe</div>

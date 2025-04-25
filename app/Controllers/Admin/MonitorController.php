@@ -1,0 +1,27 @@
+<?php
+namespace App\Controllers\Admin;
+
+use App\Models\Post;
+use App\Controllers\Controller;
+use App\Exceptions\NotFoundException;
+
+class MonitorController extends Controller{
+
+    public function index(){
+        $this->isAdmin();
+
+        if (!is_numeric($_SESSION['idEncUser']) || floor($_SESSION['idEncUser']) != $_SESSION['idEncUser']) {
+            throw new NotFoundException("L'identifiant du post doit être un entier.");
+        }
+
+        $_SESSION['idEncUser'] = (int)$_SESSION['idEncUser']; // Conversion explicite en entier
+        $post = new Post($this->getDB());
+        $post = $post->findProfil($_SESSION['idEncUser']);
+
+        if (!$post) {
+            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idEncUser]");
+        }
+
+        return $this->viewAdmin('admin.monitor.index',compact('post'));
+    }
+}
