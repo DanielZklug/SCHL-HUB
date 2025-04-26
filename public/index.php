@@ -1,15 +1,20 @@
- <?php
+<?php
 require "../vendor/autoload.php";
 
 use Router\Router;
 use App\Exceptions\NotFoundException;
 
+// Définir les constantes
 define('VIEWS', dirname(__DIR__).DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
 define('SCRIPTS', strtolower(dirname($_SERVER['SCRIPT_NAME']))."/");
 define('DB_NAME',"schl_hub");
 define('DB_HOST',"localhost");
 define('DB_USERNAME',"root");
 define('DB_PASSWORD',"");
+define('LANGUAGE_DIR', dirname(__DIR__).DIRECTORY_SEPARATOR.'language'.DIRECTORY_SEPARATOR);
+
+// Charger la langue par défaut
+
 
 $router = new Router($_GET['url']);
 
@@ -52,7 +57,7 @@ $router->get('admin/search','App\Controllers\Admin\SearchController@index');
 $router->get('admin/profile','App\Controllers\Admin\ProfileController@index');
 $router->post('admin/profile','App\Controllers\Admin\ProfileController@updateProfile');
 
-$router->get('admin/monitor','App\Controllers\Admin\MonitorController@index');
+$router->get('admin/monitor/:id','App\Controllers\Admin\MonitorController@index');
 
 $router->get('authentification','App\Controllers\UserController@login');
 $router->get('logoutAdmin','App\Controllers\UserController@logoutAdmin');

@@ -86,6 +86,10 @@ $_SESSION['idSta'] = $params['posts']->idStagiaire;
                     <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a1038967373831278c_Note.svg'?>" loading="lazy" width="22" alt="" class="action-icon"/>
                     <h3 class="module-heading">Attribuer une tâche</h3>
                 </a>
+                <a href="/schl-hub/admin/monitor/<?=$params['posts']->idStagiaire?>" class="action-card w-inline-block">
+                    <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'monitor-play.svg'?>" loading="lazy" width="22" alt="" class="action-icon"/>
+                    <h3 class="module-heading">Lancer un Monitoring</h3>
+                </a>
             </div>
         </div>
     </div>

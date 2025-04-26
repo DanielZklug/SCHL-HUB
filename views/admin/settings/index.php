@@ -280,4 +280,16 @@
         const languageLabel = document.getElementById('languageLabel');
         languageLabel.textContent = language; // Change le texte du sélecteur
     }
+
+    function toggleLanguage() {
+    const currentLanguage = document.getElementById('languageLabel').textContent;
+
+    let newLang = 'en';
+    if (currentLanguage === 'Anglais' || currentLanguage === 'Français') {
+        newLang = (currentLanguage === 'Anglais') ? 'fr' : 'en';
+    }
+
+    // Rediriger avec paramètre ?lang=en ou ?lang=fr
+    window.location.href = "/schl-hub/admin/dashboard" + '?lang=' + newLang;
+    }
 </script>

@@ -41,6 +41,8 @@ class DashboardController extends Controller{
         // $totalCount = $student->countByGender();
         // $maleCount = $student->countByGender('M');
         // $femaleCount = $student->countByGender('F');
+         // Appelle la fonction pour récupérer les stagiaires
+         $stagiaires = (new Student($this->getDB()))->getStagiairesByEncadrant($_SESSION['idEncUser']);
 
         return $this->viewAdmin('admin.dashboard.index',compact('post','statistics', 'limit','support'));
     }

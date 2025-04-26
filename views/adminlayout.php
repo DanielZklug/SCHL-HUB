@@ -105,7 +105,7 @@ if (isset($_SESSION['error_message'])) {
                                 <div class="sidebar-link-text">Emails</div>
                             </a>
                             <link rel="prefetch" href="/emails"/>
-                            <a href="/schl-hub/admin/calendar" class="sidebar-link w-inline-block">
+                            <a href="/schl-hub/admin/calendar?lang=fr" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0a91183f9fceef7b0_CalendarBlank.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Calendrier</div>
                             </a>
@@ -122,12 +122,6 @@ if (isset($_SESSION['error_message'])) {
                             <a href="/schl-hub/admin/classroom" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'chalkboard-simple.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Classes</div>
-                            </a>
-                        </div>
-                        <div class="sidebar-menu-section bottom-divider">
-                            <a href="/schl-hub/admin/monitor" class="sidebar-link w-inline-block">
-                                <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'monitor-play.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
-                                <div class="sidebar-link-text">Moniteur</div>
                             </a>
                         </div>
                     </div>
@@ -243,6 +237,7 @@ if (isset($_SESSION['error_message'])) {
             </div>
         </div>
     </body>
+
    <script title="adminjquery" defer>
     /*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */
 !function(e, t) {

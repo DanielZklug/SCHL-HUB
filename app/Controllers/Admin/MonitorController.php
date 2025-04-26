@@ -7,7 +7,7 @@ use App\Exceptions\NotFoundException;
 
 class MonitorController extends Controller{
 
-    public function index(){
+    public function index($id){
         $this->isAdmin();
 
         if (!is_numeric($_SESSION['idEncUser']) || floor($_SESSION['idEncUser']) != $_SESSION['idEncUser']) {
