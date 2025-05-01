@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\SocialProfile;
 
 session_start();
 
@@ -140,20 +141,33 @@ class ProfileController extends Controller{
         }
     }
 
-    private function updateSocialProfiles() {
+    public function updateSocialProfiles() {
         $this->isAdmin();
-        // Récupérer et valider les données des profils sociaux
-        $facebook = $_POST['Facebook'];
-        $instagram = $_POST['Instagram'];
-        $google = $_POST['Google'];
-        $github = $_POST['Github'];
-        $gitlab = $_POST['Gitlab'];
 
-        // Ici, vous devriez mettre à jour les informations dans la base de données
-        // Exemple :
-        // $this->model->updateSocialProfiles($facebook, $instagram, $google, $github, $gitlab);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'facebook' => $_POST['facebook'] ?? null,
+                'instagram' => $_POST['instagram'] ?? null,
+                'google' => $_POST['google'] ?? null,
+                'github' => $_POST['github'] ?? null,
+                'gitlab' => $_POST['gitlab'] ?? null,
+                'user_id' => $_SESSION['idEncadrant'] // Utiliser l'ID de l'encadrant depuis la session
+            ];
 
-        $_SESSION['success_message'] = "Profils sociaux mis à jour avec succès.";
+            $socialProfileModel = new SocialProfile($this->getDB());
+            $result = $socialProfileModel->updateSocial($data);
+
+            if ($result) {
+                $_SESSION['success_message'] = "Profils sociaux mis à jour avec succès.";
+            } else {
+                $_SESSION['error_message'] = "Erreur lors de la mise à jour des profils sociaux.";
+            }
+
+            return header("Location: /schl-hub/admin/profile");
+        }
+
+        $_SESSION['error_message'] = "Méthode de requête invalide.";
+        return header("Location: /schl-hub/admin/profile");
     }
 
 }

@@ -10,7 +10,6 @@ $reminderDates = array_map(function($rappel) {
     ];
 }, $rappels);
 
-$translations = require LANGUAGE_DIR . $lang . '.php';
 ?>
 <script>
     const reminderDates = <?= json_encode($reminderDates) ?>;
@@ -18,8 +17,8 @@ $translations = require LANGUAGE_DIR . $lang . '.php';
 
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
-        <h2><?= $translations['calendar'] ?></h2>
-        <a onclick="showPopup()" href="#" class="button page w-button" id="add-event-btn"><?= $translations['add_event'] ?></a>
+        <h2>calendrier</h2>
+        <a onclick="showPopup()" href="#" class="button page w-button" id="add-event-btn">Ajouter un évènement</a>
     </div>
     <div class="container">
         <div class="module">

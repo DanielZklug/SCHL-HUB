@@ -105,7 +105,7 @@ if (isset($_SESSION['error_message'])) {
                                 <div class="sidebar-link-text">Emails</div>
                             </a>
                             <link rel="prefetch" href="/emails"/>
-                            <a href="/schl-hub/admin/calendar?lang=fr" class="sidebar-link w-inline-block">
+                            <a href="/schl-hub/admin/calendar" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'602339a0a91183f9fceef7b0_CalendarBlank.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Calendrier</div>
                             </a>

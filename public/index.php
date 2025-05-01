@@ -35,7 +35,6 @@ $router->get('admin/tasks','App\Controllers\Admin\TaskController@index');
 $router->get('admin/settings','App\Controllers\Admin\SetController@index');
 
 $router->get('admin/calendar','App\Controllers\Admin\CalendarController@index');
-$router->get('admin/calendar/:id','App\Controllers\Admin\CalendarController@show');
 $router->post('admin/calendar','App\Controllers\Admin\CalendarController@store');
 $router->post('admin/calendar/delete/:id','App\Controllers\Admin\CalendarController@delete');
 
@@ -56,6 +55,7 @@ $router->get('admin/search','App\Controllers\Admin\SearchController@index');
 
 $router->get('admin/profile','App\Controllers\Admin\ProfileController@index');
 $router->post('admin/profile','App\Controllers\Admin\ProfileController@updateProfile');
+$router->post('admin/profile_social','App\Controllers\Admin\ProfileController@updateSocialProfiles');
 
 $router->get('admin/monitor/:id','App\Controllers\Admin\MonitorController@index');
 

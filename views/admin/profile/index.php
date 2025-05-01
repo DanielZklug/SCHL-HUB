@@ -166,26 +166,26 @@ $_SESSION['idEncadrant'] = $params['post']->idEncadrant;
                 </div>
                 <div class="module-main">
                     <div class="w-form">
-                        <form id="email-form" name="email-form" data-name="Email Form" class="form">
+                        <form id="email-form" name="email-form" data-name="Email Form" action="admin/profile_social" class="form" method="post">
                             <div class="field-block">
                                 <label for="Facebook">Facebook</label>
-                                <input type="text" class="text-input filled w-input" maxlength="100" name="Facebook" placeholder="<?=$params['post']->facebook?>" data-name="Facebook" required class="text-input w-input"/>
+                                <input type="text" class="text-input filled w-input" maxlength="100" name="facebook" placeholder="<?=$params['post']->facebook?>" data-name="Facebook" required class="text-input w-input"/>
                             </div>
                             <div class="field-block">
                                 <label for="Facebook">Instagram</label>
-                                <input type="text" class="text-input filled w-input" maxlength="100" name="Facebook-4" data-name="Facebook 4" placeholder="<?=$params['post']->instagram?>" required/>
+                                <input type="text" class="text-input filled w-input" maxlength="100" name="instagram" data-name="Facebook 4" placeholder="<?=$params['post']->instagram?>" required/>
                             </div>
                             <div class="field-block">
                                 <label for="Facebook">Google</label>
-                                <input type="text" class="text-input filled w-input" maxlength="100" name="Facebook-3" placeholder="<?=$params['post']->google?>" data-name="Facebook 3" required class="text-input w-input"/>
+                                <input type="text" class="text-input filled w-input" maxlength="100" name="google" placeholder="<?=$params['post']->google?>" data-name="Facebook 3" required class="text-input w-input"/>
                             </div>
                             <div class="field-block">
                                 <label for="Facebook">Github</label>
-                                <input type="text" class="text-input filled w-input" maxlength="100" name="Facebook-2" data-name="Facebook 2" placeholder="<?=$params['post']->github?>" required class="text-input w-input"/>
+                                <input type="text" class="text-input filled w-input" maxlength="100" name="github" data-name="Facebook 2" placeholder="<?=$params['post']->github?>" required class="text-input w-input"/>
                             </div>
                             <div class="field-block">
-                                <label for="Facebook">Gitalb</label>
-                                <input type="text" class="text-input filled w-input" maxlength="100" name="Facebook-2" data-name="Facebook 2" placeholder="<?=$params['post']->gitlab?>" required class="text-input w-input"/>
+                                <label for="Facebook">Gitlab</label>
+                                <input type="text" class="text-input filled w-input" maxlength="100" name="gitlab" data-name="Facebook 2" placeholder="<?=$params['post']->gitlab?>" required class="text-input w-input"/>
                             </div>
                             <button type="submit" data-wait="Please wait..." class="button settings w-button">Mettre à jour</button>
                         </form>

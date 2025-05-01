@@ -7,7 +7,7 @@
                 <h1 class="logo" style="font-weight: 800;font-size: 3em;">SCHL<span style="font-size: .8em;background: rgb(20, 107, 207); border-radius: 5px;padding: 5px;">hub</span></h1>
             </a>
             <nav role="navigation" class="nav-menu w-nav-menu">
-                <a href="#encadrants" class="nav-link w-nav-link">Encadrants</a>
+                <a href="#encadrants" class="nav-link w-nav-link">Encadrant</a>
                 <a href="#objectifs" class="nav-link w-nav-link">Objectifs</a>
                 <a href="#contact" class="nav-link w-nav-link">Contact</a>
                 <a href="#propos" class="nav-link w-nav-link">A propos</a>

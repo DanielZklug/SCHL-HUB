@@ -35,6 +35,7 @@ if (isset($_SESSION['error_message'])) {
         <title>SCHLhub - <?=$title?></title>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="Webflow" name="generator"/>
+        <meta http-equiv="refresh" content="5">
         <link rel="stylesheet" href="<?= SCRIPTS.'css'.DIRECTORY_SEPARATOR.'adminstyle.css'?>" type="text/css"/>
         <script type="text/javascript">
             !function(o, c) {
