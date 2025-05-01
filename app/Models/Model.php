@@ -106,6 +106,7 @@ abstract class Model{
     s.emailUni,
     DATE_FORMAT(s.date_inscription, '%d/%m/%Y à %Hh%imin%ss') AS date_inscription,
     su.nom AS Stagiaire_nom,
+    su.idUtilisateur AS Stagiaire_UserId,
     su.prenom AS Stagiaire_prenom,
     su.photo AS Stagiaire_photo,
     su.numero AS Stagiaire_numero,

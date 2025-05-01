@@ -35,6 +35,7 @@ $router->get('admin/tasks','App\Controllers\Admin\TaskController@index');
 $router->get('admin/settings','App\Controllers\Admin\SetController@index');
 
 $router->get('admin/calendar','App\Controllers\Admin\CalendarController@index');
+$router->get('admin/calendar/:id','App\Controllers\Admin\CalendarController@show');
 $router->post('admin/calendar','App\Controllers\Admin\CalendarController@store');
 $router->post('admin/calendar/delete/:id','App\Controllers\Admin\CalendarController@delete');
 
@@ -68,6 +69,7 @@ $router->get('student/dashboard','App\Controllers\Student\DashboardController@in
 
 $router->get('student/profile','App\Controllers\Student\ProfileController@index');
 $router->post('student/profile','App\Controllers\Student\ProfileController@updateProfile');
+$router->post('student/profile_social','App\Controllers\Student\ProfileController@updateAccountInformation');
 
 $router->get('student/settings','App\Controllers\Student\SetController@index');
 
@@ -78,6 +80,9 @@ $router->get('student/emails/:id','App\Controllers\Student\LetterController@show
 $router->post('student/emails/delete/:id','App\Controllers\Student\LetterController@delete');
 
 $router->get('student/calendar','App\Controllers\Student\CalendarController@index');
+$router->get('student/calendar/:id','App\Controllers\Student\CalendarController@show');
+$router->post('student/calendar','App\Controllers\Student\CalendarController@store');
+$router->post('student/calendar/delete/:id','App\Controllers\Student\CalendarController@delete');
 try{
     $router->run();
 }catch(NotFoundException $e){

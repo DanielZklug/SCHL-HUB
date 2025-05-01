@@ -105,7 +105,7 @@ $_SESSION['idEncadrant'] = $params['post']->idStagiaire;
                     </p>
                     <div class="divider"></div>
                     <div class="w-form">
-                        <form action="student/profile" method="post">
+                        <form action="student/profile_social" method="post">
                             <div class="field-block">
                                 <label for="name">Nom</label>
                                 <input type="text" class="text-input filled w-input" 
@@ -137,7 +137,7 @@ $_SESSION['idEncadrant'] = $params['post']->idStagiaire;
                             </div>
                             <div class="field-block">
                                 <label for="Role">genre</label>
-                                <input type="text" name="profession_encadrant" class="text-input filled w-input" 
+                                <input type="text" class="text-input filled w-input" 
                                     maxlength="1" 
                                     value="<?=$params['post']->Stagiaire_genre?>" 
                                     id="Role" 
@@ -147,7 +147,7 @@ $_SESSION['idEncadrant'] = $params['post']->idStagiaire;
                             </div>
                             <div class="field-block">
                                 <label for="Role">Numero</label>
-                                <input type="text" name="profession_encadrant" class="text-input filled w-input" 
+                                <input type="text" class="text-input filled w-input" 
                                     maxlength="100" 
                                     value="<?=$params['post']->Stagiaire_numero?>" 
                                     id="Role" 

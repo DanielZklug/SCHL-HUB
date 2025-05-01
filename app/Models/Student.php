@@ -66,4 +66,21 @@ class Student extends Model{
             return [];
         }
     }
+
+    public function update($userId, array $data) {
+        try {
+            // Préparer et exécuter la requête
+            $stmt = $this->db->getPDO()->prepare("UPDATE {$this->table} SET emailUni = ? WHERE Uti_idUtilisateur = ?");
+            
+            // Passer explicitement les valeurs de $data dans le bon ordre
+            $stmt->execute([
+                $data['email_organisationnel'],    // emailOrg  // profession
+                $userId               // idUtilisateur
+            ]);
+    
+            $_SESSION['success_message'] = "Informations sur le compte mises à jour avec succès.";
+        } catch (\Exception $e) {
+            $_SESSION['error_message'] = "Erreur lors de la mise à jour des informations : " . $e->getMessage();
+        }
+    }
 }

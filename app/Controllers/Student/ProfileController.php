@@ -120,17 +120,16 @@ class ProfileController extends Controller{
         $this->isStudent();
         // Récupérer et valider les données du formulaire
         $data = [
-            'email_organisationnel' => $_POST['email_organisationnel'],
-            'profession_encadrant' => $_POST['profession_encadrant'],
-            'bio_encadrant' => $_POST['bio_encadrant']
+            'email_organisationnel' => $_POST['email_organisationnel']
         ];
         
-
-        $post = new Post($this->getDB());
-        if ($post->update($_SESSION["idEncUser"],$data)) {
+        $post = new Student($this->getDB());
+        if ($post->update($_SESSION['idStaUser'],$data)) {
             $_SESSION['success_message'] = "Profil mise à jour avec succès.";
+            return header("Location: /schl-hub/student/profile");
         } else {
             $_SESSION['error_message'] = "Erreur lors de l'enregistrement des informations du fichier.";
+            return header("Location: /schl-hub/student/profile");
         }
     }
 }
