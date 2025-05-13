@@ -1,5 +1,6 @@
 <?php $title = $params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom ;
 $_SESSION['idSta'] = $params['posts']->idStagiaire;
+var_dump($params['posts'])
 ?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
@@ -100,9 +101,12 @@ $_SESSION['idSta'] = $params['posts']->idStagiaire;
     <div class="popup-content">
         <form action="admin/student/:id" method="post">
             <label for="Subscriber-Email" class="field-label">Envoyer à</label>
-            <input type="text" class="simple-input no-margin w-input" maxlength="20" name="recever_name" value="<?=$params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom?>" placeholder="Nom du stagiaire" id="Subscriber-Email" required/>
+            <input type="text" class="simple-input no-margin w-input" maxlength="20" name="recever_name" value="<?=$params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom."/".$params['posts']->Stagiaire_UserId?>" placeholder="Nom du stagiaire" id="Subscriber-Email" required/>
             <div class="spacer _16"></div>
             <input type="email" class="simple-input no-margin w-input" maxlength="50" name="recever_email" hidden value="<?=$params['posts']->Stagiaire_email?>" placeholder="exemple@gmail.com" id="Subscriber-Email" required/>
+            <div class="spacer _16"></div>
+            <label for="Subscriber-Email" class="field-label">De</label>
+            <input type="text" class="simple-input no-margin w-input" maxlength="50" name="sender_name" hidden value="<?=$params['post']->nom_utilisateur." ".$params['post']->prenom_utilisateur?>" placeholder="Nom de l'encadrant" id="Subscriber-Email" required/>
             <div class="spacer _16"></div>
             <label for="title-Email" class="field-label">Objet</label>
             <input type="text" class="simple-input no-margin w-input" maxlength="50" name="content-title" placeholder="Objet de la lettre" id="title-Email" required/>

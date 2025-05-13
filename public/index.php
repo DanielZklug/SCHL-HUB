@@ -40,6 +40,9 @@ $router->post('admin/calendar','App\Controllers\Admin\CalendarController@store')
 $router->post('admin/calendar/delete/:id','App\Controllers\Admin\CalendarController@delete');
 
 $router->get('admin/emails','App\Controllers\Admin\LetterController@index');
+$router->get('admin/recever','App\Controllers\Admin\ReceverController@index');
+$router->get('admin/recever/:id','App\Controllers\Admin\ReceverController@showreceved');
+$router->post('admin/recever/delete/:id','App\Controllers\Admin\ReceverController@delete');
 $router->get('admin/emails/:id','App\Controllers\Admin\LetterController@show');
 $router->post('admin/emails/delete/:id','App\Controllers\Admin\LetterController@delete');
 
@@ -74,6 +77,10 @@ $router->post('student/profile_social','App\Controllers\Student\ProfileControlle
 $router->get('student/settings','App\Controllers\Student\SetController@index');
 
 $router->get('student/tasks','App\Controllers\Student\TaskController@index');
+
+$router->get('student/recever','App\Controllers\Student\ReceverController@index');
+$router->get('student/recever/:id','App\Controllers\Student\ReceverController@showreceved');
+$router->post('student/recever/delete/:id','App\Controllers\Student\ReceverController@delete');
 
 $router->get('student/emails','App\Controllers\Student\LetterController@index');
 $router->get('student/emails/:id','App\Controllers\Student\LetterController@show');

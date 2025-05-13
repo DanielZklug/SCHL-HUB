@@ -21,6 +21,7 @@ $header = '<div class="support-row head">
                 <h4 class="grid-header">Date de publication</h4>
                 <h4 class="grid-header">Action</h4>
             </div>';
+
 ?>
 
 <div class="dashboard-main-content">

@@ -64,8 +64,11 @@ class StudentController extends Controller{
     
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Valider les données du formulaire
+            $nameId = explode("/",$_POST['recever_name']);
+            $receverName = $nameId[0];
+            $idSta = $nameId[1];
             $receverEmail = $_POST['recever_email'] ?? null;
-            $receverName = $_POST['recever_name'] ?? null;
+            $senderName = $_POST['sender_name'] ?? null;
             $contentTitle = $_POST['content-title'] ?? null;
             $content = $_POST['content'] ?? null;
     
@@ -78,6 +81,7 @@ class StudentController extends Controller{
             // Assurer que les entrées sont valides
             $receverEmail = filter_var($receverEmail, FILTER_SANITIZE_EMAIL);
             $receverName = htmlspecialchars($receverName, ENT_QUOTES, 'UTF-8');
+            $senderName = htmlspecialchars($senderName, ENT_QUOTES, 'UTF-8');
             $content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
     
             // Créer une instance de PHPMailer
@@ -88,7 +92,9 @@ class StudentController extends Controller{
                 $messageModel = new Message($this->getDB());
                 $result = $messageModel->saveMessage([
                     'idEnc' => $_SESSION['idEncUser'],
+                    'idSta' => $idSta,
                     'recever' => $receverName,
+                    'sender' => $senderName,
                     'title' => $contentTitle,
                     'content' => $content
                 ]);

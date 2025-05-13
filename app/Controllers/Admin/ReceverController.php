@@ -7,7 +7,7 @@ use App\Models\Message;
 use App\Controllers\Controller;
 use App\Exceptions\NotFoundException;
 
-class LetterController extends Controller{
+class ReceverController extends Controller{
 
     public function index(){
         $this->isAdmin();
@@ -25,9 +25,9 @@ class LetterController extends Controller{
         }
 
         $posts = new Message($this->getDB());
-        $all = $posts->allMessage($_SESSION['idEncUser']);
+        $all = $posts->allMessageRecever($_SESSION['idEncUser']);
 
-        return $this->viewAdmin('admin.emails.index',compact('post', 'all'));
+        return $this->viewAdmin('admin.emails.receved',compact('post', 'all'));
     }
     public function show($id){
         $this->isAdmin();
@@ -48,6 +48,26 @@ class LetterController extends Controller{
         $message = $posts->seeMessage($id);
 
         return $this->viewAdmin('admin.emails.show',compact('post', 'message'));
+    }
+    public function showReceved($id){
+        $this->isAdmin();
+
+        if (!is_numeric($_SESSION['idEncUser']) || floor($_SESSION['idEncUser']) != $_SESSION['idEncUser']) {
+            throw new NotFoundException("L'identifiant du post doit être un entier.");
+        }
+
+        $_SESSION['idEncUser'] = (int)$_SESSION['idEncUser']; // Conversion explicite en entier
+        $post = new Post($this->getDB());
+        $post = $post->findProfil($_SESSION['idEncUser']);
+
+        if (!$post) {
+            throw new NotFoundException("Aucun post trouvé avec l'identifiant : $_SESSION[idEncUser]");
+        }
+
+        $posts = new Message($this->getDB());
+        $message = $posts->seeMessageReceve($id);
+
+        return $this->viewAdmin('admin.emails.showreceved',compact('post', 'message'));
     }
 
     public function delete($id){

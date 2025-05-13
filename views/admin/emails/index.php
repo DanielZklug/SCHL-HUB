@@ -2,6 +2,7 @@
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>Lettres</h2>
+        <a href="/schl-hub/admin/recever" class="button page w-button">Boîte de réception</a>
     </div>
     <div class="dashboard-page-contents">
         <div class="module">

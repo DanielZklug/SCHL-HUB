@@ -1,11 +1,8 @@
-<?php $title = "Lettres";
-
-var_dump($params['post'])
-?>
+<?php $title = "Boîte de réception"?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
-        <h2>Lettres</h2>
-        <a href="/schl-hub/student/recever" class="button page w-button">Boîte de réception</a>
+        <h2>Boîte de réception</h2>
+        <a href="/schl-hub/admin/emails" class="button page w-button">Messagerie</a>
     </div>
     <div class="dashboard-page-contents">
         <div class="module">
@@ -13,13 +10,13 @@ var_dump($params['post'])
                 <div class="email-section">
                     <h3 class="module-heading">Tous les messages</h3>
                     <?php foreach ($params["all"] as $limit): ?>
-                        <a href="emails/<?=$limit['idMessage']?>" id="message" data-id="<?=$limit['idMessage']?>" class="email-element">
+                        <a href="recever/<?=$limit['idMessage']?>" id="message" data-id="<?=$limit['idMessage']?>" class="email-element">
                             <div class="notification-top">
                                 <div id="message" class="notification-dot"></div>
                                 <div class="notificaiton-title"><?=$limit['objet']?></div>
                                 <div class="email-time"><?=$limit['date_envoi']?></div>
                             </div>
-                            <p class="notification-subtitle"><?=$limit['NomUrecepteur']?></p>
+                            <p class="notification-subtitle"><?=$limit['NomUemetteur']?></p>
                             <p class="notification-description"><?=$limit['contenu']?></p>
                         </a>
                     <?php endforeach; ?>

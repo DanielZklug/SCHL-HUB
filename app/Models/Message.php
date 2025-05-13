@@ -16,9 +16,9 @@ class Message extends Model {
      * @return bool
      */
     public function saveMessage(array $data): bool {
-        $sql = "INSERT INTO {$this->table} (idUemetteur, NomUrecepteur, objet, contenu, date_envoi) VALUES (?, ?, ?, ?, NOW())";
+        $sql = "INSERT INTO {$this->table} (idUemetteur, idUrecepteur, NomUrecepteur, NomUemetteur, objet, contenu, date_envoi) VALUES (?, ?, ?, ?, ?, ?, NOW())";
         $stmt = $this->db->getPDO()->prepare($sql);
-        return $stmt->execute([$data['idEnc'],$data['recever'],$data['title'], $data['content']]);
+        return $stmt->execute([$data['idEnc'], $data['idSta'], $data['recever'], $data['sender'],$data['title'], $data['content']]);
     }
 
     public function allMessage(int $id, string $limit = null ): array{
@@ -45,12 +45,58 @@ class Message extends Model {
         return $result;
     }
 
+    public function allMessageRecever(int $id, string $limit = null ): array{
+        // Exécute une requête SQL pour récupérer tous les utilisateurs et leurs profils, triés par ID d'utilisateur décroissant
+        $stmt = $this->db->getPDO()->prepare("
+            SELECT
+                idMessage,
+                NomUemetteur,
+                objet,
+                contenu,
+                DATE_FORMAT(date_envoi, '%d/%m/%Y à %Hh%imin%ss') AS date_envoi 
+            FROM
+                {$this->table} m
+            WHERE idUrecepteur = ?
+            ORDER BY idMessage DESC
+            $limit
+        ");
+        // Exécute la requête avec l'ID de l'encadrant
+        $stmt->execute([$id]);
+    
+        // Récupère tous les résultats sous forme de tableau associatif
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
     public function seeMessage(int $id): array{
         // Exécute une requête SQL pour récupérer tous les utilisateurs et leurs profils, triés par ID d'utilisateur décroissant
         $stmt = $this->db->getPDO()->prepare("
             SELECT
                 idMessage,
                 NomUrecepteur,
+                objet,
+                contenu,
+                DATE_FORMAT(date_envoi, '%d/%m/%Y à %Hh%imin%ss') AS date_envoi
+            FROM
+                {$this->table} m
+            WHERE idMessage = ?
+        ");
+        // Exécute la requête avec l'ID de l'encadrant
+        $stmt->execute([$id]);
+    
+        // Récupère tous les résultats sous forme de tableau associatif
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function seeMessageReceve(int $id): array{
+        // Exécute une requête SQL pour récupérer tous les utilisateurs et leurs profils, triés par ID d'utilisateur décroissant
+        $stmt = $this->db->getPDO()->prepare("
+            SELECT
+                idMessage,
+                NomUemetteur,
                 objet,
                 contenu,
                 DATE_FORMAT(date_envoi, '%d/%m/%Y à %Hh%imin%ss') AS date_envoi
