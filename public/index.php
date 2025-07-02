@@ -90,6 +90,9 @@ $router->get('student/calendar','App\Controllers\Student\CalendarController@inde
 $router->get('student/calendar/:id','App\Controllers\Student\CalendarController@show');
 $router->post('student/calendar','App\Controllers\Student\CalendarController@store');
 $router->post('student/calendar/delete/:id','App\Controllers\Student\CalendarController@delete');
+
+$router->get('student/monitor','App\Controllers\Student\MonitorController@index');
+
 try{
     $router->run();
 }catch(NotFoundException $e){

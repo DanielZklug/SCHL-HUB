@@ -111,7 +111,7 @@ if (isset($_SESSION['error_message'])) {
                             </a>
                         </div>
                         <div class="sidebar-menu-section bottom-divider">
-                            <a href="#" class="sidebar-link w-inline-block">
+                            <a href="/schl-hub/student/monitor" class="sidebar-link w-inline-block">
                                 <img src="<?= SCRIPTS.'adminimg'.DIRECTORY_SEPARATOR.'monitor-play.svg'?>" loading="lazy" width="27" alt="" class="sidebar-icon"/>
                                 <div class="sidebar-link-text">Moniteur</div>
                             </a>

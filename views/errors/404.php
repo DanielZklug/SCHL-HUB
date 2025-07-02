@@ -54,7 +54,7 @@
 <body>
     <div>
         <h1>404</h1>
-        <p>Désolé, la page que vous recherchez n'existe pas.</p>
+        <p><?=$_GET['message']?></p>
         <br>
         <br>
         <br>
