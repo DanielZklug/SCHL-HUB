@@ -1,5 +1,4 @@
 <?php $title="Recherches";
-var_dump($params['results'])
 ?>
 <div class="dashboard-main-content">
     <div class="w-container">

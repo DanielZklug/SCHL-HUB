@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 06 avr. 2025 à 20:53
+-- Généré le : ven. 18 juil. 2025 à 05:42
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -94,7 +94,9 @@ INSERT INTO `encadrant` (`idEncadrant`, `Uti_idUtilisateur`, `emailOrg`, `bio`, 
 CREATE TABLE `message` (
   `idMessage` int(11) NOT NULL,
   `idUemetteur` varchar(254) DEFAULT NULL,
+  `idUrecepteur` int(11) NOT NULL,
   `NomUrecepteur` varchar(254) DEFAULT NULL,
+  `NomUemetteur` varchar(254) NOT NULL,
   `objet` varchar(50) NOT NULL,
   `contenu` varchar(254) DEFAULT NULL,
   `date_envoi` datetime DEFAULT current_timestamp()
@@ -151,6 +153,20 @@ INSERT INTO `profilsocial` (`idPsocial`, `Enc_idEncadrant`, `gitlab`, `github`, 
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `rappels`
+--
+
+CREATE TABLE `rappels` (
+  `id` int(11) NOT NULL,
+  `titre` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `date_heure` datetime NOT NULL,
+  `utilisateur_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `stagiaire`
 --
 
@@ -169,9 +185,10 @@ CREATE TABLE `stagiaire` (
 --
 
 INSERT INTO `stagiaire` (`Cla_Uti_idUtilisateur`, `Enc_idEncadrant`, `Cla_idClasse`, `Uti_idUtilisateur`, `idStagiaire`, `emailUni`, `date_inscription`) VALUES
-(NULL, 3, 25, 38, 21, '', '2025-04-06 16:03:10'),
+(NULL, 3, 25, 38, 21, '', '2025-07-18 02:07:47'),
 (NULL, 3, 24, 39, 22, '', '2025-04-06 16:11:07'),
-(NULL, 3, 24, 41, 23, '', '2025-04-05 21:38:10');
+(NULL, 3, 24, 41, 23, '', '2025-04-05 21:38:10'),
+(NULL, 3, 25, 43, 24, '', '2025-07-18 03:32:16');
 
 -- --------------------------------------------------------
 
@@ -211,13 +228,14 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `prenom`, `genre`, `motPasse`, `numero`, `email`, `role`, `photo`) VALUES
-(6, 'Dupont', 'Jean', 'Masculin', '$2y$10$O6zJna6lE5kHhLAKEf.dmuFDYXeBcDosR4WXOmFZH3ebnbfvrbZ42', '+237699699666', 'jean.dupont@example.com', 'encadrant', 'OIP (11).jpeg'),
+(6, 'Dupont', 'Jean', 'Masculin', '$2y$10$O6zJna6lE5kHhLAKEf.dmuFDYXeBcDosR4WXOmFZH3ebnbfvrbZ42', '+237699699666', 'jean.dupont@example.com', 'encadrant', 'android-chrome-192x192.png'),
 (17, 'Abondo', 'Daniel', 'Masculin', '$2y$10$UWezkI10afkXQy3Z1Jw4xOP/sPw813b9KGkHo1W8S3CSXz2ijXqT6', '+237657822189', 'danielzklug@gmail.com', 'encadrant', NULL),
 (31, 'Eyondo', 'Bertrand', 'Masculin', '$2y$10$hhkRDsLonoOeCHr0W7fm5e/vqMl32Gd8PvhGAk6OB0b25g9xDAe5e', '+237655832639', 'ekofranky@gmail.com', 'encadrant', NULL),
 (38, 'Justin', 'Leroy', 'M', '$2y$10$vQO7rrQBmTepoO7mnWmy0OLneTN.osmIbUXZTmFD6UJLcrVnvYWEe', '+237655832639', 'exemple@gmail.com', 'etudiant', NULL),
-(39, 'Chan', 'Manuela', 'F', '$2y$10$l8rA0ERPsc315HLiHUgZDuj9pbv5gw5uPfZn0yHCWGXvqZqUUfNJu', '+237657822189', 'manouchan@gmail.com', 'etudiant', NULL),
+(39, 'Chan', 'Manuela', 'F', '$2y$10$O6zJna6lE5kHhLAKEf.dmuFDYXeBcDosR4WXOmFZH3ebnbfvrbZ42', '+237657822189', 'manouchan@gmail.com', 'etudiant', NULL),
 (40, 'Abatsong', 'Isaac Octave', NULL, '$2y$10$IxRwNGhjGATMV8ic7ouXOOq9lGEYirhozVCvmwDFJzMemKpU.f7KC', '+237655832639', 'abatchmonster@gmail.com', 'encadrant', 'edge.jpeg'),
-(41, 'Abatsong', 'Isaac', 'M', '$2y$10$1k/jldkZZqtFhqimmtBkyukgjYJWj2s13gQkQyPb3rBhvD2wZUDaK', '+237657822189', 'abatchmonster123@gmail.com', 'etudiant', 'OIP (8).jpeg');
+(41, 'Abatsong', 'Isaac', 'M', '$2y$10$1k/jldkZZqtFhqimmtBkyukgjYJWj2s13gQkQyPb3rBhvD2wZUDaK', '+237657822189', 'abatchmonster123@gmail.com', 'etudiant', 'OIP (8).jpeg'),
+(43, 'Code', 'Craft', 'M', '$2y$10$qs9DajgzQsxLrUa28VjS.eTM72zqL9ttq/bwFzIgmHqwmR4FcxS2C', '+237696666999', 'codecraft731@gmail.com', 'etudiant', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -263,6 +281,13 @@ ALTER TABLE `notification`
 ALTER TABLE `profilsocial`
   ADD PRIMARY KEY (`idPsocial`),
   ADD KEY `Enc_idEncadrant` (`Enc_idEncadrant`);
+
+--
+-- Index pour la table `rappels`
+--
+ALTER TABLE `rappels`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `utilisateur_id` (`utilisateur_id`);
 
 --
 -- Index pour la table `stagiaire`
@@ -313,7 +338,7 @@ ALTER TABLE `encadrant`
 -- AUTO_INCREMENT pour la table `message`
 --
 ALTER TABLE `message`
-  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `notification`
@@ -328,10 +353,16 @@ ALTER TABLE `profilsocial`
   MODIFY `idPsocial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT pour la table `rappels`
+--
+ALTER TABLE `rappels`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT pour la table `stagiaire`
 --
 ALTER TABLE `stagiaire`
-  MODIFY `idStagiaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idStagiaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `tache`
@@ -343,7 +374,7 @@ ALTER TABLE `tache`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Contraintes pour les tables déchargées
@@ -378,6 +409,12 @@ ALTER TABLE `notification`
 --
 ALTER TABLE `profilsocial`
   ADD CONSTRAINT `encadrant_idfk2` FOREIGN KEY (`Enc_idEncadrant`) REFERENCES `encadrant` (`idEncadrant`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `rappels`
+--
+ALTER TABLE `rappels`
+  ADD CONSTRAINT `rappels_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `stagiaire`

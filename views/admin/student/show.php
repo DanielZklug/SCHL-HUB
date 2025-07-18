@@ -1,6 +1,5 @@
 <?php $title = $params['posts']->Stagiaire_nom." ".$params['posts']->Stagiaire_prenom ;
 $_SESSION['idSta'] = $params['posts']->idStagiaire;
-var_dump($params['posts'])
 ?>
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">

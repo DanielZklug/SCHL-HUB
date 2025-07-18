@@ -10,15 +10,25 @@ $reminderDates = array_map(function($rappel) {
     ];
 }, $rappels);
 
+// Nouvelle variable pour les notifications (date + heure)
+$reminderNotifications = array_map(function($rappel) {
+    return [
+        'dateTime' => date('c', strtotime($rappel['date_heure'])), // Format ISO 8601
+        'id' => $rappel['id'],
+        'titre' => $rappel['titre'] ?? 'Rappel'
+    ];
+}, $rappels);
 ?>
 <script>
     const reminderDates = <?= json_encode($reminderDates) ?>;
+    const reminderNotifications = <?= json_encode($reminderNotifications) ?>; // Nouvelle
 </script>
 
 <div class="dashboard-main-content">
     <div class="dashboard-page-header">
         <h2>calendrier</h2>
         <a onclick="showPopup()" href="#" class="button page w-button" id="add-event-btn">Ajouter un évènement</a>
+        <a href="#" onclick="requestNotificationPermission()"  class="button page w-button">Activer les rappels</a>
     </div>
     <div class="container">
         <div class="module">
@@ -226,3 +236,44 @@ $reminderDates = array_map(function($rappel) {
         // Appeler la fonction lors du chargement de la page
         window.onload = setMinDate;
     </script>
+
+<script>
+    function setupNotificationReminders() {
+    if (!('Notification' in window)) {
+        console.warn("Notifications non supportées");
+        return;
+    }
+
+    // Vérifie la permission existante
+    if (Notification.permission === 'granted') {
+        scheduleNotifications();
+    } else if (Notification.permission !== 'denied') {
+        // Demande la permission via un bouton (ex: <button onclick="requestNotificationPermission()">)
+        console.log("Appelez requestNotificationPermission() via un clic utilisateur");
+    }
+}
+
+function requestNotificationPermission() {
+    Notification.requestPermission().then(permission => {
+        if (permission === 'granted') scheduleNotifications();
+    });
+}
+
+function scheduleNotifications() {
+    const now = new Date();
+
+    reminderNotifications.forEach(reminder => {
+        const reminderTime = new Date(reminder.dateTime);
+        const delay = reminderTime.getTime() - now.getTime();
+
+        if (delay > 0) {
+            setTimeout(() => {
+                new Notification(reminder.titre, {
+                    body: `Échéance: ${reminderTime.toLocaleString()}`,
+                    icon: '/img/calendar-icon.png'
+                });
+            }, delay);
+        }
+    });
+}
+</script>
